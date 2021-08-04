@@ -1,0 +1,111 @@
+
+body{
+    background-color: #eee;
+}
+form{
+    background: #fff;
+    width: 90vw;
+    padding: 10px;
+    height: 90vh;
+    margin: 10px auto;
+}
+
+.menu{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 10px;
+    height: 100vh;
+    background: rgb(51, 51, 51);
+    opacity: 0.1;
+    transition: 0.3s;
+    overflow-x: hidden;
+    padding: 0px;
+
+}
+
+.menu:hover{
+    opacity: 1;
+    width: 300px;
+    padding: 10px;
+}
+
+.selected{
+    outline: 2px solid rgba(65, 158, 245, 0.651);
+}
+
+.select:not(.selected):hover {
+   outline: 2px solid rgba(173, 81, 81, 0.171);
+}
+
+.quickpanel{
+    width: 600px;
+    min-height: 200px;
+    background: #fff;
+    border-radius: 10px;
+    position: fixed;
+    top: 50vh;
+    right: 50vw;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.205);
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.quickpanel input{
+    padding: 5px;
+    border: none;
+    outline: none;
+    font-size: 20pt;
+    color: #222;
+    border-bottom: 1px solid #eee;
+}
+
+.subtext{
+    font-size: 9pt;
+    color: rgb(182, 182, 182);
+}
+
+.quickpanel .body{
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.quickpanel .body ul{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+.quickpanel .body ul li{
+ 
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    color: rgb(78, 78, 78);
+    display: flex;
+    justify-content: space-between;
+    text-transform: capitalize;
+}
+
+.quickpanel .body ul li:hover{
+    background-color: #eee;
+}
+
+
+*::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+*::-webkit-scrollbar-track {
+    background: rgba(228, 228, 228, 0.3); 
+    border-radius: 10px;
+}
+ 
+*::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: rgb(197, 197, 197); 
+}
