@@ -1,6 +1,11 @@
-# LUK3D INTERACTIVE CONSTRUCTOR
+# LUK3D INTERACTIVE CONSTRUCTOR (LIC)
 
 Construtor interativo de páginas web.
+
+<img src="./screenshot.png" >
+
+
+> Este é um exemplo de formulário de login criado com o LIC
 
 
 O construtor interativo de páginas web, é um projeto desenvolvido pela LUK3D na pessoa de Filipe Lukebana.

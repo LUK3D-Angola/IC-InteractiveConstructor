@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formoza - Easy Form creator</title>
     <link href="./libs/bootstrap.min.css" rel="stylesheet">
+    <link href="./libs/fontawesome/css/all.min.css" rel="stylesheet">
     <link href="./main.css" rel="stylesheet">
     <script type="module" src="./libs/jquery.min.js"></script>
     <script type="module" src="./libs/panzoom.min.js"></script>
@@ -120,14 +121,39 @@
     
     
     <div class="d-flex flex-row justify-content-between">
-        <p class="">Background <div class="bg-picker"></div></p>  
-        <p class="">Color <div class="fg-picker"></div></p>  
+        <!-- <p class="">Background <div class="bg-picker"></div></p>   -->
+        <!-- <p class="">Color <div class="fg-picker"></div></p>   -->
     </div>
    
     
 </div>
 
 
+<div class="ic-toolBox">
+    <button class="cl-btn p-2 "><i class="fas fa-expand"></i></button>
+    <button class="cl-btn p-2 "><i class="fas fa-search-minus"></i></button>
+    <button class="cl-btn p-2 "><i class="fas fa-search-minus"></i></button>
+    <div class="cl-vl"></div>
+    <button class="cl-btn p-2 " onclick="layoutDirection('horizontal')"><div class="cli-icon" style="--icon: url(./assets/icons/horizontal.svg)"></div>   </button>
+    <button class="cl-btn p-2 " onclick="layoutDirection('vertical')"><div class="cli-icon" style="--icon: url(./assets/icons/vertical.svg)"></div>   </button>
+    <div class="cl-vl"></div>
+    <button class="cl-btn p-2 bg-picker rounded-circle"><div class="cli-icon cl-bg-danger" style="--icon: url(./assets/icons/filledCircle.svg)"></div>   </button>
+    <button class="cl-btn p-2 fg-picker"><div class="cli-icon cl-bg-primary" style="--icon: url(./assets/icons/filledCircle.svg)"></div>   </button>
+    <div class="cl-vl"></div>
+    <button class="cl-btn p-2 "><div class="cli-icon" style="--icon: url(./assets/icons/copy.svg)"></div>   </button>
+    <button class="cl-btn p-2 "><div class="cli-icon" style="--icon: url(./assets/icons/paste.svg)"></div>   </button>
+    <button class="cl-btn p-2 "><div class="cli-icon" style="--icon: url(./assets/icons/cut.svg)"></div>   </button>
+    <button class="cl-btn p-2 "><div class="cli-icon" style="--icon: url(./assets/icons/delete.svg)"></div>   </button>
+    <div class="cl-vl"></div>
+    <button class="cl-btn p-2 "><div class="cli-icon" style="--icon: url(./assets/icons/phone.svg)"></div>   </button>
+    <button class="cl-btn p-2 "><div class="cli-icon" style="--icon: url(./assets/icons/tablet.svg)"></div>   </button>
+    <button class="cl-btn p-2 "><div class="cli-icon" style="--icon: url(./assets/icons/pc.svg)"></div>   </button>
+    <div class="cl-vl"></div>
+    <button class="cl-btn p-2 "><div class="cli-icon" style="--icon: url(./assets/icons/landscape.svg)"></div>   </button>
+    <button class="cl-btn p-2 "><div class="cli-icon" style="--icon: url(./assets/icons/portrait.svg)"></div>   </button>
+    <div class="cl-vl"></div>
+    <button class="cl-btn p-2 "><div class="cli-icon" style="--icon: url(./assets/icons/start.svg)"></div>    </button>
+</div>
 
 <div class="quickpanel" onmouseleave="hideQuickpanel()">
     <input type="text" placeholder="Pesquisar...">

@@ -122,3 +122,89 @@ form{
     background: transparent !important;
     outline: none !important;
 }
+
+.ic-toolBox{
+    padding-left: 5px;
+    padding-right: 5px;
+    position: fixed;
+    width: 60vw;
+    height: 40px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.11);
+    border-radius: 10px;
+    top:10px;
+
+    left: 50%;
+    transform: translateX(-50%);
+
+    /*
+    Centralizar no eixo Y
+    top: 50%;
+    transform: translateY(-50%);
+
+    Centralizar tudo.
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    */
+}
+
+.ic-toolBox {
+    color: #eee;
+    display: flex;
+    justify-content: space-between;
+}
+
+.ic-toolBox .pickr{
+    padding: 2px;
+    margin-right: 10px;
+}
+
+.cl-btn{
+    padding: 5px 10px !important;
+    background: #fff;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    margin-top: 3px;
+    color: rgb(126, 126, 126);
+    margin: 2px;
+}
+
+.pickr .pcr-button{
+    width: 20px !important;
+    height: 20px !important;
+    border-radius: 100% !important;
+    overflow: hidden;
+    margin: 2px;
+}
+
+
+.cl-btn:hover{
+    background: #eee;
+}
+
+.cl-bg-danger{
+    background: #FD413C !important;
+}
+.cl-bg-primary{
+    background: #5F40A6 !important;
+}
+
+.cl-vl{
+    border-left: 1px solid rgb(189, 189, 189);
+    height: 90%;
+    margin-top: 2px;
+}
+
+.cli-icon{
+    width: 15px;
+    height: 15px;
+    background-color: rgb(157, 157, 157);
+    mask: var(--icon) 100 no-repeat ;
+    -webkit-mask: var(--icon) no-repeat  ;
+    -webkit-mask-size: 100% 100%;
+    mask-type: alpha;
+}
+

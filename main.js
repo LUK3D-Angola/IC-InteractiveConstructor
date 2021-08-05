@@ -19,7 +19,8 @@ $(document).ready(function () {
 const bgPickr = Pickr.create({
     el: '.bg-picker',
     theme: 'monolith', // or 'monolith', or 'nano'
-
+    useAsButton: true,
+    default: '#FD413C',
     swatches: [
         'rgba(244, 67, 54, 1)',
         'rgba(233, 30, 99, 0.95)',
@@ -70,8 +71,11 @@ bgPickr.on('change', (color, source, instance) => {
 const fgPickr = Pickr.create({
     el: '.fg-picker',
     theme: 'monolith', // or 'monolith', or 'nano'
+    useAsButton: true,
+    default: '#5F40A6',
 
     swatches: [
+        'rgba(95, 64, 166, 1)',
         'rgba(244, 67, 54, 1)',
         'rgba(233, 30, 99, 0.95)',
         'rgba(156, 39, 176, 0.9)',
@@ -381,12 +385,14 @@ Mousetrap.bind(['command', 'ctrl'], function(e) {
 var element = document.getElementById('ICApp')
 var panzoomInstance = panzoom(element, {
     zoomDoubleClickSpeed: 1, 
+    zoomSpeed: 0.065, // 6.5% per mouse wheel event
     beforeWheel: function(e) {
       // permite fazer o zoom apenas quando a tecla alt estiver pessionada. caso contrario, ignore
       var shouldIgnore = !e.altKey;
       return shouldIgnore;
     },
     beforeMouseDown: function(e) {
+        console.log(e)
       // permite fazer o Pan apenas quando a tecla alt estiver pessionada. caso contrario, ignore
         var shouldIgnore = !e.altKey;
         return shouldIgnore;
