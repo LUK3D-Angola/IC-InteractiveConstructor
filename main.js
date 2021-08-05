@@ -22,7 +22,58 @@ var components = {
           </div>
         </div>
         `
-    }
+    },
+    "label":{
+        description:'Label.',
+        code:`
+        <label  class="form-label select" onclick="selectMe(this);event.stopPropagation();">Exemplo de texto</label>
+        `
+    },
+    "textarea":{
+        description:'Label.',
+        code:`
+        <textarea class="form-control select" onclick="selectMe(this);event.stopPropagation();"  rows="3"></textarea>
+        `
+    },
+    "select":{
+        description:'Select.',
+        code:`
+        <select class="form-select select" onclick="selectMe(this);event.stopPropagation();" aria-label="Default select example">
+        </select>
+        `
+    },
+    "alert":{
+        description:'Select.',
+        code:`
+        <div class="alert alert-danger select" onclick="selectMe(this);event.stopPropagation();" role="alert">
+            A simple danger alert—check it out!
+        </div>
+        `
+    },
+    "badge":{
+        description:'badge.',
+        code:`
+        <span class="badge bg-secondary select" onclick="selectMe(this);event.stopPropagation();">New</span>
+        `
+    },
+    "button Primary":{
+        description:'badge.',
+        code:`
+        <button type="button" class="btn btn-primary select" onclick="selectMe(this);event.stopPropagation();">Primary</button>
+        `
+    },
+    "checkbox":{
+        description:'Select.',
+        code:`
+        <div class="form-check select" onclick="selectMe(this);event.stopPropagation();">
+            <input class="form-check-input select" onclick="selectMe(this);event.stopPropagation();" type="checkbox" value="" >
+            <label class="form-check-label select" onclick="selectMe(this);event.stopPropagation();" >
+                Default checkbox
+            </label>
+        </div>
+        `
+    },
+   
 
 }
 
@@ -152,6 +203,9 @@ fgPickr.on('change', (color, source, instance) => {
 var selected;
 var clipboard;
 
+var mouseX;
+var mouseY;
+
 function selectMe(el){
 
     
@@ -166,14 +220,19 @@ function selectMe(el){
 
 
 function AddComponent(direction, type){
+    var el;
 
     if(validateSelection()){
         if(!direction || direction=='right'){
-            $(selected).append(components[type].code); 
+            el =  $(selected).append(components[type].code); 
+           selectMe(el);
         }else{
-            $(selected).prepend(components[type].code); 
+             el=  $(selected).prepend(components[type].code); 
+            selectMe(el);
         }
     }
+
+    console.log(el);
    
         
 }
@@ -363,6 +422,32 @@ function validateSelection(){
 
 }
 
+$(".quickpanel").hide();
+function showQuickpanel(){
+    let circle = $(".quickpanel");
+    $(circle).css("left", mouseX + 'px');
+    $(circle).css("top", mouseY + 'px');
+    $(".quickpanel").show();
+}
+
+function hideQuickpanel(){
+   
+    $(".quickpanel").fadeOut();
+   
+}
+
+
+const onMouseMove = (e) =>{
+    mouseX = e.pageX;
+    mouseY = e.pageY;
+}
+document.addEventListener('mousemove', onMouseMove);
+
+
+function closeOnEsc(){
+    hideQuickpanel();
+}
+
 window.selectMe = selectMe;
 window.layoutDirection = layoutDirection;
 window.AddComponent = AddComponent;
@@ -373,5 +458,19 @@ window.Copy = Copy;
 window.Past = Past;
 window.Cut = Cut;
 window.Delete = Delete;
+window.showQuickpanel = showQuickpanel;
+window.hideQuickpanel = hideQuickpanel;
 
 
+
+
+
+
+
+
+Mousetrap.bind('space', function() { showQuickpanel() },'keydown');
+Mousetrap.bind('esc', function() { closeOnEsc() },'keydown');
+
+
+//Mousetrap.bind('space', function() { hideQuickpanel() },'keyup');
+// Mousetrap.bind('x', function() { highlight(3); }, 'keyup');

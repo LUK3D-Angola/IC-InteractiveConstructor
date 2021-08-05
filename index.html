@@ -8,6 +8,7 @@
     <link href="./libs/bootstrap.min.css" rel="stylesheet">
     <link href="./main.css" rel="stylesheet">
     <script type="module" src="./libs/jquery.min.js"></script>
+    <script type="module" src="./libs/mousetrap.min.js"></script>
     
     
     <!-- One of the following themes -->
@@ -127,7 +128,7 @@
 
 
 
-<div class="quickpanel">
+<div class="quickpanel" onmouseleave="hideQuickpanel()">
     <input type="text" placeholder="Pesquisar...">
     <p class="subtext">Mais usados</p>
     <div class="body">
