@@ -1,0 +1,133 @@
+
+/**Lista de componentes disponível */
+var components = {
+    "input":{
+        description:'Elemento de formulario',
+        code:`
+        <div class="mb-3" onclick="selectMe(this);event.stopPropagation();">
+          <label ondblclick="startTextEditing(this);event.stopPropagation();" class="form-label select" onclick="selectMe(this);event.stopPropagation();">Email address</label>
+          <input type="email" class="form-control"  placeholder="name@example.com">
+        </div>
+        `
+    },
+    "card":{
+        description:'Um container é utilizado na organização de layout e agrupamento de elementos.',
+        code:`
+        <div class="card select border-0" style="width: 100%;" onclick="selectMe(this);event.stopPropagation();">
+         
+          <div class="card-body select" onclick="selectMe(this);event.stopPropagation();">
+            <h5 ondblclick="startTextEditing(this);event.stopPropagation();" class="card-title select" onclick="selectMe(this);event.stopPropagation();">Card title</h5>
+          </div>
+        </div>
+        `
+    },
+    "label":{
+        description:'Label.',
+        code:`
+        <label  class="form-label select" ondblclick="startTextEditing(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();">Exemplo de texto</label>
+        `
+    },
+    "H1":{
+        description:'Header 01.',
+        code:`
+        <h1 ondblclick="startTextEditing(this);event.stopPropagation();"  onclick="selectMe(this);event.stopPropagation();">Title</h1>
+        `
+    },
+    "H2":{
+        description:'Header 01.',
+        code:`
+        <h2 ondblclick="startTextEditing(this);event.stopPropagation();"  onclick="selectMe(this);event.stopPropagation();">Title</h2>
+        `
+    },
+    "H3":{
+        description:'Header 01.',
+        code:`
+        <h3 ondblclick="startTextEditing(this);event.stopPropagation();"  onclick="selectMe(this);event.stopPropagation();">Title</h3>
+        `
+    },
+    "H4":{
+        description:'Header 01.',
+        code:`
+        <h4 ondblclick="startTextEditing(this);event.stopPropagation();"  onclick="selectMe(this);event.stopPropagation();">Title</h4>
+        `
+    },
+    "H5":{
+        description:'Header 01.',
+        code:`
+        <h5 ondblclick="startTextEditing(this);event.stopPropagation();"  onclick="selectMe(this);event.stopPropagation();">Title</h5>
+        `
+    },
+    "H6":{
+        description:'Header 01.',
+        code:`
+        <h6 ondblclick="startTextEditing(this);event.stopPropagation();"  onclick="selectMe(this);event.stopPropagation();">Title</h6>
+        `
+    },
+    "H7":{
+        description:'Header 01.',
+        code:`
+        <h7 ondblclick="startTextEditing(this);event.stopPropagation();"  onclick="selectMe(this);event.stopPropagation();">Title</h7>
+        `
+    },
+    "textarea":{
+        description:'Label.',
+        code:`
+        <textarea class="form-control select" onclick="selectMe(this);event.stopPropagation();"  rows="3"></textarea>
+        `
+    },
+    "Paragraph":{
+        description:'P.',
+        code:`
+        <p class="" ondblclick="startTextEditing(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();"  rows="3">Placeholder</p>
+        `
+    },
+    "select":{
+        description:'Select.',
+        code:`
+        <select class="form-select select" onclick="selectMe(this);event.stopPropagation();" aria-label="Default select example">
+        </select>
+        `
+    },
+    "alert":{
+        description:'Select.',
+        code:`
+        <div class="alert alert-danger select" onclick="selectMe(this);event.stopPropagation();" role="alert">
+            <p class="" ondblclick="startTextEditing(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();"  rows="3">Simples alertas</p>
+        </div>
+        `
+    },
+    "badge":{
+        description:'badge.',
+        code:`
+        <span class="badge bg-secondary select" ondblclick="startTextEditing(this);event.stopPropagation();"  onclick="selectMe(this);event.stopPropagation();">New</span>
+        `
+    },
+    "button Primary":{
+        description:'badge.',
+        code:`
+        <button type="button" ondblclick="startTextEditing(this);event.stopPropagation();"  class="btn btn-primary select" onclick="selectMe(this);event.stopPropagation();">Primary</button>
+        `
+    },
+    "Link Primary":{
+        description:'badge.',
+        code:`
+        <a href="#" class="btn btn-link select" onclick="selectMe(this);event.stopPropagation();">Placeholder</a>
+        `
+    },
+    "checkbox":{
+        description:'Select.',
+        code:`
+        <div class="form-check select" onclick="selectMe(this);event.stopPropagation();">
+            <input class="form-check-input select" onclick="selectMe(this);event.stopPropagation();" type="checkbox" value="" >
+            <label ondblclick="startTextEditing(this);event.stopPropagation();"  class="form-check-label select" onclick="selectMe(this);event.stopPropagation();" >
+                Default checkbox
+            </label>
+        </div>
+        `
+    },
+   
+
+}
+
+
+export {components};

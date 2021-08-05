@@ -8,6 +8,7 @@
     <link href="./libs/bootstrap.min.css" rel="stylesheet">
     <link href="./main.css" rel="stylesheet">
     <script type="module" src="./libs/jquery.min.js"></script>
+    <script type="module" src="./libs/panzoom.min.js"></script>
     <script type="module" src="./libs/mousetrap.min.js"></script>
     
     
@@ -23,7 +24,7 @@
 </head>
 <body>
 
-<form class="app select d-flex" onclick="selectMe(this);event.stopPropagation();">
+<form id="ICApp" class="app select " onclick="selectMe(this);event.stopPropagation();">
   
 </form>
 
@@ -31,7 +32,7 @@
 
     
 
-<div class="menu d-flex flex-column text-white">
+<div class="menu d-flex flex-column ">
     <p>Add Components</p>
     <div class="d-flex flex-row justify-content-between">
         <p>Left / Top</p>
@@ -142,3 +143,4 @@
 </div>
 </body>
 </html>
+
