@@ -2,6 +2,14 @@ import { components } from "./components.js";
 import { textTypes } from "./elements.types.js";
 
 
+/**Variavle para armazenar o elemento selecionado */
+var selected;
+var highliting;
+var clipboard;
+var tmpText;
+var mouseX;
+var mouseY;
+var command;
 
 var InterComponents = {
     "line":`
@@ -151,18 +159,27 @@ $("[lic-tip]").each(function(){
 //CONTEXT MENU
 
 
-if (document.addEventListener) {
-    document.addEventListener('contextmenu', function(e) {
-      showContext();
-      e.preventDefault();
-    }, false);
-  } else {
-    document.attachEvent('oncontextmenu', function() {
-        showContext();
-      window.event.returnValue = false;
-    });
-  }
 
+
+// if (document.addEventListener) {
+//     document.body.addEventListener('contextmenu', function(e) {
+//       showContext();
+//       e.preventDefault();
+//     }, false);
+
+    
+//   } else {
+//     document.body.attachEvent('oncontextmenu', function() {
+//         showContext();
+//       window.event.returnValue = false;
+//     });
+//   }
+
+//Desabilitar menu de contexto
+$("*").on("contextmenu", function (e) {
+   
+    e.preventDefault();
+});
 
 
 
@@ -174,22 +191,22 @@ if (document.addEventListener) {
 
 
 
-/**Variavle para armazenar o elemento selecionado */
-var selected;
-var clipboard;
-var tmpText;
-var mouseX;
-var mouseY;
-var command;
 function selectMe(el){
 
-    
+    console.log(el)
     if (validateSelection()) {
         $(selected).removeClass("selected");
     }
     
     selected = el;
     $(el).addClass("selected");
+
+
+}
+
+function higlight(el){
+    highliting = el;
+    
 
 
 }
@@ -347,36 +364,54 @@ function validateSelection(){
 
 $(".quickpanel").hide();
 function showQuickpanel(){
-    let circle = $(".quickpanel");
-    $(circle).css("left", mouseX + 'px');
-    $(circle).css("top", mouseY + 'px');
+    let el = $(".quickpanel");
+    $(el).css("left", mouseX + 'px');
+    $(el).css("top", mouseY + 'px');
     $(".quickpanel").show();
 }
 
 function hideQuickpanel(){
-   
-    $(".quickpanel").fadeOut();
-   
+    
+    $(".quickpanel").hide();
+    
 }
+
+
+$(".lic-contextMenu").hide();
+//Context Menu function
+function showContext () { 
+    let el = $(".lic-contextMenu");
+    $(el).css("left", mouseX + 'px');
+    $(el).css("top", mouseY + 'px');
+    $(".lic-contextMenu").show();
+ }
+
+ function hideContext(){
+    
+    $(".lic-contextMenu").hide();
+    
+}
+
+
+
 
 
 const onMouseMove = (e) =>{
     mouseX = e.pageX;
     mouseY = e.pageY;
 }
-document.addEventListener('mousemove', onMouseMove);
+document.body.addEventListener('mousemove', onMouseMove);
 
 
 function closeOnEsc(){
     hideQuickpanel();
+    hideContext();
 }
 
-//Context Menu function
-function showContext () { 
-    alert("Mostrar menu");
- }
+
 
 window.selectMe = selectMe;
+window.higlight = higlight;
 window.layoutDirection = layoutDirection;
 window.AddComponent = AddComponent;
 window.ApplyText = ApplyText;
@@ -391,6 +426,7 @@ window.hideQuickpanel = hideQuickpanel;
 window.endTextEditing = endTextEditing;
 window.startTextEditing = startTextEditing;
 window.showContext = showContext;
+window.hideContext = hideContext;
 
 
 
@@ -450,7 +486,13 @@ var panzoomInstance = panzoom(element, {
       return shouldIgnore;
     },
     beforeMouseDown: function(e) {
-        console.log(e)
+
+        if(e.button == 2){
+            showContext();
+            console.log("Vendo:", highliting)
+            selectMe(highliting);
+            e.preventDefault();
+        }
       // permite fazer o Pan apenas quando a tecla alt estiver pessionada. caso contrario, ignore
         var shouldIgnore = !e.altKey;
         return shouldIgnore;
@@ -462,3 +504,4 @@ var panzoomInstance = panzoom(element, {
   });
  
 
+ 

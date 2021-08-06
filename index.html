@@ -27,7 +27,7 @@
 <div id="lic-canvas">
     <div class="lic-line">
         <div  class="lic-page" >
-            <div class="app select " onclick="selectMe(this);event.stopPropagation();"></div>
+            <div class="app select " onmouseenter="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();"></div>
 
             <div  style="--icon: url(./assets/icons/add.svg)" class=" cli-cursor-pointer lic-icon page-option top"></div>
             <div  style="--icon: url(./assets/icons/add.svg)" class=" cli-cursor-pointer lic-icon page-option left"></div>
@@ -37,7 +37,7 @@
     </div>
     <div class="lic-line">
         <div  class="lic-page" >
-            <div class="app select " onclick="selectMe(this);event.stopPropagation();"></div>
+            <div class="app select " onmouseenter="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();"></div>
 
             <div  style="--icon: url(./assets/icons/add.svg)" class=" cli-cursor-pointer lic-icon page-option top"></div>
             <div  style="--icon: url(./assets/icons/add.svg)" class=" cli-cursor-pointer lic-icon page-option left"></div>
@@ -149,7 +149,18 @@
 </div>
 
 
-<div class="lic-contextMenu">
+<div class="lic-side-menu">
+    
+</div>
+
+
+<div onmouseleave="hideContext()" class="lic-contextMenu">
+
+    <ul>
+        <li onclick="hideContext();Cut()"><span>Cortar</span> <span class="tip">Ctrl+X</span> </li>
+        <li onclick="hideContext();Copy()"><span>Copiar</span> <span class="tip">Ctrl+C</span> </li>
+        <li onclick="hideContext();Past()"><span>Colar</span> <span class="tip">Ctrl+V</span> </li>
+    </ul>
     
 </div>
 
