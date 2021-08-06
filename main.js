@@ -2,6 +2,23 @@ import { components } from "./components.js";
 import { textTypes } from "./elements.types.js";
 
 
+
+var InterComponents = {
+    "line":`
+    
+    <div class="lic-line">
+        <div  class="lic-page app select " onclick="selectMe(this);event.stopPropagation();">
+        </div>
+    </div>
+    
+    `,
+    "page":`
+        <div  class="lic-page app select " onclick="selectMe(this);event.stopPropagation();">
+        </div>
+    `
+}
+
+
 $(document).ready(function () {
 
 
@@ -122,14 +139,37 @@ fgPickr.on('change', (color, source, instance) => {
 
 
 
+$("[lic-tip]").each(function(){
+    tippy(this, {
+        content: $(this).attr("lic-tip"),
+      });
+});
 
 
+
+
+//CONTEXT MENU
+
+
+if (document.addEventListener) {
+    document.addEventListener('contextmenu', function(e) {
+      showContext();
+      e.preventDefault();
+    }, false);
+  } else {
+    document.attachEvent('oncontextmenu', function() {
+        showContext();
+      window.event.returnValue = false;
+    });
+  }
 
 
 
 
 
 });
+
+
 
 
 
@@ -331,6 +371,11 @@ function closeOnEsc(){
     hideQuickpanel();
 }
 
+//Context Menu function
+function showContext () { 
+    alert("Mostrar menu");
+ }
+
 window.selectMe = selectMe;
 window.layoutDirection = layoutDirection;
 window.AddComponent = AddComponent;
@@ -345,6 +390,7 @@ window.showQuickpanel = showQuickpanel;
 window.hideQuickpanel = hideQuickpanel;
 window.endTextEditing = endTextEditing;
 window.startTextEditing = startTextEditing;
+window.showContext = showContext;
 
 
 
@@ -352,8 +398,17 @@ window.startTextEditing = startTextEditing;
 
 
 
+Mousetrap.bind('space', function(e) {
 
-Mousetrap.bind('space', function() { showQuickpanel() },'keydown');
+     showQuickpanel();
+     if(e.keyCode == 32) {
+         e.preventDefault();
+         showQuickpanel();
+        }
+        showQuickpanel();
+    },'keydown');
+
+    
 Mousetrap.bind('esc', function() { closeOnEsc() },'keydown');
 Mousetrap.bind('del', function() { Delete() });
 Mousetrap.bind(['command+x', 'ctrl+x'], function() { Cut() });
@@ -382,8 +437,11 @@ Mousetrap.bind(['command', 'ctrl'], function(e) {
 
 
 //PAN e ZOOM
-var element = document.getElementById('ICApp')
+var element = document.getElementById('lic-canvas')
 var panzoomInstance = panzoom(element, {
+    initialZoom: 0.56,
+    initialX: 510,
+    initialY: -50,
     zoomDoubleClickSpeed: 1, 
     zoomSpeed: 0.065, // 6.5% per mouse wheel event
     beforeWheel: function(e) {
