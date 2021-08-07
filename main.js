@@ -147,11 +147,50 @@ fgPickr.on('change', (color, source, instance) => {
 
 
 
+
+
+
+const bgGpickr = new GPickr({
+    el: '.bg-picker-gr',
+
+    // Pre-defined stops. These are the default since at least two should be defined
+    stops: [
+        ['rgb(255,132,109)', 0],
+        ['rgb(255,136,230)', 1]
+    ]
+})
+
+
+
+bgGpickr.on('change', (color, source, instance) => {
+    if(validateSelection()){
+        ApplyBg(color.getGradient())
+      }
+
+      
+$(".gpcr-marker").on("dblclick", function (e) {
+    var color = $(this).css("color");
+    console.log(color,bgGpickr.getStops())
+    bgGpickr.removeStop(color)
+    e.stopPropagation();
+});
+})  
+
+
+
+
+
+
+
+
 $("[lic-tip]").each(function(){
     tippy(this, {
         content: $(this).attr("lic-tip"),
       });
 });
+
+
+
 
 
 
@@ -322,7 +361,7 @@ function ApplyText(souce){
 }
 
 function ApplyBg(color){
-    $(selected).css("background-color", color);
+    $(selected).css("background", color);
 }
 function ApplyFg(color){
     $(selected).css("color", color);

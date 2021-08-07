@@ -130,8 +130,8 @@ html{
     border-radius: 10px;
     top:10px;
 
-    left: 50%;
-    transform: translateX(-50%);
+    left: 30%;
+    transform: translateX(-30%);
 
     /*
     Centralizar no eixo Y
@@ -167,6 +167,7 @@ html{
     margin-top: 3px;
     color: rgb(126, 126, 126);
     margin: 2px;
+    position: relative;
 }
 
 .pickr .pcr-button{
@@ -175,6 +176,18 @@ html{
     border-radius: 100% !important;
     overflow: hidden;
     margin: 2px;
+}
+
+.lic-btn-downpdown{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 40px;
+   
+    background: rgb(255, 255, 255);
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.11);
 }
 
 
@@ -187,6 +200,12 @@ html{
 }
 .cl-bg-primary{
     background: #5F40A6 !important;
+}
+.cl-tc-danger{
+    color: #FD413C !important;
+}
+.cl-tc-primary{
+    color: #5F40A6 !important;
 }
 
 .cl-vl{
@@ -270,4 +289,13 @@ html{
 
 .tip{
     opacity: 0.5;
+}
+
+.lic-side-menu{
+    position: fixed;
+    width: 300px;
+    height: 100vh;
+    right: 0;
+    background: #fff;
+    border-left: 2px solid rgba(179, 179, 179, 0.247);
 }
