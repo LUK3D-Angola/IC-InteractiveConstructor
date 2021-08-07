@@ -190,7 +190,21 @@ html{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.11);
 }
 
+.lic-btn{
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background: #fff;
+    transition: 0.3s;
+}
+.lic-btn:hover{
+    filter: saturate(0.5);
+    filter: sepia(0.5);
+}
 
+.lic-btn-block{
+    width: 100%;
+}
 .cl-btn:hover{
     background: #eee;
 }
@@ -206,6 +220,10 @@ html{
 }
 .cl-tc-primary{
     color: #5F40A6 !important;
+}
+
+.cl-ct-white{
+    color: #fff !important;
 }
 
 .cl-vl{
@@ -298,4 +316,13 @@ html{
     right: 0;
     background: #fff;
     border-left: 2px solid rgba(179, 179, 179, 0.247);
+}
+.lic-side-menu .component{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 10px;
+    border-bottom: 1px solid #e8e8e8;
+}
+.lic-pa-0{
+    padding: 0px !important;
 }
