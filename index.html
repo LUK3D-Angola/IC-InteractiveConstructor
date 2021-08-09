@@ -31,7 +31,6 @@
     <div class="lic-line">
         <div  class="lic-page" >
             <div class="app select " onmouseenter="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();"></div>
-
             <div  style="--icon: url(./assets/icons/add.svg)" class=" cli-cursor-pointer lic-icon page-option top"></div>
             <div  style="--icon: url(./assets/icons/add.svg)" class=" cli-cursor-pointer lic-icon page-option left"></div>
             <div  style="--icon: url(./assets/icons/add.svg)" class=" cli-cursor-pointer lic-icon page-option bottom"></div>
@@ -207,6 +206,11 @@
     <button class="cl-btn p-2 "><div class="cli-icon" style="--icon: url(./assets/icons/start.svg)"></div>    </button>
 </div>
 
+
+<div class="outline">
+
+</div>
+
 <div class="quickpanel" onmouseleave="hideQuickpanel()">
     <input type="text" placeholder="Pesquisar...">
     <p class="subtext">Mais usados</p>
@@ -219,6 +223,21 @@
         </ul>
     </div>
 </div>
+
+
+
+<div class="outliner">
+
+<ul id="l-layers" class="">
+    <li l-id="document01" class="layer-outline">
+        <span>Document</span>
+    </li>
+</ul>
+
+</div>
+
+
+
 </body>
 </html>
 

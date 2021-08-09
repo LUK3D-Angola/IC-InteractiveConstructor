@@ -35,6 +35,10 @@ html{
     outline: 2px solid rgba(65, 158, 245, 0.651);
 }
 
+.higlighted{
+    outline: 2px solid rgba(65, 128, 245, 0.781);
+}
+
 .select:not(.selected):hover {
    outline: 2px solid rgba(173, 81, 81, 0.171);
 }
@@ -325,4 +329,30 @@ html{
 }
 .lic-pa-0{
     padding: 0px !important;
+}
+
+.outliner{
+    width: 250px;
+    height: 100vh;
+    background: #fff;
+    position: fixed;
+    z-index: 2;
+    left: 0;
+    border-right: 2px solid rgba(34, 34, 34, 0.158);
+}
+
+.outliner ul {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+   
+}
+
+.outliner ul li{
+    padding: 10px 5px;
+    border: 1px solid transparent;
+}
+.outliner ul li:hover{
+    border: 1px solid #5F40A6;
 }

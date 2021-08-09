@@ -8,7 +8,8 @@ var components = {
           <label ondblclick="startTextEditing(this);event.stopPropagation();" class="form-label select" onmouseover="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();">Email address</label>
           <input type="email" class="form-control"  placeholder="name@example.com">
         </div>
-        `
+        `,
+    
     },
     "card":{
         description:'Um container é utilizado na organização de layout e agrupamento de elementos.',

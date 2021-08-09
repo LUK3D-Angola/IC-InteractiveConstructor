@@ -10,6 +10,8 @@ var tmpText;
 var mouseX;
 var mouseY;
 var command;
+var layers = {};
+var layer_counter = 0;
 
 var InterComponents = {
     "line":`
@@ -29,7 +31,11 @@ var InterComponents = {
 
 $(document).ready(function () {
 
-
+    // $(document.body).click(function(event) {
+    //     if (!$(event.target) != selected) {
+    //         unSelect();
+    //     }
+    // });
     
     var cm = Object.keys(components);
     console.log(cm)
@@ -243,11 +249,26 @@ function selectMe(el){
 
 }
 
+function unSelect(){
+    $(selected).removeClass("selected");
+    selected = null;
+}
+
 function higlight(el){
     highliting = el;
     
+    $('.higlighted').removeClass('higlighted');
+    $(highliting).addClass('higlighted');
+    $('.higlighted').mouseout(function(){
+        unHiglight(this)
+    });
 
 
+}
+
+function unHiglight(el){
+   
+        $(el).removeClass('higlighted');
 }
 
 function startTextEditing(el) {
@@ -272,21 +293,38 @@ function endTextEditing(Input) {
 
 
 function AddComponent(direction, type){
-    var el;
-
+    
     if(validateSelection()){
-        if(!direction || direction=='right'){
-            el =  $(selected).append(components[type].code); 
-           selectMe(el);
-        }else{
-             el=  $(selected).prepend(components[type].code); 
-            selectMe(el);
-        }
-    }
+        var el = $(components[type].code);
+        var layerName = "layer"+(layer_counter+1).toString();
 
-    console.log(el);
-   
+        layers[layerName];
+
+        if(!direction || direction=='right'){
+          $(selected).append(el)
+           //selectMe(el);
+        }else{
+             $(selected).prepend(el)
+            //selectMe(el);
+        }
+
+        addLayer({name:type,layer:layerName})
+        el.attr("l-layer",layerName);
+        layer_counter+=1;
+
+    }
         
+}
+
+function addLayer({name, layer}){
+
+    $("#l-layers").append(`
+    
+    <li l-layered="${layer}" onmouseout="unHiglight('[l-layer=\\'${layer}\\']')" onmouseover="higlight('[l-layer=\\'${layer}\\']');event.stopPropagation();" onclick="selectMe('[l-layer=\\'${layer}\\']');event.stopPropagation();"  l-id="document01" class="layer-outline">
+        <span>${name}</span>
+    </li>
+
+    `);
 }
 
 
@@ -350,7 +388,11 @@ function applyMargin(side, value) {
 function Delete(){
 
     if(validateSelection()){
+
+      var parent = $(selected).attr("l-layer"); 
+      $(`[l-layered="${parent}"]`).remove(); 
       $(selected).remove(); 
+      unSelect();
     }
 }
 
@@ -466,6 +508,8 @@ window.endTextEditing = endTextEditing;
 window.startTextEditing = startTextEditing;
 window.showContext = showContext;
 window.hideContext = hideContext;
+window.unHiglight = unHiglight;
+window.unSelect = unSelect;
 
 
 
@@ -484,7 +528,7 @@ Mousetrap.bind('space', function(e) {
     },'keydown');
 
     
-Mousetrap.bind('esc', function() { closeOnEsc() },'keydown');
+Mousetrap.bind('esc', function() { closeOnEsc(), unSelect(); },'keydown');
 Mousetrap.bind('del', function() { Delete() });
 Mousetrap.bind(['command+x', 'ctrl+x'], function() { Cut() });
 Mousetrap.bind(['command+c', 'ctrl+c'], function() { Copy() });

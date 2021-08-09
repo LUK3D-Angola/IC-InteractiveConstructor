@@ -2,7 +2,7 @@
 
 Construtor interativo de páginas web.
 
-<img src="./screenshot.png" >
+<img src="./screenshot2.png" >
 
 
 > Este é um exemplo de formulário de login criado com o LIC
