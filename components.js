@@ -22,6 +22,13 @@ var components = {
         </div>
         `
     },
+    "div":{
+        description:'Um container é utilizado na organização de layout e agrupamento de elementos.',
+        code:`
+        <div class="select" ondblclick="startTextEditing(this);event.stopPropagation();" onmouseover="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();">
+        </div>
+        `
+    },
     "label":{
         description:'Label.',
         code:`

@@ -356,3 +356,23 @@ html{
 .outliner ul li:hover{
     border: 1px solid #5F40A6;
 }
+
+.tippy-box[data-theme~='light'] {
+    background-color: rgb(255, 255, 255);
+    color: rgb(160, 160, 160);
+    box-shadow: 0px 0px 20px rgba(34, 34, 34, 0.164);
+  }
+
+
+  .tippy-box[data-theme~='light'][data-placement^='top'] > .tippy-arrow::before {
+    border-top-color: #fff;
+  }
+  .tippy-box[data-theme~='light'][data-placement^='bottom'] > .tippy-arrow::before {
+    border-bottom-color: #fff;
+  }
+  .tippy-box[data-theme~='light'][data-placement^='left'] > .tippy-arrow::before {
+    border-left-color: #fff;
+  }
+  .tippy-box[data-theme~='light'][data-placement^='right'] > .tippy-arrow::before {
+    border-right-color: #fff;
+  }

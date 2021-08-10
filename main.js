@@ -88,6 +88,7 @@ const bgPickr = Pickr.create({
             save: true
         }
     }
+    
 });
 
 bgPickr.on('change', (color, source, instance) => {
@@ -156,31 +157,31 @@ fgPickr.on('change', (color, source, instance) => {
 
 
 
-const bgGpickr = new GPickr({
-    el: '.bg-picker-gr',
+// const bgGpickr = new GPickr({
+//     el: '.bg-picker-gr',
 
-    // Pre-defined stops. These are the default since at least two should be defined
-    stops: [
-        ['rgb(255,132,109)', 0],
-        ['rgb(255,136,230)', 1]
-    ]
-})
+//     // Pre-defined stops. These are the default since at least two should be defined
+//     stops: [
+//         ['rgb(255,132,109)', 0],
+//         ['rgb(255,136,230)', 1]
+//     ]
+// })
 
 
 
-bgGpickr.on('change', (color, source, instance) => {
-    if(validateSelection()){
-        ApplyBg(color.getGradient())
-      }
+// bgGpickr.on('change', (color, source, instance) => {
+//     if(validateSelection()){
+//         ApplyBg(color.getGradient())
+//       }
 
       
-$(".gpcr-marker").on("dblclick", function (e) {
-    var color = $(this).css("color");
-    console.log(color,bgGpickr.getStops())
-    bgGpickr.removeStop(color)
-    e.stopPropagation();
-});
-})  
+// $(".gpcr-marker").on("dblclick", function (e) {
+//     var color = $(this).css("color");
+//     console.log(color,bgGpickr.getStops())
+//     bgGpickr.removeStop(color)
+//     e.stopPropagation();
+// });
+// })  
 
 
 
@@ -227,6 +228,44 @@ $("*").on("contextmenu", function (e) {
 });
 
 
+
+
+tippy('#bgTest', {
+    content: '<div id="pickerTest">Bolded content</div>',
+    allowHTML: true,
+    hideOnClick: 'toggle',
+    interactive: true,
+    placement: 'left-start',
+    theme: 'light',
+    onShow(instance) {
+        console.log(instance)
+      setTimeout(() => {
+        const bgGpickr = new GPickr({
+            el: '#pickerTest',
+
+            // Pre-defined stops. These are the default since at least two should be defined
+            stops: [
+                ['rgb(255,132,109)', 0],
+                ['rgb(255,136,230)', 1]
+            ]
+        })
+
+
+        bgGpickr.on('change', (color, source, instance) => {
+            if(validateSelection()){
+                ApplyBg(color.getGradient())
+              }
+        
+              
+        
+        })  
+
+
+      }, 200);
+      },
+  });
+
+  
 
 
 });
