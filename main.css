@@ -349,10 +349,24 @@ html{
    
 }
 
+.outliner ul .l-ul-child{
+    padding-left: 10px;
+}
+
 .outliner ul li{
     padding: 10px 5px;
     border: 1px solid transparent;
+    border-radius: 5px;
+    cursor: default;
 }
 .outliner ul li:hover{
-    border: 1px solid #5F40A6;
+    border: 1px solid #5f40a62c;
+    background: rgba(34, 34, 34, 0.034);
+}
+
+.l-layer-outliner-title{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

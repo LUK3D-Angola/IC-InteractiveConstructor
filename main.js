@@ -36,6 +36,8 @@ $(document).ready(function () {
     //         unSelect();
     //     }
     // });
+
+   
     
     var cm = Object.keys(components);
     console.log(cm)
@@ -296,7 +298,7 @@ function AddComponent(direction, type){
     
     if(validateSelection()){
         var el = $(components[type].code);
-        var layerName = "layer"+(layer_counter+1).toString();
+        var layerName = "layer"+uuidv4();
 
         layers[layerName];
 
@@ -308,24 +310,53 @@ function AddComponent(direction, type){
             //selectMe(el);
         }
 
-        addLayer({name:type,layer:layerName})
+        
+
+        addLayer({name:type,layer:layerName,parentLayer: $(selected).attr("l-layer")})
+       
         el.attr("l-layer",layerName);
+        //$(`[l-layered="${layerName}"]`).append(layerName)
+
+        $(el).find("*[l-layer]").each(function(el){
+            var myLayer = $(this).attr("l-layer"); 
+            addLayer({name:$(this)[0].nodeName,layer:myLayer, parentLayer: layerName})
+
+           
+        
+           
+        });
+
+
         layer_counter+=1;
 
     }
         
 }
 
-function addLayer({name, layer}){
+function addLayer({name, layer,parentLayer}){
 
-    $("#l-layers").append(`
+    var extraClasses = [];
+
+    if(parentLayer != null && !(!parentLayer)){
+        parentLayer =  $(`[l-layered="${parentLayer}"]`);
+        extraClasses.push("l-ul-child ");
+    }
+    else
+    parentLayer = "#l-layers";
+   
+   return $(parentLayer).append(`
     
-    <li l-layered="${layer}" onmouseout="unHiglight('[l-layer=\\'${layer}\\']')" onmouseover="higlight('[l-layer=\\'${layer}\\']');event.stopPropagation();" onclick="selectMe('[l-layer=\\'${layer}\\']');event.stopPropagation();"  l-id="document01" class="layer-outline">
-        <span>${name}</span>
+    <li l-parent="${parentLayer}" l-layered="${layer}" onmouseout="unHiglight('[l-layer=\\'${layer}\\']')" onmouseover="higlight('[l-layer=\\'${layer}\\']');event.stopPropagation();" onclick="selectMe('[l-layer=\\'${layer}\\']');event.stopPropagation();"  l-id="document01" class="layer-outline ${extraClasses.join(" ")}">
+        <div class="l-layer-outliner-title">
+            <span>${name.toUpperCase()}</span>
+            <span onclick="Colapse('[l-layered=\\'${layer}\\']');event.stopPropagation()">hide</span>
+        </div>
     </li>
 
     `);
 }
+
+
 
 
 function Copy(){
@@ -345,7 +376,10 @@ function Cut(){
     }
 }
 
-
+function Colapse(el){
+    $(el).children().toggle(); 
+    $(el).children(":first").show();; 
+}
 
 function applyPadding(side, value) {
     if(validateSelection()){
@@ -388,6 +422,12 @@ function applyMargin(side, value) {
 function Delete(){
 
     if(validateSelection()){
+
+
+        $(selected).find("*[l-layer]").each(function(){
+            var childParent = $(this).attr("l-layer"); 
+            $(`[l-layered="${childParent}"]`).remove(); 
+        });
 
       var parent = $(selected).attr("l-layer"); 
       $(`[l-layered="${parent}"]`).remove(); 
@@ -510,6 +550,7 @@ window.showContext = showContext;
 window.hideContext = hideContext;
 window.unHiglight = unHiglight;
 window.unSelect = unSelect;
+window.Colapse = Colapse;
 
 
 

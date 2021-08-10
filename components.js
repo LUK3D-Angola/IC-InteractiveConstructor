@@ -16,9 +16,16 @@ var components = {
         code:`
         <div class="card select border-0" style="width: 100%;" onmouseover="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();">
          
-          <div class="card-body select" onmouseover="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();">
-            <h5 ondblclick="startTextEditing(this);event.stopPropagation();" class="card-title select" onmouseover="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();">Card title</h5>
+          <div l-layer="testeBasico1" class="card-body select" onmouseover="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();">
+            <h5 l-layer="testeBasico2" ondblclick="startTextEditing(this);event.stopPropagation();" class="card-title select" onmouseover="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();">Card title</h5>
           </div>
+        </div>
+        `
+    },
+    "div":{
+        description:'Um container é utilizado na organização de layout e agrupamento de elementos.',
+        code:`
+        <div class="select" ondblclick="startTextEditing(this);event.stopPropagation();" onmouseover="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();">
         </div>
         `
     },
