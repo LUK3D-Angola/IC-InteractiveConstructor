@@ -2,6 +2,15 @@
 
 Construtor interativo de páginas web.
 
+#UPDATES
+<img src="./Screenshot4.png" >
+
+* Darkmode
+* Css Variables
+* UUID para distinguir cada emelemnto dentro do projecto
+* Menu superior arstável
+* sincronização do autline (hierarquia) com a workspace 
+
 <img src="./Screenshot3.png" >
 
 

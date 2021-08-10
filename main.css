@@ -1,8 +1,36 @@
 
+:root {
+    --l-selection: #5F40A6;
+    --l-bg-light: #eeeeee;
+    --l-bg-transparent-light:#1d21253a;
+    --l-bg-dark: #1D2125;
+    --l-bg-transparent-dark:#4e63792a;
+    --l-fg-light: #fff;
+    --l-fg-dark: #24292E;
+    --l-text-dark: #676E75;
+    --l-border-dark: #1D2125;
+  }
+  
+
+  *{
+    border-color: var(--l-border-dark) !important;
+  }
+
+.l-bg{
+    
+    background: var(--l-bg-dark) !important;
+}
+.l-fg{
+    background: var(--l-fg-dark) !important;
+}
+.l-text{
+    color: var(--l-text-dark) !important;
+}
+
 body{
     width: 100vw;
     height: 100vh;
-    background-color: #eee;
+   
 }
 
 html{
@@ -16,7 +44,7 @@ html{
     left: 0;
     width: 10px;
     height: 100vh;
-    background: rgb(255, 255, 255);
+    background: var(--l-bg-dark);
     opacity: 0.1;
     transition: 0.3s;
     overflow-x: hidden;
@@ -46,7 +74,7 @@ html{
 .quickpanel{
     width: 600px;
     min-height: 200px;
-    background: #fff;
+    background: var(--l-fg-dark);
     border-radius: 10px;
     position: fixed;
     top: 50vh;
@@ -62,13 +90,14 @@ html{
     border: none;
     outline: none;
     font-size: 20pt;
-    color: #222;
-    border-bottom: 1px solid #eee;
+    color: var(--l-text-dark);
+    background: var(--l-fg-dark);
+    border-bottom: 1px solid ;
 }
 
 .subtext{
     font-size: 9pt;
-    color: rgb(182, 182, 182);
+    color: var(--l-text-dark);
 }
 
 .quickpanel .body{
@@ -90,14 +119,14 @@ html{
     border-radius: 10px;
     font-weight: bold;
     cursor: pointer;
-    color: rgb(78, 78, 78);
+    color: var(--l-text-dark);
     display: flex;
     justify-content: space-between;
     text-transform: capitalize;
 }
 
 .quickpanel .body ul li:hover{
-    background-color: #eee;
+    background-color: var(--l-bg-dark);
 }
 
 
@@ -106,13 +135,13 @@ html{
 }
  
 *::-webkit-scrollbar-track {
-    background: rgba(228, 228, 228, 0.3); 
+    background: var(--l-bg-dark); 
     border-radius: 10px;
 }
  
 *::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background: rgb(197, 197, 197); 
+    background: var(--l-text-dark); 
 }
 
 .l-text-edition{
@@ -129,7 +158,7 @@ html{
     position: fixed;
     width: 60vw;
     height: 40px;
-    background: #fff;
+    background: var(--l-fg-dark);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.11);
     border-radius: 10px;
     top:10px;
@@ -151,7 +180,7 @@ html{
 }
 
 .ic-toolBox {
-    color: #eee;
+    color: var(--l-text-dark);
     display: flex;
     justify-content: space-between;
     z-index: 100;
@@ -164,12 +193,12 @@ html{
 
 .cl-btn{
     padding: 5px 10px !important;
-    background: #fff;
+    background: var(--l-fg-dark);
     border: none;
     outline: none;
     border-radius: 10px;
     margin-top: 3px;
-    color: rgb(126, 126, 126);
+    color: var(--l-text-dark);
     margin: 2px;
     position: relative;
 }
@@ -188,7 +217,7 @@ html{
     position: absolute;
     top: 40px;
    
-    background: rgb(255, 255, 255);
+    background: var(--l-fg-dark);
     left: 50%;
     transform: translateX(-50%);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.11);
@@ -198,19 +227,18 @@ html{
     border: none;
     padding: 5px 10px;
     border-radius: 5px;
-    background: #fff;
+    background: var(--l-fg-dark);
     transition: 0.3s;
 }
 .lic-btn:hover{
-    filter: saturate(0.5);
-    filter: sepia(0.5);
+    background: var(--l-bg-dark);
 }
 
 .lic-btn-block{
     width: 100%;
 }
 .cl-btn:hover{
-    background: #eee;
+    background: var(--l-bg-dark);
 }
 
 .cl-bg-danger{
@@ -231,7 +259,7 @@ html{
 }
 
 .cl-vl{
-    border-left: 1px solid rgb(189, 189, 189);
+    border-left: 1px solid ;
     height: 90%;
     margin-top: 2px;
 }
@@ -239,7 +267,7 @@ html{
 .cli-icon{
     width: 15px;
     height: 15px;
-    background-color: rgb(157, 157, 157);
+    background-color: var(--l-text-dark);
     mask: var(--icon) 100 no-repeat ;
     -webkit-mask: var(--icon) no-repeat  ;
     -webkit-mask-size: 100% 100%;
@@ -261,7 +289,7 @@ html{
 }
 
 .lic-page{
-    background: #fff;
+    background: var(--l-fg-dark);
     width: 1280px;
     min-height: 800px;
     box-shadow: 0px 0px 20px rgba(34, 34, 34, 0.164);
@@ -281,10 +309,11 @@ html{
     position: fixed;
     width: 250px;
     min-height: 100px;
-    background: #fff;
+    background: var(--l-fg-dark);
     box-shadow: 0px 0px 20px rgba(34, 34, 34, 0.164);
     border-radius: 5px;
     padding: 2px;
+    border: 2px solid;
 
 }
 
@@ -300,13 +329,13 @@ html{
     padding: 0px;
     display: flex;
     justify-content: space-between;
-    border-radius: 10px;
+    color:var(--l-text-dark);
     padding: 5px 10px !important;
     font-size: 10pt;
 }
 
 .lic-contextMenu ul li:hover{
-    background: rgb(245, 245, 245);
+    background: var(--l-bg-dark);
 }
 
 .tip{
@@ -318,14 +347,14 @@ html{
     width: 300px;
     height: 100vh;
     right: 0;
-    background: #fff;
+    background: var(--l-fg-dark);
     border-left: 2px solid rgba(179, 179, 179, 0.247);
 }
 .lic-side-menu .component{
     display: flex;
     justify-content: space-between;
     padding: 10px 10px;
-    border-bottom: 1px solid #e8e8e8;
+    border-bottom: 1px solid;
 }
 .lic-pa-0{
     padding: 0px !important;
@@ -334,13 +363,21 @@ html{
 .outliner{
     width: 250px;
     height: 100vh;
-    background: #fff;
+    background: var(--l-fg-dark);
     position: fixed;
     z-index: 2;
     left: 0;
-    border-right: 2px solid rgba(34, 34, 34, 0.158);
+    border-right: 2px solid ;
 }
 
+*::selection{
+    background: none;
+}
+
+input::selection{
+    background: var(--l-selection);
+    color: #fff;
+}
 .outliner ul {
     padding: 0;
     display: flex;
@@ -353,15 +390,30 @@ html{
     padding-left: 10px;
 }
 
+.outliner ul  i{
+   color: var(--l-text-dark) !important;
+}
+
 .outliner ul li{
-    padding: 10px 5px;
+    padding: 4px 10px;
     border: 1px solid transparent;
+    border-left: 3px solid ;
     border-radius: 5px;
     cursor: default;
+    display: flex;
+    flex-direction: column;
+    
 }
 .outliner ul li:hover{
-    border: 1px solid #5f40a62c;
-    background: rgba(34, 34, 34, 0.034);
+    border: 1px solid ;
+    background: var(--l-bg-transparent-dark);
+   
+}
+
+
+.l-outline-selection{
+    border: 1px solid  !important;
+    background: var(--l-bg-transparent-dark);
 }
 
 .l-layer-outliner-title{
@@ -369,4 +421,8 @@ html{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.l-pb-4{
+    padding-bottom: 10px;
 }
