@@ -2,7 +2,16 @@
 
 Construtor interativo de páginas web.
 
-<img src="./screenshot2.png" >
+#UPDATES
+<img src="./Screenshot4.png" >
+
+* Darkmode
+* Css Variables
+* UUID para distinguir cada emelemnto dentro do projecto
+* Menu superior arstável
+* sincronização do autline (hierarquia) com a workspace 
+
+<img src="./Screenshot3.png" >
 
 
 > Este é um exemplo de formulário de login criado com o LIC

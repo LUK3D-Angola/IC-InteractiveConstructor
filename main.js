@@ -36,6 +36,8 @@ $(document).ready(function () {
     //         unSelect();
     //     }
     // });
+
+   
     
     var cm = Object.keys(components);
     console.log(cm)
@@ -280,10 +282,12 @@ function selectMe(el){
     console.log(el)
     if (validateSelection()) {
         $(selected).removeClass("selected");
+        $(".l-outline-selection").removeClass("l-outline-selection");
     }
     
     selected = el;
     $(el).addClass("selected");
+    $(`[l-layered="${$(el).attr("l-layer")}"]`).addClass("l-outline-selection");
 
 
 }
@@ -331,11 +335,11 @@ function endTextEditing(Input) {
 
 
 
-function AddComponent(direction, type){
+function AddComponent(direction, type, elementObject){
     
     if(validateSelection()){
-        var el = $(components[type].code);
-        var layerName = "layer"+(layer_counter+1).toString();
+        var el = elementObject||$(components[type].code);
+        var layerName = "layer"+uuidv4();
 
         layers[layerName];
 
@@ -347,24 +351,60 @@ function AddComponent(direction, type){
             //selectMe(el);
         }
 
-        addLayer({name:type,layer:layerName})
+        
+
         el.attr("l-layer",layerName);
+        addLayer({name:type,layer:layerName,parentLayer: $(selected).attr("l-layer")})
+       
+        $(`[l-id="${layerName}"]`).hide();
+        //$(`[l-layered="${layerName}"]`).append(layerName)
+
+        $(el).find("*[l-layer]").each(function(el){
+            var myLayer = "layer"+uuidv4();
+            $(this).attr("l-layer",myLayer); 
+            addLayer({name:$(this)[0].nodeName,layer:myLayer, parentLayer: layerName})
+
+            $(`[l-id="${myLayer}"]`).hide();
+        
+           
+        });
+
+
         layer_counter+=1;
 
     }
         
 }
 
-function addLayer({name, layer}){
+function addLayer({name, layer,parentLayer}){
 
-    $("#l-layers").append(`
+    var extraClasses = [];
+
+    if(parentLayer != null && !(!parentLayer)){
+        $(`[l-id="${parentLayer}"]`).show();
+        parentLayer =  $(`[l-layered="${parentLayer}"]`);
+        extraClasses.push("l-ul-child ");
+    }
+    else
+    parentLayer = "#l-layers";
+   
+   return $(parentLayer).append(`
     
-    <li l-layered="${layer}" onmouseout="unHiglight('[l-layer=\\'${layer}\\']')" onmouseover="higlight('[l-layer=\\'${layer}\\']');event.stopPropagation();" onclick="selectMe('[l-layer=\\'${layer}\\']');event.stopPropagation();"  l-id="document01" class="layer-outline">
-        <span>${name}</span>
+    <li l-parent="${parentLayer}" l-layered="${layer}" onmouseout="unHiglight('[l-layer=\\'${layer}\\']')" onmouseover="higlight('[l-layer=\\'${layer}\\']');event.stopPropagation();" onclick="selectMe('[l-layer=\\'${layer}\\']');event.stopPropagation();"  l-id="document01" class="layer-outline ${extraClasses.join(" ")}">
+        <div class="l-layer-outliner-title">
+            <span class="l-pb-4">${name.toUpperCase()}</span>
+            <div>
+                <span class="lic-btn"  onclick="Delete('[l-layer=\\'${layer}\\']'); event.stopPropagation();"> <i class="far fa-trash-alt"></i></span>
+                    <span class="lic-btn"   onclick="HideComponent('[l-layer=\\'${layer}\\']'); SwitchIcons(this,'far fa-eye', 'far fa-eye-slash'); event.stopPropagation()"> <i class="far fa-eye"></i></span>
+                <span class="lic-btn" l-id="${layer}"  onclick="Colapse('[l-layered=\\'${layer}\\']'); SwitchIcons(this,'fas fa-angle-up', 'fas fa-angle-down'); event.stopPropagation()"> <i class="fas fa-angle-up"></i></span>
+            </div>
+        </div>
     </li>
 
     `);
 }
+
+
 
 
 function Copy(){
@@ -372,8 +412,9 @@ function Copy(){
 }
 function Past(){
     if(validateSelection()){
-            $(selected).append($(clipboard).clone()); 
-        
+            //$(selected).append($(clipboard).clone()); 
+            var el = $(clipboard).clone();
+            AddComponent(null, el[0].nodeName, el)
     }
 }
 function Cut(){
@@ -384,8 +425,33 @@ function Cut(){
     }
 }
 
-
-
+function Colapse(el){
+    $(el).children().toggle(); 
+    $(el).children(":first").show(); 
+}
+/**
+ * Alterna valores de duas classes dentro do filho i do elemento el
+ * @el  {object} elemento pai
+ * @d  {string} calsse default
+ * @o  {string} calsse secundaria
+ */
+function SwitchIcons(el,d,o) { 
+    $(el).children(":first").toggleClass(d);
+    $(el).children(":first").toggleClass(o);
+ }
+function HideComponent (selector) {  
+    var tmpOp = $(selector).attr("l-opacity");
+    var op = (tmpOp!=undefined)?tmpOp:$(selector).css("opacity");
+    console.log(op,tmpOp)
+    if(parseFloat(op)>0.0){
+       
+        $(selector).css("opacity",'0.0');
+    }else{
+        $(selector).css("opacity",1);
+    }
+    
+    
+}
 function applyPadding(side, value) {
     if(validateSelection()){
 
@@ -424,13 +490,19 @@ function applyMargin(side, value) {
     }
   }
 
-function Delete(){
+function Delete(el){
 
-    if(validateSelection()){
+    if(validateSelection() || el){
 
-      var parent = $(selected).attr("l-layer"); 
+        var current = el||selected;
+        $(current).find("*[l-layer]").each(function(){
+            var childParent = $(this).attr("l-layer"); 
+            $(`[l-layered="${childParent}"]`).remove(); 
+        });
+
+      var parent = $(current).attr("l-layer"); 
       $(`[l-layered="${parent}"]`).remove(); 
-      $(selected).remove(); 
+      $(current).remove(); 
       unSelect();
     }
 }
@@ -549,6 +621,9 @@ window.showContext = showContext;
 window.hideContext = hideContext;
 window.unHiglight = unHiglight;
 window.unSelect = unSelect;
+window.Colapse = Colapse;
+window.SwitchIcons = SwitchIcons;
+window.HideComponent = HideComponent;
 
 
 
@@ -627,3 +702,49 @@ var panzoomInstance = panzoom(element, {
  
 
  
+
+
+
+
+dragElement(document.getElementById("ic-toolBox"));
+
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "header")) {
+    // if present, the header is where you move the DIV from:
+    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+  } else {
+    // otherwise, move the DIV from anywhere inside the DIV:
+    elmnt.onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    // stop moving when mouse button is released:
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}

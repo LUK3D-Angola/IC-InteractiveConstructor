@@ -13,6 +13,7 @@
     <script type="module" src="./libs/popper.min.js"></script>
     <script type="module" src="./libs/tippy-bundle.umd.js"></script>
     <script type="module" src="./libs/mousetrap.min.js"></script>
+    <script type="module" src="./libs/uuidv4.min.js"></script>
 
     <link href="./libs/gpickr/gpickr.min.css" rel="stylesheet">
     <script type="module" src="./libs/gpickr/gpickr.min.js"></script>
@@ -25,7 +26,7 @@
 
     <script type="module" src="./main.js"></script>
 </head>
-<body>
+<body class="l-bg">
 
 <div id="lic-canvas">
     <div class="lic-line">
@@ -142,16 +143,16 @@
 </div>
 
 
-<div class="lic-side-menu">
+<div id="lic-side-menu" class="lic-side-menu l-fg">
     <div class="component">
-        <button class="cl-btn lic-pa-0 " lic-tip="Align Top"><div class="cli-icon" style="--icon: url(./assets/icons/alignTop.png)"></div>   </button>
-        <button class="cl-btn lic-pa-0 " lic-tip="Align Midle (Vertically)"><div class="cli-icon" style="--icon: url(./assets/icons/alignMidleVertical.png)"></div>   </button>
-        <button class="cl-btn lic-pa-0 " lic-tip="Align Bottom"><div class="cli-icon" style="--icon: url(./assets/icons/alignBottom.png)"></div>   </button>
-        <button class="cl-btn lic-pa-0 " lic-tip="Distribute Horizontally"><div class="cli-icon" style="--icon: url(./assets/icons/distributeHorizontally.png)"></div>   </button>
-        <button class="cl-btn lic-pa-0 " lic-tip="Align Left"><div class="cli-icon" style="--icon: url(./assets/icons/alignLeft.png)"></div>   </button>
-        <button class="cl-btn lic-pa-0 " lic-tip="Align Midle (Horizontally)"><div class="cli-icon" style="--icon: url(./assets/icons/alignMidleHorizontal.png)"></div>   </button>
-        <button class="cl-btn lic-pa-0 " lic-tip="Align Right"><div class="cli-icon" style="--icon: url(./assets/icons/alignRight.png)"></div>   </button>
-        <button class="cl-btn lic-pa-0 " lic-tip="Distribute Vertically"><div class="cli-icon" style="--icon: url(./assets/icons/distributeVerticaly.png)"></div>   </button>
+        <button class="cl-btn l-fg lic-pa-0 " lic-tip="Align Top"><div class="cli-icon" style="--icon: url(./assets/icons/alignTop.png)"></div>   </button>
+        <button class="cl-btn l-fg lic-pa-0 " lic-tip="Align Midle (Vertically)"><div class="cli-icon" style="--icon: url(./assets/icons/alignMidleVertical.png)"></div>   </button>
+        <button class="cl-btn l-fg lic-pa-0 " lic-tip="Align Bottom"><div class="cli-icon" style="--icon: url(./assets/icons/alignBottom.png)"></div>   </button>
+        <button class="cl-btn l-fg lic-pa-0 " lic-tip="Distribute Horizontally"><div class="cli-icon" style="--icon: url(./assets/icons/distributeHorizontally.png)"></div>   </button>
+        <button class="cl-btn l-fg lic-pa-0 " lic-tip="Align Left"><div class="cli-icon" style="--icon: url(./assets/icons/alignLeft.png)"></div>   </button>
+        <button class="cl-btn l-fg lic-pa-0 " lic-tip="Align Midle (Horizontally)"><div class="cli-icon" style="--icon: url(./assets/icons/alignMidleHorizontal.png)"></div>   </button>
+        <button class="cl-btn l-fg lic-pa-0 " lic-tip="Align Right"><div class="cli-icon" style="--icon: url(./assets/icons/alignRight.png)"></div>   </button>
+        <button class="cl-btn l-fg lic-pa-0 " lic-tip="Distribute Vertically"><div class="cli-icon" style="--icon: url(./assets/icons/distributeVerticaly.png)"></div>   </button>
     </div>
     <div class="component">
         <Button class="lic-btn lic-btn-block cl-bg-white ">Add Attribute</Button>
@@ -172,44 +173,43 @@
     </ul>
     
 </div>
-
-<div class="ic-toolBox">
-    <button lic-tip="expand" class="cl-btn p-2 "><i class="fas fa-expand"></i></button>
-    <button lic-tip="Fit" class="cl-btn p-2 "><i class="fas fa-search-minus"></i></button>
-    <button class="cl-btn p-2 "><i class="fas fa-search-minus"></i></button>
+ 
+<div id="ic-toolBox" class="ic-toolBox l-fg">
+    <button lic-tip="expand" class="cl-btn p-2 l-fg"><i class="fas fa-expand"></i></button>
+    <button lic-tip="Fit" class="cl-btn p-2 l-fg"><i class="fas fa-search-minus"></i></button>
+    <button class="cl-btn p-2 l-fg "><i class="fas fa-search-minus"></i></button>
     <div class="cl-vl"></div>
-    <button class="cl-btn p-2 " onclick="layoutDirection('horizontal')"><div class="cli-icon" style="--icon: url(./assets/icons/horizontal.svg)"></div>   </button>
-    <button class="cl-btn p-2 " onclick="layoutDirection('vertical')"><div class="cli-icon" style="--icon: url(./assets/icons/vertical.svg)"></div>   </button>
+    <button class="cl-btn p-2 l-fg " onclick="layoutDirection('horizontal')"><div class="cli-icon" style="--icon: url(./assets/icons/horizontal.svg)"></div>   </button>
+    <button class="cl-btn p-2 l-fg " onclick="layoutDirection('vertical')"><div class="cli-icon" style="--icon: url(./assets/icons/vertical.svg)"></div>   </button>
     <div class="cl-vl"></div>
-    <div class="cl-btn p-2  rounded-circle">
+    <div class="cl-btn p-2 l-fg  rounded-circle">
         <div class="cli-icon cl-bg-danger" style="--icon: url(./assets/icons/filledCircle.svg)"></div> 
         
         <div class="lic-btn-downpdown ">
-            <button lic-tip="Color " class="cl-btn p-2 bg-picker cl-tc-danger"><i class="fas fa-circle"></i></button>
-            <!-- <button lic-tip="Gradient" class="cl-btn p-2 bg-picker-gr cl-tc-primary"><i class="fas fa-circle"></i></button> -->
+            <button lic-tip="Color " class="cl-btn p-2 l-fg bg-picker cl-tc-danger"><i class="fas fa-circle"></i></button>
+            <!-- <button lic-tip="Gradient" class="cl-btn p-2 l-fg bg-picker-gr cl-tc-primary"><i class="fas fa-circle"></i></button> -->
         </div>
     </div>
-    <button class="cl-btn p-2 fg-picker"><div class="cli-icon cl-bg-primary" style="--icon: url(./assets/icons/filledCircle.svg)"></div>   </button>
+    <button class="cl-btn p-2 l-fg fg-picker"><div class="cli-icon cl-bg-primary" style="--icon: url(./assets/icons/filledCircle.svg)"></div>   </button>
     <div class="cl-vl"></div>
-    <button class="cl-btn p-2 "><div class="cli-icon" style="--icon: url(./assets/icons/copy.svg)"></div>   </button>
-    <button class="cl-btn p-2 "><div class="cli-icon" style="--icon: url(./assets/icons/paste.svg)"></div>   </button>
-    <button class="cl-btn p-2 "><div class="cli-icon" style="--icon: url(./assets/icons/cut.svg)"></div>   </button>
-    <button class="cl-btn p-2 "><div class="cli-icon" style="--icon: url(./assets/icons/delete.svg)"></div>   </button>
+    <button class="cl-btn p-2 l-fg "><div class="cli-icon" style="--icon: url(./assets/icons/copy.svg)"></div>   </button>
+    <button class="cl-btn p-2 l-fg "><div class="cli-icon" style="--icon: url(./assets/icons/paste.svg)"></div>   </button>
+    <button class="cl-btn p-2 l-fg "><div class="cli-icon" style="--icon: url(./assets/icons/cut.svg)"></div>   </button>
+    <button class="cl-btn p-2 l-fg "><div class="cli-icon" style="--icon: url(./assets/icons/delete.svg)"></div>   </button>
     <div class="cl-vl"></div>
-    <button class="cl-btn p-2 "><div class="cli-icon" style="--icon: url(./assets/icons/phone.svg)"></div>   </button>
-    <button class="cl-btn p-2 "><div class="cli-icon" style="--icon: url(./assets/icons/tablet.svg)"></div>   </button>
-    <button class="cl-btn p-2 "><div class="cli-icon" style="--icon: url(./assets/icons/pc.svg)"></div>   </button>
+    <button class="cl-btn p-2 l-fg "><div class="cli-icon" style="--icon: url(./assets/icons/phone.svg)"></div>   </button>
+    <button class="cl-btn p-2 l-fg "><div class="cli-icon" style="--icon: url(./assets/icons/tablet.svg)"></div>   </button>
+    <button class="cl-btn p-2 l-fg "><div class="cli-icon" style="--icon: url(./assets/icons/pc.svg)"></div>   </button>
     <div class="cl-vl"></div>
-    <button class="cl-btn p-2 "><div class="cli-icon" style="--icon: url(./assets/icons/landscape.svg)"></div>   </button>
-    <button class="cl-btn p-2 "><div class="cli-icon" style="--icon: url(./assets/icons/portrait.svg)"></div>   </button>
+    <button class="cl-btn p-2 l-fg "><div class="cli-icon" style="--icon: url(./assets/icons/landscape.svg)"></div>   </button>
+    <button class="cl-btn p-2 l-fg "><div class="cli-icon" style="--icon: url(./assets/icons/portrait.svg)"></div>   </button>
     <div class="cl-vl"></div>
-    <button class="cl-btn p-2 "><div class="cli-icon" style="--icon: url(./assets/icons/start.svg)"></div>    </button>
+    <button class="cl-btn p-2 l-fg "><div class="cli-icon" style="--icon: url(./assets/icons/start.svg)"></div>    </button>
+    <button class="cl-btn p-2 l-fg " id="ic-toolBoxheader"> <i class="fas fa-arrows-alt"></i>   </button>
 </div>
 
 
-<div class="outline">
 
-</div>
 
 <div class="quickpanel" onmouseleave="hideQuickpanel()">
     <input type="text" placeholder="Pesquisar...">
@@ -226,12 +226,15 @@
 
 
 
-<div class="outliner">
+<div class="outliner l-fg l-text">
 
 <ul id="l-layers" class="">
     <li l-id="document01" class="layer-outline">
-        <span>Document</span>
+        <ul class="l-ul-child">
+            <li><span>Document</span></li>
+        </ul>
     </li>
+    
 </ul>
 
 </div>
