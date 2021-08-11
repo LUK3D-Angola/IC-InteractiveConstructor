@@ -1,6 +1,6 @@
 import { components } from "./components.js";
-import { textTypes } from "./elements.types.js";
-
+import { textTypes, elementType } from "./elements.types.js";
+import { defineFunctions } from "./utils/difinitions.js";
 
 /**Variavle para armazenar o elemento selecionado */
 var selected;
@@ -159,37 +159,6 @@ fgPickr.on('change', (color, source, instance) => {
 
 
 
-// const bgGpickr = new GPickr({
-//     el: '.bg-picker-gr',
-
-//     // Pre-defined stops. These are the default since at least two should be defined
-//     stops: [
-//         ['rgb(255,132,109)', 0],
-//         ['rgb(255,136,230)', 1]
-//     ]
-// })
-
-
-
-// bgGpickr.on('change', (color, source, instance) => {
-//     if(validateSelection()){
-//         ApplyBg(color.getGradient())
-//       }
-
-      
-// $(".gpcr-marker").on("dblclick", function (e) {
-//     var color = $(this).css("color");
-//     console.log(color,bgGpickr.getStops())
-//     bgGpickr.removeStop(color)
-//     e.stopPropagation();
-// });
-// })  
-
-
-
-
-
-
 
 
 $("[lic-tip]").each(function(){
@@ -202,27 +171,6 @@ $("[lic-tip]").each(function(){
 
 
 
-
-
-//CONTEXT MENU
-
-
-
-
-// if (document.addEventListener) {
-//     document.body.addEventListener('contextmenu', function(e) {
-//       showContext();
-//       e.preventDefault();
-//     }, false);
-
-    
-//   } else {
-//     document.body.attachEvent('oncontextmenu', function() {
-//         showContext();
-//       window.event.returnValue = false;
-//     });
-//   }
-
 //Desabilitar menu de contexto
 $("*").on("contextmenu", function (e) {
    
@@ -232,7 +180,7 @@ $("*").on("contextmenu", function (e) {
 
 
 
-tippy('#bgTest', {
+tippy('[l-id*="l-bgColor"]', {
     content: `
     <div l-class="d-flex flex-col">
         <div l-class="d-flex">
@@ -346,6 +294,151 @@ tippy('#bgTest', {
       },
   });
 
+
+
+  tippy('[l-id*="l-textColor"]', {
+    content: `
+    <div l-class="d-flex flex-col">
+        <div l-class="d-flex">
+            <button onclick="Hide('#l-bg-gradient');Show('#l-bg-solid')" class="lic-btn l-text">Solid</button>
+            <button onclick="Show('#l-bg-gradient');Hide('#l-bg-solid')" class="lic-btn l-text">gradient</button> 
+        </div>
+        <div style="width:250px;"  id="l-bg-solid">
+            <div id="pickerBc">Bolded content</div>
+        </div>
+        <div style="width:250px;"  id="l-bg-gradient" class="d-none">
+            <div id="pickerBg">Bolded content</div>
+        </div>
+    </div>
+    
+    
+    `,
+    offset: [0, 60],
+      
+    allowHTML: true,
+    hideOnClick: 'toggle',
+    interactive: true,
+   
+    placement: 'left-start',
+    background:"#000",
+    theme: 'light',
+    onShow(instance) {
+        console.log(instance)
+      setTimeout(() => {
+
+        try {
+            const bgPickr = Pickr.create({
+                el: '#pickerBc',
+                theme: 'monolith', // or 'monolith', or 'nano'
+                inline: true,
+                showAlways: true,
+                container: '#pickerBc',
+                default: '#FD413C',
+                swatches: [
+                    'rgba(244, 67, 54, 1)',
+                    'rgba(233, 30, 99, 0.95)',
+                    'rgba(156, 39, 176, 0.9)',
+                    'rgba(103, 58, 183, 0.85)',
+                    'rgba(63, 81, 181, 0.8)',
+                    'rgba(33, 150, 243, 0.75)',
+                    'rgba(3, 169, 244, 0.7)',
+                    'rgba(0, 188, 212, 0.7)',
+                    'rgba(0, 150, 136, 0.75)',
+                    'rgba(76, 175, 80, 0.8)',
+                    'rgba(139, 195, 74, 0.85)',
+                    'rgba(205, 220, 57, 0.9)',
+                    'rgba(255, 235, 59, 0.95)',
+                    'rgba(255, 193, 7, 1)'
+                ],
+            
+                components: {
+            
+                    // Main components
+                    preview: true,
+                    opacity: true,
+                    hue: true,
+            
+                    // Input / output Options
+                    interaction: {
+                        hex: true,
+                        rgba: true,
+                        hsla: true,
+                        hsva: true,
+                        cmyk: true,
+                        input: true,
+                        clear: true,
+                        save: true
+                    }
+                }
+                
+            });
+            
+            bgPickr.on('change', (color, source, instance) => {
+                if(validateSelection()){
+                    ApplyFg(color.toHEXA())
+                  }
+            })  
+        } catch (error) {
+            
+        }
+
+        
+
+
+        const bgGpickr = new GPickr({
+            el: '#pickerBg',
+
+            // Pre-defined stops. These are the default since at least two should be defined
+            stops: [
+                ['rgb(255,132,109)', 0],
+                ['rgb(255,136,230)', 1]
+            ]
+        })
+
+
+        bgGpickr.on('change', (color, source, instance) => {
+            if(validateSelection()){
+                ApplyFg(color.getGradient(),true)
+              }
+        
+              
+        
+        })  
+
+
+      }, 200);
+      },
+  });
+
+
+
+
+  var clicking = false;
+$('[l-class*="input-number"]').mousedown(function() {
+  clicking = true;  
+});
+
+$(document).mouseup(function() {
+  clicking = false;  
+})
+var i = 0;
+var y = 0;
+$('[l-class*="input-number"]').mousemove(function(my) {
+  if (clicking == false) {
+    return
+  } else {
+    // change value
+    if (my.pageY <= $(this).offset().top + $('[l-class*="input-number"]').css('width').replace('px', '') / 10) {
+      y = parseInt($(this).val()) + 1;
+      //$('.movestatus').text('plus');
+    } else {
+      y = parseInt($(this).val()) - 1;
+      //$('.movestatus').text('minus');
+    }
+    $(this).val(parseInt(y));    
+    i++;
+  } 
+});
   
 
 
@@ -358,7 +451,7 @@ tippy('#bgTest', {
 
 function selectMe(el){
 
-    console.log(el)
+    console.log()
     if (validateSelection()) {
         $(selected).removeClass("selected");
         $(".l-outline-selection").removeClass("l-outline-selection");
@@ -367,13 +460,15 @@ function selectMe(el){
     selected = el;
     $(el).addClass("selected");
     $(`[l-layered="${$(el).attr("l-layer")}"]`).addClass("l-outline-selection");
-
+    
+    showProperties(elementType($(el).attr("l-type")));
 
 }
 
 function unSelect(){
     $(selected).removeClass("selected");
     selected = null;
+    showProperties();
 }
 
 function higlight(el){
@@ -433,6 +528,9 @@ function AddComponent(direction, type, elementObject){
         
 
         el.attr("l-layer",layerName);
+       if(type){
+            el.attr("l-type",type);
+       }
         addLayer({name:type,layer:layerName,parentLayer: $(selected).attr("l-layer")})
        
         $(`[l-id="${layerName}"]`).hide();
@@ -441,6 +539,9 @@ function AddComponent(direction, type, elementObject){
         $(el).find("*[l-layer]").each(function(el){
             var myLayer = "layer"+uuidv4();
             $(this).attr("l-layer",myLayer); 
+            if(type){
+                $(this).attr("l-type",type);
+           }
             addLayer({name:$(this)[0].nodeName,layer:myLayer, parentLayer: layerName})
 
             $(`[l-id="${myLayer}"]`).hide();
@@ -585,7 +686,7 @@ function applyCss(prop, value){
 }
 
 
-function removeBekcground(param) {  
+function removeBackground(param) {  
     
   
         var selectedBg = $(selected).css("background");
@@ -603,9 +704,26 @@ function removeBekcground(param) {
             $(selected).css("background", bgHolder);
            
         }
+}
 
+function removeTextColor(param) {  
     
-    
+  
+    var selectedBg = $(selected).css("color");
+    var bgHolder = $(selected).attr("l-color");
+    if(bgHolder == undefined)
+    bgHolder = "black";
+
+    if(selectedBg.split(" ").join("")!="rgba(33,37,41,0)"){
+        console.log(selectedBg.split(" ").join("")+"=>","rgba(33,37,41,0)")
+        $(selected).attr("l-color",selectedBg);
+       
+        $(selected).css("color","rgba(33,37,41,0)");
+     
+    }else{
+        $(selected).css("color", bgHolder);
+       
+    }
 }
 
 
@@ -633,14 +751,36 @@ function ApplyText(souce){
 }
 
 function ApplyBg(color){
-    $(selected).css("background", color);
-    $("[l-class*='bg']").css("background", color);
+    if(validateSelection()){
+        $(selected).css("background", color);
+        $("[l-id*='bgColor']").css("background", color);
+    }
 }
-function ApplyFg(color){
-    $(selected).css("color", color);
+function ApplyFg(color, isGradient){
+    if(validateSelection()){
+        if(!isGradient){
+            $(selected).css("color", color);
+            $("[l-id*='textColor']").css("background", color);
+            $(selected).css("-webkit-background-clip", 'unset');
+            $(selected).css("-webkit-text-fill-color", 'none');
+        }
+    }
+    // else{
+    //     $(selected).css("background", "none");
+    //     $(selected).css("-webkit-background-clip", 'text');
+    //     $(selected).css("-webkit-text-fill-color", 'transparent');
+    //     $(selected).css("background-position", 'center');
+    //     $(selected).css("background-size", '100%');
+    // }
+    
 }
 
-
+function applySize(x,y) { 
+    if(validateSelection() ){
+        $(selected).css("width",$(x).val().toString()+"px");
+        $(selected).css("height",$(y).val().toString()+"px");
+    }
+ }
 
 
 
@@ -722,35 +862,14 @@ function closeOnEsc(){
 }
 
 
+function showProperties(params) {
+    $("[l-props]").hide();
+    if(params!=null){
+        $(`[l-props*="${params}"],[l-props*="any"]`).show();
+        console.log(params);
 
-window.selectMe = selectMe;
-window.higlight = higlight;
-window.layoutDirection = layoutDirection;
-window.AddComponent = AddComponent;
-window.ApplyText = ApplyText;
-window.applyPadding = applyPadding;
-window.applyMargin = applyMargin;
-window.Copy = Copy;
-window.Past = Past;
-window.Cut = Cut;
-window.Delete = Delete;
-window.showQuickpanel = showQuickpanel;
-window.hideQuickpanel = hideQuickpanel;
-window.endTextEditing = endTextEditing;
-window.startTextEditing = startTextEditing;
-window.showContext = showContext;
-window.hideContext = hideContext;
-window.unHiglight = unHiglight;
-window.unSelect = unSelect;
-window.Colapse = Colapse;
-window.SwitchIcons = SwitchIcons;
-window.HideComponent = HideComponent;
-window.Hide = Hide;
-window.Show = Show;
-window.applyCss = applyCss;
-window.removeBekcground = removeBekcground;
-
-
+    }
+}
 
 
 
@@ -873,3 +992,37 @@ function dragElement(elmnt) {
     document.onmousemove = null;
   }
 }
+
+
+defineFunctions([
+    {name:"selectMe", func:selectMe},
+    {name:"higlight", func:higlight},
+    {name:"layoutDirection", func:layoutDirection},
+    {name:"AddComponent", func:AddComponent},
+    {name:"ApplyText", func:ApplyText},
+    {name:"applyPadding", func:applyPadding},
+    {name:"applyMargin", func:applyMargin},
+    {name:"Copy", func:Copy},
+    {name:"Past", func:Past},
+    {name:"Cut", func:Cut},
+    {name:"Delete", func:Delete},
+    {name:"showQuickpanel", func:showQuickpanel},
+    {name:"hideQuickpanel", func:hideQuickpanel},
+    {name:"endTextEditing", func:endTextEditing},
+    {name:"startTextEditing", func:startTextEditing},
+    {name:"showContext", func:showContext},
+    {name:"hideContext", func:hideContext},
+    {name:"unHiglight", func:unHiglight},
+    {name:"unSelect", func:unSelect},
+    {name:"Colapse", func:Colapse},
+    {name:"SwitchIcons", func:SwitchIcons},
+    {name:"HideComponent", func:HideComponent},
+    {name:"Hide", func:Hide},
+    {name:"Show", func:Show},
+    {name:"applyCss", func:applyCss},
+    {name:"removeBackground", func:removeBackground},
+    {name:"removeTextColor", func:removeTextColor},
+    {name:"showProperties", func:showProperties},
+    {name:"applySize", func:applySize},
+]);
+

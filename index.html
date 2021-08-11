@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formoza - Easy Form creator</title>
+    <title>IC - Interactive Creator</title>
     <link href="./libs/bootstrap.min.css" rel="stylesheet">
     <link href="./libs/fontawesome/css/all.min.css" rel="stylesheet">
     <script type="module" src="./libs/jquery.min.js"></script>
@@ -26,6 +26,7 @@
     
     <link href="./main.css" rel="stylesheet">
     <script type="module" src="./main.js"></script>
+    <script type="module" src="./init.js"></script>
 </head>
 <body class="l-bg">
 
@@ -160,16 +161,39 @@
     </div>
     
 
-    <div l-class="d-flex pa-1">
+    <div l-props="any" l-class="d-flex pa-1">
         <div class="vc-toggle-container">
             <label class="vc-switch">
-              <input onchange="removeBekcground()" type="checkbox" class="vc-switch-input" />
+              <input onchange="removeBackground()" type="checkbox" class="vc-switch-input" />
               <span class="vc-switch-label" data-on="On" data-off="Off"></span>
               <span class="vc-handle"></span>
             </label>
           </div>
-        <div l-class="mx-1 bg-white " style="width: 25px; height:25px;" class="btn" id="bgTest" ></div>
+        <div l-class="mx-1 bg-white " l-id="l-bgColor" style="width: 25px; height:25px;" class="btn" ></div>
         <p class="l-text">Fill</p>
+    </div>
+
+    <div l-class="d-flex">
+        <div l-props="any" l-class="d-flex  input-container px-1 w-40">
+            <span class="l-text" l-class="pt-0 ">W</span>
+            <input onchange="applySize(this,'[l-id=\'l-height\']')" l-id="l-width" type="text" value="12"  l-class=" px-1 input-number ">  
+        </div>
+        <div l-props="any" l-class="d-flex  input-container px-1 w-40">
+            <span class="l-text" l-class="pt-0 ">H</span>
+            <input onchange="applySize('[l-id=\'l-width\']',this)" l-id="l-height" type="text" value="12"  l-class=" px-1 input-number ">  
+        </div>
+    </div>
+
+    <div l-props="text" l-class="d-flex pa-1">
+        <div class="vc-toggle-container">
+            <label class="vc-switch">
+              <input onchange="removeTextColor()" type="checkbox" class="vc-switch-input" />
+              <span class="vc-switch-label" data-on="On" data-off="Off"></span>
+              <span class="vc-handle"></span>
+            </label>
+          </div>
+        <div l-class="mx-1 bg-white " l-id="l-textColor" style="width: 25px; height:25px;" class="btn"  ></div>
+        <p class="l-text">Text Color</p>
     </div>
 
     

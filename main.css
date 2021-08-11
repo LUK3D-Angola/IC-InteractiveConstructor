@@ -1,4 +1,6 @@
 
+@import url(./utils/css/luk.css);
+
 :root {
     /* --l-selection: #5F40A6;
     --l-bg-light: #eeeeee;
@@ -27,6 +29,8 @@
 
 
   }
+
+  
   
 
   *{
@@ -71,15 +75,6 @@ html{
  }
 
 
- [l-class*="mx-1"]{
-    margin-left: 10px;
-    margin-right: 10px;
- }
-
-
- [l-class*="pa-1"]{
-    padding: 10px;
- }
 
 
 .menu{
@@ -491,4 +486,28 @@ input::selection{
 
 .l-pb-4{
     padding-bottom: 10px;
+}
+
+[l-class*="align-center"]{
+    
+   align-content: center;
+}
+
+
+
+[l-class*="input-container"]{
+    border: 1px solid transparent !important;
+    background: var(--l-fg-dark);
+    display: flex;
+    
+}
+[l-class*="input-container"]:hover{
+    border: 1px solid var(--l-border-dark) !important;
+}
+[l-class*="input-container"] [l-class*="input-"]{
+  
+    background: var(--l-fg-dark) !important;
+    border: none;
+    color: var(--l-text-dark);
+    outline: none;
 }

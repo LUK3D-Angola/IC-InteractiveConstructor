@@ -13,5 +13,15 @@ var textTypes = [
     "SPAN",
 ];
 
+function type(param) { 
+    if(!param)
+    return "Invalid Type";
+    if (textTypes.includes(param.toUpperCase())){
+        return "text";
+    }
 
-export {textTypes};
+    return "eny"
+ }
+
+
+export {textTypes,type as elementType};
