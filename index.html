@@ -7,14 +7,13 @@
     <title>Formoza - Easy Form creator</title>
     <link href="./libs/bootstrap.min.css" rel="stylesheet">
     <link href="./libs/fontawesome/css/all.min.css" rel="stylesheet">
-    <link href="./main.css" rel="stylesheet">
     <script type="module" src="./libs/jquery.min.js"></script>
     <script type="module" src="./libs/panzoom.min.js"></script>
     <script type="module" src="./libs/popper.min.js"></script>
     <script type="module" src="./libs/tippy-bundle.umd.js"></script>
     <script type="module" src="./libs/mousetrap.min.js"></script>
     <script type="module" src="./libs/uuidv4.min.js"></script>
-
+    
     <link href="./libs/gpickr/gpickr.min.css" rel="stylesheet">
     <script type="module" src="./libs/gpickr/gpickr.min.js"></script>
     
@@ -22,8 +21,10 @@
     <link rel="stylesheet" href="./libs/pickr/monolith.min.css"/> <!-- 'monolith' theme -->
     <link rel="stylesheet" href="./libs/pickr/nano.min.css"/> <!-- 'monolith' theme -->
     <script src="./libs/pickr/pickr.min.js"></script>
-
-
+    <link href="./libs/vc-toggle-switch.css" rel="stylesheet">
+    
+    
+    <link href="./main.css" rel="stylesheet">
     <script type="module" src="./main.js"></script>
 </head>
 <body class="l-bg">
@@ -145,21 +146,33 @@
 
 <div id="lic-side-menu" class="lic-side-menu l-fg">
     <div class="component">
-        <button class="cl-btn l-fg lic-pa-0 " lic-tip="Align Top"><div class="cli-icon" style="--icon: url(./assets/icons/alignTop.png)"></div>   </button>
-        <button class="cl-btn l-fg lic-pa-0 " lic-tip="Align Midle (Vertically)"><div class="cli-icon" style="--icon: url(./assets/icons/alignMidleVertical.png)"></div>   </button>
-        <button class="cl-btn l-fg lic-pa-0 " lic-tip="Align Bottom"><div class="cli-icon" style="--icon: url(./assets/icons/alignBottom.png)"></div>   </button>
-        <button class="cl-btn l-fg lic-pa-0 " lic-tip="Distribute Horizontally"><div class="cli-icon" style="--icon: url(./assets/icons/distributeHorizontally.png)"></div>   </button>
-        <button class="cl-btn l-fg lic-pa-0 " lic-tip="Align Left"><div class="cli-icon" style="--icon: url(./assets/icons/alignLeft.png)"></div>   </button>
-        <button class="cl-btn l-fg lic-pa-0 " lic-tip="Align Midle (Horizontally)"><div class="cli-icon" style="--icon: url(./assets/icons/alignMidleHorizontal.png)"></div>   </button>
-        <button class="cl-btn l-fg lic-pa-0 " lic-tip="Align Right"><div class="cli-icon" style="--icon: url(./assets/icons/alignRight.png)"></div>   </button>
-        <button class="cl-btn l-fg lic-pa-0 " lic-tip="Distribute Vertically"><div class="cli-icon" style="--icon: url(./assets/icons/distributeVerticaly.png)"></div>   </button>
+        <button onclick="applyCss('align-items','top')" class="cl-btn l-fg lic-pa-0 " lic-tip="Align Top"><div class="cli-icon" style="--icon: url(./assets/icons/alignTop.png)"></div>   </button>
+        <button onclick="applyCss('justify-content','center')" class="cl-btn l-fg lic-pa-0 " lic-tip="Align Midle (Vertically)"><div class="cli-icon" style="--icon: url(./assets/icons/alignMidleVertical.png)"></div>   </button>
+        <button onclick="applyCss('align-items','bottom')" class="cl-btn l-fg lic-pa-0 " lic-tip="Align Bottom"><div class="cli-icon" style="--icon: url(./assets/icons/alignBottom.png)"></div>   </button>
+        <button onclick="applyCss('justify-content','space-between')" class="cl-btn l-fg lic-pa-0 " lic-tip="Distribute Horizontally"><div class="cli-icon" style="--icon: url(./assets/icons/distributeHorizontally.png)"></div>   </button>
+        <button onclick="applyCss('justify-content','start')" class="cl-btn l-fg lic-pa-0 " lic-tip="Align Left"><div class="cli-icon" style="--icon: url(./assets/icons/alignLeft.png)"></div>   </button>
+        <button onclick="applyCss('align-items','center')" class="cl-btn l-fg lic-pa-0 " lic-tip="Align Midle (Horizontally)"><div class="cli-icon" style="--icon: url(./assets/icons/alignMidleHorizontal.png)"></div>   </button>
+        <button onclick="applyCss('justify-content','end')" class="cl-btn l-fg lic-pa-0 " lic-tip="Align Right"><div class="cli-icon" style="--icon: url(./assets/icons/alignRight.png)"></div>   </button>
+        <button onclick="applyCss('align-items','space-between')" class="cl-btn l-fg lic-pa-0 " lic-tip="Distribute Vertically"><div class="cli-icon" style="--icon: url(./assets/icons/distributeVerticaly.png)"></div>   </button>
     </div>
     <div class="component">
         <Button class="lic-btn lic-btn-block cl-bg-white ">Add Attribute</Button>
     </div>
     
 
-    <button class="btn" id="bgTest">Background</button>
+    <div l-class="d-flex pa-1">
+        <div class="vc-toggle-container">
+            <label class="vc-switch">
+              <input onchange="removeBekcground()" type="checkbox" class="vc-switch-input" />
+              <span class="vc-switch-label" data-on="On" data-off="Off"></span>
+              <span class="vc-handle"></span>
+            </label>
+          </div>
+        <div l-class="mx-1 bg-white " style="width: 25px; height:25px;" class="btn" id="bgTest" ></div>
+        <p class="l-text">Fill</p>
+    </div>
+
+    
     
 </div>
 

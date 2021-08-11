@@ -95,7 +95,7 @@
     flex-direction: column;
     z-index: 10000;
     border-radius: 0.1em;
-    background: #fff;
+    background: var(--l-fg2-dark) !important;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s, visibility 0s 0.3s;

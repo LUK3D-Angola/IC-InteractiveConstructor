@@ -233,17 +233,96 @@ $("*").on("contextmenu", function (e) {
 
 
 tippy('#bgTest', {
-    content: '<div id="pickerTest">Bolded content</div>',
+    content: `
+    <div l-class="d-flex flex-col">
+        <div l-class="d-flex">
+            <button onclick="Hide('#l-bg-gradient');Show('#l-bg-solid')" class="lic-btn l-text">Solid</button>
+            <button onclick="Show('#l-bg-gradient');Hide('#l-bg-solid')" class="lic-btn l-text">gradient</button> 
+        </div>
+        <div style="width:250px;"  id="l-bg-solid">
+            <div id="pickerBc">Bolded content</div>
+        </div>
+        <div style="width:250px;"  id="l-bg-gradient" class="d-none">
+            <div id="pickerBg">Bolded content</div>
+        </div>
+    </div>
+    
+    
+    `,
+    offset: [0, 60],
+      
     allowHTML: true,
     hideOnClick: 'toggle',
     interactive: true,
+   
     placement: 'left-start',
+    background:"#000",
     theme: 'light',
     onShow(instance) {
         console.log(instance)
       setTimeout(() => {
+
+        try {
+            const bgPickr = Pickr.create({
+                el: '#pickerBc',
+                theme: 'monolith', // or 'monolith', or 'nano'
+                inline: true,
+                showAlways: true,
+                container: '#pickerBc',
+                default: '#FD413C',
+                swatches: [
+                    'rgba(244, 67, 54, 1)',
+                    'rgba(233, 30, 99, 0.95)',
+                    'rgba(156, 39, 176, 0.9)',
+                    'rgba(103, 58, 183, 0.85)',
+                    'rgba(63, 81, 181, 0.8)',
+                    'rgba(33, 150, 243, 0.75)',
+                    'rgba(3, 169, 244, 0.7)',
+                    'rgba(0, 188, 212, 0.7)',
+                    'rgba(0, 150, 136, 0.75)',
+                    'rgba(76, 175, 80, 0.8)',
+                    'rgba(139, 195, 74, 0.85)',
+                    'rgba(205, 220, 57, 0.9)',
+                    'rgba(255, 235, 59, 0.95)',
+                    'rgba(255, 193, 7, 1)'
+                ],
+            
+                components: {
+            
+                    // Main components
+                    preview: true,
+                    opacity: true,
+                    hue: true,
+            
+                    // Input / output Options
+                    interaction: {
+                        hex: true,
+                        rgba: true,
+                        hsla: true,
+                        hsva: true,
+                        cmyk: true,
+                        input: true,
+                        clear: true,
+                        save: true
+                    }
+                }
+                
+            });
+            
+            bgPickr.on('change', (color, source, instance) => {
+                if(validateSelection()){
+                    ApplyBg(color.toHEXA())
+                  }
+            })  
+        } catch (error) {
+            
+        }
+
+        
+
+
         const bgGpickr = new GPickr({
-            el: '#pickerTest',
+            el: '#pickerBg',
 
             // Pre-defined stops. These are the default since at least two should be defined
             stops: [
@@ -440,18 +519,27 @@ function SwitchIcons(el,d,o) {
     $(el).children(":first").toggleClass(o);
  }
 function HideComponent (selector) {  
-    var tmpOp = $(selector).attr("l-opacity");
-    var op = (tmpOp!=undefined)?tmpOp:$(selector).css("opacity");
+    var tmpOp = $(selector).attr("l-visibility");
+    var op = (tmpOp!=undefined)?tmpOp:$(selector).css("visibility");
     console.log(op,tmpOp)
-    if(parseFloat(op)>0.0){
+    if(op.trim() == "visible"){
        
-        $(selector).css("opacity",'0.0');
+        $(selector).css("visibility",'hidden');
     }else{
-        $(selector).css("opacity",1);
+        $(selector).css("visibility",'visible');
     }
-    
-    
+
 }
+
+function Hide(el) { 
+    
+    $(el).hide();
+ }
+
+ function Show(el) { 
+    $(el).removeClass("d-none");
+    $(el).show();
+ }
 function applyPadding(side, value) {
     if(validateSelection()){
 
@@ -490,6 +578,37 @@ function applyMargin(side, value) {
     }
   }
 
+function applyCss(prop, value){
+    if(validateSelection()){
+            $(selected).css(prop,value); 
+    } 
+}
+
+
+function removeBekcground(param) {  
+    
+  
+        var selectedBg = $(selected).css("background");
+        var bgHolder = $(selected).attr("l-bg");
+        if(bgHolder == undefined)
+        bgHolder = "black";
+
+        if(selectedBg.split(" ").join("")!="rgba(0,0,0,0)nonerepeatscroll0%0%/autopadding-boxborder-box"){
+            console.log(selectedBg.split(" ").join("")+"=>","rgba(0,0,0,0)nonerepeatscroll0%0%/autopadding-boxborder-box")
+            $(selected).attr("l-bg",selectedBg);
+           
+            $(selected).css("background","rgba(0,0,0,0) none repeat scroll 0% 0%");
+         
+        }else{
+            $(selected).css("background", bgHolder);
+           
+        }
+
+    
+    
+}
+
+
 function Delete(el){
 
     if(validateSelection() || el){
@@ -515,10 +634,12 @@ function ApplyText(souce){
 
 function ApplyBg(color){
     $(selected).css("background", color);
+    $("[l-class*='bg']").css("background", color);
 }
 function ApplyFg(color){
     $(selected).css("color", color);
 }
+
 
 
 
@@ -624,6 +745,10 @@ window.unSelect = unSelect;
 window.Colapse = Colapse;
 window.SwitchIcons = SwitchIcons;
 window.HideComponent = HideComponent;
+window.Hide = Hide;
+window.Show = Show;
+window.applyCss = applyCss;
+window.removeBekcground = removeBekcground;
 
 
 
