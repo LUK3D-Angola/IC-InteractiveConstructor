@@ -3,6 +3,15 @@
 Construtor interativo de páginas web.
 
 #UPDATES
+<img src="./Screenshot5.png" >
+
+> Este é um exemplo de formulário de login criado com o LIC.
+* Adicionado novos atributos (Background, Text color, Width x Height).
+* Adicionado Select com as medidas mais utilizadas no css (px, %, vw, vh).
+* Implementado a possibilidade de alterar o valor dos input numérico movendo o mouse enquanto clica por cima do imput.
+* Foram adicionados os helpers css com seletores customizados.
+
+
 <img src="./Screenshot4.png" >
 
 > Este é um exemplo de formulário de login criado com o LIC
@@ -24,6 +33,12 @@ O seu objectivo é muito simples: Criar o front-end do teu website de forma ráp
 
 ## Como Iniciar?
 Para inicar o projecto você presica de um servidor. Para isso, instale  a extensão Live Server no VSCode ou então adicione o projecto na raiz do seu servidor php e sirva...
+
+## Usando um servidor PHP
+Caso tenha o php instalado em sua máquina, siga os seguintes passos:
+- Abra a pasta do projecto no cmd
+- digite "php -S localhost:2121"
+- Abra o navegador e navegue na url http://localhost:2121
 
 
 Documentação brevemente....
