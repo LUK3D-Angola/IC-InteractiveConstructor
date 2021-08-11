@@ -4,9 +4,13 @@
 [l-class*="mt-0"]{
     margin-top: 00px;
 }
+[l-class*="ml-0"]{
+    margin-left: 00px;
+}
 [l-class*="mr-0"]{
     margin-right: 00px;
 }
+
 [l-class*="mb-0"]{
     margin-bottom: 00px;
 }
@@ -28,6 +32,9 @@
 }
 [l-class*="mt-1"]{
     margin-top: 10px;
+}
+[l-class*="ml-1"]{
+    margin-left: 10px;
 }
 [l-class*="mr-1"]{
     margin-right: 10px;
@@ -52,6 +59,10 @@
 [l-class*="mt-2"]{
     margin-top: 20px;
 }
+[l-class*="ml-2"]{
+    margin-left: 20px;
+}
+
 [l-class*="mr-2"]{
     margin-right: 20px;
 }
@@ -75,6 +86,9 @@
 }
 [l-class*="mt-3"]{
     margin-top: 30px;
+}
+[l-class*="ml-3"]{
+    margin-left: 30px;
 }
 [l-class*="mr-3"]{
     margin-right: 30px;
@@ -100,6 +114,9 @@
 [l-class*="mt-4"]{
     margin-top: 40px;
 }
+[l-class*="ml-4"]{
+    margin-left: 40px;
+}
 [l-class*="mr-4"]{
     margin-right: 40px;
 }
@@ -123,6 +140,9 @@
 }
 [l-class*="mt-5"]{
     margin-top: 50px;
+}
+[l-class*="ml-5"]{
+    margin-left: 50px;
 }
 [l-class*="mr-5"]{
     margin-right: 50px;
@@ -148,6 +168,9 @@
 [l-class*="mt-6"]{
     margin-top: 60px;
 }
+[l-class*="ml-6"]{
+    margin-left: 60px;
+}
 [l-class*="mr-6"]{
     margin-right: 60px;
 }
@@ -171,6 +194,9 @@
 }
 [l-class*="mt-7"]{
     margin-top: 70px;
+}
+[l-class*="ml-7"]{
+    margin-left: 07px;
 }
 [l-class*="mr-7"]{
     margin-right: 70px;
@@ -197,6 +223,9 @@
 [l-class*="mt-8"]{
     margin-top: 80px;
 }
+[l-class*="ml-8"]{
+    margin-left: 80px;
+}
 [l-class*="mr-8"]{
     margin-right: 80px;
 }
@@ -222,6 +251,9 @@
 [l-class*="mt-9"]{
     margin-top: 90px;
 }
+[l-class*="ml-9"]{
+    margin-left: 90px;
+}
 [l-class*="mr-9"]{
     margin-right: 90px;
 }
@@ -244,6 +276,9 @@
 }
 [l-class*="mt-10"]{
     margin-top: 100px;
+}
+[l-class*="ml-10"]{
+    margin-left: 100px;
 }
 [l-class*="mr-10"]{
     margin-right: 100px;
@@ -273,6 +308,9 @@
 [l-class*="pt-0"]{
     padding-top: 00px;
 }
+[l-class*="pl-0"]{
+    padding-left: 00px;
+}
 [l-class*="pr-0"]{
     padding-right: 00px;
 }
@@ -298,6 +336,9 @@
 [l-class*="pt-1"]{
     padding-top: 10px;
 }
+[l-class*="pl-1"]{
+    padding-left: 10px;
+}
 [l-class*="pr-1"]{
     padding-right: 10px;
 }
@@ -320,6 +361,9 @@
 }
 [l-class*="pt-2"]{
     padding-top: 20px;
+}
+[l-class*="pl-2"]{
+    padding-left: 20px;
 }
 [l-class*="pr-2"]{
     padding-right: 20px;
@@ -345,6 +389,9 @@
 [l-class*="pt-3"]{
     padding-top: 30px;
 }
+[l-class*="pl-3"]{
+    padding-left: 30px;
+}
 [l-class*="pr-3"]{
     padding-right: 30px;
 }
@@ -368,6 +415,9 @@
 }
 [l-class*="pt-4"]{
     padding-top: 40px;
+}
+[l-class*="pl-4"]{
+    padding-left: 40px;
 }
 [l-class*="pr-4"]{
     padding-right: 40px;
@@ -393,6 +443,9 @@
 [l-class*="pt-5"]{
     padding-top: 50px;
 }
+[l-class*="pl-5"]{
+    padding-left: 50px;
+}
 [l-class*="pr-5"]{
     padding-right: 50px;
 }
@@ -417,6 +470,9 @@
 [l-class*="pt-6"]{
     padding-top: 60px;
 }
+[l-class*="pl-6"]{
+    padding-left: 60px;
+}
 [l-class*="pr-6"]{
     padding-right: 60px;
 }
@@ -440,6 +496,9 @@
 }
 [l-class*="pt-7"]{
     padding-top: 70px;
+}
+[l-class*="pl-7"]{
+    padding-left: 70px;
 }
 [l-class*="pr-7"]{
     padding-right: 70px;
@@ -466,6 +525,9 @@
 [l-class*="pt-8"]{
     padding-top: 80px;
 }
+[l-class*="pl-8"]{
+    padding-left: 80px;
+}
 [l-class*="pr-8"]{
     padding-right: 80px;
 }
@@ -491,6 +553,9 @@
 [l-class*="pt-9"]{
     padding-top: 90px;
 }
+[l-class*="pl-9"]{
+    padding-left: 90px;
+}
 [l-class*="pr-9"]{
     padding-right: 90px;
 }
@@ -513,6 +578,9 @@
 }
 [l-class*="pt-10"]{
     padding-top: 100px;
+}
+[l-class*="pl-10"]{
+    padding-left: 100px;
 }
 [l-class*="pr-10"]{
     padding-right: 100px;
@@ -610,4 +678,39 @@
 
 [l-class*="h-100"]{
     height: 100%;
+}
+
+
+
+
+
+
+
+[l-class*="d-flex"]{
+    display: flex;
+}
+[l-class*="flex-row"]{
+    flex-direction: row;
+}
+
+[l-class*="flex-col"]{
+    flex-direction: column;
+}
+
+[l-class*="flex-between"]{
+    justify-content: space-between;
+}
+
+[l-class*="align-center"]{
+    align-items: center;
+}
+
+[l-class*="cursor-h"]{
+    cursor: s-resize;
+}
+
+
+
+[l-class*="b-none"]{
+    border: none !important;
 }

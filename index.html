@@ -13,6 +13,8 @@
     <script type="module" src="./libs/tippy-bundle.umd.js"></script>
     <script type="module" src="./libs/mousetrap.min.js"></script>
     <script type="module" src="./libs/uuidv4.min.js"></script>
+    <script type="module" src="./libs/jquery.nice-select.min.js"></script>
+    <link href="./libs/nice-select.css" rel="stylesheet">
     
     <link href="./libs/gpickr/gpickr.min.css" rel="stylesheet">
     <script type="module" src="./libs/gpickr/gpickr.min.js"></script>
@@ -147,13 +149,13 @@
 
 <div id="lic-side-menu" class="lic-side-menu l-fg">
     <div class="component">
-        <button onclick="applyCss('align-items','top')" class="cl-btn l-fg lic-pa-0 " lic-tip="Align Top"><div class="cli-icon" style="--icon: url(./assets/icons/alignTop.png)"></div>   </button>
-        <button onclick="applyCss('justify-content','center')" class="cl-btn l-fg lic-pa-0 " lic-tip="Align Midle (Vertically)"><div class="cli-icon" style="--icon: url(./assets/icons/alignMidleVertical.png)"></div>   </button>
-        <button onclick="applyCss('align-items','bottom')" class="cl-btn l-fg lic-pa-0 " lic-tip="Align Bottom"><div class="cli-icon" style="--icon: url(./assets/icons/alignBottom.png)"></div>   </button>
-        <button onclick="applyCss('justify-content','space-between')" class="cl-btn l-fg lic-pa-0 " lic-tip="Distribute Horizontally"><div class="cli-icon" style="--icon: url(./assets/icons/distributeHorizontally.png)"></div>   </button>
-        <button onclick="applyCss('justify-content','start')" class="cl-btn l-fg lic-pa-0 " lic-tip="Align Left"><div class="cli-icon" style="--icon: url(./assets/icons/alignLeft.png)"></div>   </button>
+        <button onclick="applyCss('align-items','flex-start')" class="cl-btn l-fg lic-pa-0 " lic-tip="Align Top"><div class="cli-icon" style="--icon: url(./assets/icons/alignTop.png)"></div>   </button>
         <button onclick="applyCss('align-items','center')" class="cl-btn l-fg lic-pa-0 " lic-tip="Align Midle (Horizontally)"><div class="cli-icon" style="--icon: url(./assets/icons/alignMidleHorizontal.png)"></div>   </button>
-        <button onclick="applyCss('justify-content','end')" class="cl-btn l-fg lic-pa-0 " lic-tip="Align Right"><div class="cli-icon" style="--icon: url(./assets/icons/alignRight.png)"></div>   </button>
+        <button onclick="applyCss('align-items','flex-end')" class="cl-btn l-fg lic-pa-0 " lic-tip="Align Bottom"><div class="cli-icon" style="--icon: url(./assets/icons/alignBottom.png)"></div>   </button>
+        <button onclick="applyCss('justify-content','space-between')" class="cl-btn l-fg lic-pa-0 " lic-tip="Distribute Horizontally"><div class="cli-icon" style="--icon: url(./assets/icons/distributeHorizontally.png)"></div>   </button>
+        <button onclick="applyCss('justify-content','flex-start')" class="cl-btn l-fg lic-pa-0 " lic-tip="Align Left"><div class="cli-icon" style="--icon: url(./assets/icons/alignLeft.png)"></div>   </button>
+        <button onclick="applyCss('justify-content','center')" class="cl-btn l-fg lic-pa-0 " lic-tip="Align Midle (Vertically)"><div class="cli-icon" style="--icon: url(./assets/icons/alignMidleVertical.png)"></div>   </button>
+        <button onclick="applyCss('justify-content','flex-end')" class="cl-btn l-fg lic-pa-0 " lic-tip="Align Right"><div class="cli-icon" style="--icon: url(./assets/icons/alignRight.png)"></div>   </button>
         <button onclick="applyCss('align-items','space-between')" class="cl-btn l-fg lic-pa-0 " lic-tip="Distribute Vertically"><div class="cli-icon" style="--icon: url(./assets/icons/distributeVerticaly.png)"></div>   </button>
     </div>
     <div class="component">
@@ -173,15 +175,34 @@
         <p class="l-text">Fill</p>
     </div>
 
-    <div l-class="d-flex">
-        <div l-props="any" l-class="d-flex  input-container px-1 w-40">
-            <span class="l-text" l-class="pt-0 ">W</span>
-            <input onchange="applySize(this,'[l-id=\'l-height\']')" l-id="l-width" type="text" value="12"  l-class=" px-1 input-number ">  
+       
+        <div l-class="d-flex flex-col"  l-props="any">
+            <p class="l-text" l-class="p-0 m-0 pl-1">Sizes</p>
+            <div l-class="d-flex">
+           
+                <div l-class="d-flex  input-container align-center  w-50 px-1">
+                    <span class="l-text" l-class="pt-0 ">W</span>
+                    <input onchange="applySize(this,'[l-id=\'l-height\']')" l-id="l-width" type="text" value="12"  l-class="cursor-h px-1 input-number ">  
+                    <select onchange="applySize('[l-id=\'l-width\']','[l-id=\'l-height\']',this.value, null)" l-id="l-width-mesure" class="size b-none">
+                        <option value="px" id="">px</option>
+                        <option value="%" id="">%</option>
+                        <option value="vw" id="">vw</option>
+                        <option value="vh" id="">vh</option>
+                    </select>
+                </div>
+                   
+                <div l-class="d-flex  input-container align-center  w-50 px-1">
+                    <span class="l-text" l-class="pt-0 ">H</span>
+                    <input onchange="applySize('[l-id=\'l-width\']',this)" l-id="l-height" type="text" value="12"  l-class="cursor-h px-1 input-number ">  
+                    <select onchange="applySize('[l-id=\'l-width\']','[l-id=\'l-height\']',null,this.value)" class="size b-none" l-id="l-height-mesure">
+                        <option value="px" id="">px</option>
+                        <option value="%"  id="">%</option>
+                        <option value="vw" id="">vw</option>
+                        <option value="vh" id="">vh</option>
+                    </select>
+                </div>
         </div>
-        <div l-props="any" l-class="d-flex  input-container px-1 w-40">
-            <span class="l-text" l-class="pt-0 ">H</span>
-            <input onchange="applySize('[l-id=\'l-width\']',this)" l-id="l-height" type="text" value="12"  l-class=" px-1 input-number ">  
-        </div>
+                
     </div>
 
     <div l-props="text" l-class="d-flex pa-1">

@@ -30,7 +30,7 @@ var InterComponents = {
 
 
 $(document).ready(function () {
-
+    $("select").niceSelect();
     // $(document.body).click(function(event) {
     //     if (!$(event.target) != selected) {
     //         unSelect();
@@ -200,9 +200,9 @@ tippy('[l-id*="l-bgColor"]', {
     offset: [0, 60],
       
     allowHTML: true,
-    hideOnClick: 'toggle',
+    
     interactive: true,
-   
+    trigger: 'click',
     placement: 'left-start',
     background:"#000",
     theme: 'light',
@@ -316,9 +316,9 @@ tippy('[l-id*="l-bgColor"]', {
     offset: [0, 60],
       
     allowHTML: true,
-    hideOnClick: 'toggle',
-    interactive: true,
    
+    interactive: true,
+    trigger: 'click',
     placement: 'left-start',
     background:"#000",
     theme: 'light',
@@ -414,8 +414,10 @@ tippy('[l-id*="l-bgColor"]', {
 
 
   var clicking = false;
+  var interactingInput;
 $('[l-class*="input-number"]').mousedown(function() {
-  clicking = true;  
+  clicking = true; 
+  interactingInput = this; 
 });
 
 $(document).mouseup(function() {
@@ -423,19 +425,20 @@ $(document).mouseup(function() {
 })
 var i = 0;
 var y = 0;
-$('[l-class*="input-number"]').mousemove(function(my) {
+$(document).mousemove(function(my) {
   if (clicking == false) {
     return
   } else {
     // change value
-    if (my.pageY <= $(this).offset().top + $('[l-class*="input-number"]').css('width').replace('px', '') / 10) {
-      y = parseInt($(this).val()) + 1;
+    if (my.pageY <= $(interactingInput).offset().top + $('[l-class*="input-number"]').css('width').replace('px', '') / 10) {
+      y = parseInt($(interactingInput).val()) + 1;
       //$('.movestatus').text('plus');
     } else {
-      y = parseInt($(this).val()) - 1;
+      y = parseInt($(interactingInput).val()) - 1;
       //$('.movestatus').text('minus');
     }
-    $(this).val(parseInt(y));    
+    $(interactingInput).val(parseInt(y));    
+    $(interactingInput).trigger('onchange');    
     i++;
   } 
 });
@@ -775,10 +778,24 @@ function ApplyFg(color, isGradient){
     
 }
 
-function applySize(x,y) { 
+var currrentMesurementWidth = "px";
+var currrentMesurementHeight = "px";
+function applySize(x,y, mesurement1, mesurement2) { 
+        console.log(mesurement1, mesurement2)
+    if(mesurement1 == null)
+        mesurement1 = currrentMesurementWidth 
+        else 
+        currrentMesurementWidth = mesurement1;
+
+    if(mesurement2== null)
+        mesurement2 = currrentMesurementHeight 
+        else 
+        currrentMesurementHeight = mesurement2;
+
     if(validateSelection() ){
-        $(selected).css("width",$(x).val().toString()+"px");
-        $(selected).css("height",$(y).val().toString()+"px");
+        console.log(x,y)
+        $(selected).css("width",$(x).val().toString()+mesurement1);
+        $(selected).css("height",$(y).val().toString()+mesurement2);
     }
  }
 

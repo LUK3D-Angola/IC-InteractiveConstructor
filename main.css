@@ -63,16 +63,7 @@ html{
     background: white;
 }
 
-[l-class*="d-flex"]{
-   display: flex;
-}
-[l-class*="flex-row"]{
-    flex-direction: row;
- }
 
- [l-class*="flex-col"]{
-    flex-direction: column;
- }
 
 
 
@@ -329,16 +320,15 @@ html{
 
 .lic-page{
     background: var(--l-fg-dark);
-    width: 1280px;
-    min-height: 800px;
+    
     box-shadow: 0px 0px 20px rgba(34, 34, 34, 0.164);
     margin:100px;
     position: relative;
 }
 
 .lic-page .app{
-    width: 100%;
-    height: 100%;
+    width: 1280px;
+    height: 100vh;
 }
 
 
@@ -510,4 +500,8 @@ input::selection{
     border: none;
     color: var(--l-text-dark);
     outline: none;
+}
+
+[l-class*="input-container"] [l-class*="input-number"]{
+  width: 80px;
 }

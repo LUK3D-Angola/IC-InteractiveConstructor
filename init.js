@@ -1,2 +1,7 @@
+$(document).ready(function () {
+    
+});
+
+
 showProperties();
 
