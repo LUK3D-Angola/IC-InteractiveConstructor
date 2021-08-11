@@ -5,10 +5,12 @@ Construtor interativo de páginas web.
 #UPDATES
 <img src="./Screenshot4.png" >
 
-* Darkmode
+> Este é um exemplo de formulário de login criado com o LIC
+
+* Dark mode
 * Css Variables
-* UUID para distinguir cada emelemnto dentro do projecto
-* Menu superior arstável
+* UUID para distinguir cada elemento dentro do projecto
+* Menu superior arrastável
 * sincronização do autline (hierarquia) com a workspace 
 
 <img src="./Screenshot3.png" >
