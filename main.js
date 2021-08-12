@@ -437,7 +437,7 @@ $(document).mousemove(function(my) {
       y = parseInt($(interactingInput).val()) - 1;
       //$('.movestatus').text('minus');
     }
-    $(interactingInput).val(parseInt(y));    
+    $(interactingInput).val(parseInt(y).toString() + ($(interactingInput).attr("l-sizeType")||"px"));    
     $(interactingInput).trigger('onchange');    
     i++;
   } 
@@ -537,13 +537,18 @@ function AddComponent(direction, type, elementObject){
        }
         
         addLayer({name:type,layer:layerName,parentLayer: $(selected).attr("l-layer")})
-        selectMe(el);
-        $(el).find("*[l-layer]").each(function() {
+        if($(el).children("[l-layer]").length>0){
+            selectMe(el);
+        }
+        $(el).children("[l-layer]").each(function() {
             console.log( (this),  this.nodeName)
             AddComponent(null,this.nodeName, $(this));
-            selectMe(this);
+            if($(this).children("[l-layer]").length>0){
+                selectMe(this);
+            }
+                
         })
-       
+        
         
 
         layer_counter+=1;
@@ -570,11 +575,11 @@ function addLayer({name, layer,parentLayer}){
     
     <li l-parent="${parentLayer}" l-layered="${layer}" onmouseout="unHiglight('[l-layer=\\'${layer}\\']')" onmouseover="higlight('[l-layer=\\'${layer}\\']');event.stopPropagation();" onclick="selectMe('[l-layer=\\'${layer}\\']');event.stopPropagation();"  l-id="document01" class="layer-outline ${extraClasses.join(" ")}">
         <div class="l-layer-outliner-title">
-            <span class="l-pb-4">${name.toUpperCase()}</span>
+            <span l-class=" icon-small" class="l-pb-4">${name.toUpperCase()}</span>
             <div>
-                <span class="lic-btn"  onclick="Delete('[l-layer=\\'${layer}\\']'); event.stopPropagation();"> <i class="far fa-trash-alt"></i></span>
-                    <span class="lic-btn"   onclick="HideComponent('[l-layer=\\'${layer}\\']'); SwitchIcons(this,'far fa-eye', 'far fa-eye-slash'); event.stopPropagation()"> <i class="far fa-eye"></i></span>
-                <span class="lic-btn" l-id="${layer}"  onclick="Colapse('[l-layered=\\'${layer}\\']'); SwitchIcons(this,'fas fa-angle-up', 'fas fa-angle-down'); event.stopPropagation()"> <i class="fas fa-angle-up"></i></span>
+                <span l-class="icon-small " class="lic-btn"  onclick="Delete('[l-layer=\\'${layer}\\']'); event.stopPropagation();"> <i class="far fa-trash-alt"></i></span>
+                <span l-class="icon-small " class="lic-btn"   onclick="HideComponent('[l-layer=\\'${layer}\\']'); SwitchIcons(this,'far fa-eye', 'far fa-eye-slash'); event.stopPropagation()"> <i class="far fa-eye"></i></span>
+                <span l-class="icon-small " class="lic-btn" l-id="${layer}"  onclick="Colapse('[l-layered=\\'${layer}\\']'); SwitchIcons(this,'fas fa-angle-up', 'fas fa-angle-down'); event.stopPropagation()"> <i class="fas fa-angle-up"></i></span>
             </div>
         </div>
     </li>
@@ -586,22 +591,42 @@ function addLayer({name, layer,parentLayer}){
 
 
 function Copy(){
-    clipboard = selected;
+    clipboard = $(selected).clone();
 }
+
 function Past(){
     if(validateSelection()){
             //$(selected).append($(clipboard).clone()); 
             var el = $(clipboard).clone();
-            AddComponent(null, el[0].nodeName, el)
+            console.log($(clipboard))
+            AddComponent(null, el[0].nodeName||el.nodeName, el)
     }
 }
 function Cut(){
     if(validateSelection()){
             Copy();
             Delete();
-        
     }
 }
+
+
+function Delete(el){
+
+    if(validateSelection() || el){
+
+        var current = el||selected;
+        $(current).find("*[l-layer]").each(function(){
+            var childParent = $(this).attr("l-layer"); 
+            $(`[l-layered="${childParent}"]`).remove(); 
+        });
+
+      var parent = $(current).attr("l-layer"); 
+      $(`[l-layered="${parent}"]`).remove(); 
+      $(current).remove(); 
+      unSelect();
+    }
+}
+
 
 function Colapse(el){
     $(el).children().toggle(); 
@@ -725,22 +750,6 @@ function removeTextColor(param) {
 }
 
 
-function Delete(el){
-
-    if(validateSelection() || el){
-
-        var current = el||selected;
-        $(current).find("*[l-layer]").each(function(){
-            var childParent = $(this).attr("l-layer"); 
-            $(`[l-layered="${childParent}"]`).remove(); 
-        });
-
-      var parent = $(current).attr("l-layer"); 
-      $(`[l-layered="${parent}"]`).remove(); 
-      $(current).remove(); 
-      unSelect();
-    }
-}
 
 
 function ApplyText(souce){
@@ -1017,7 +1026,37 @@ function dragElement(elmnt) {
 }
 
 
+
+let root = document.documentElement;
+
+function lightTheme() {
+    root.style.setProperty('--l-selection',' #5F40A6');
+    root.style.setProperty('--l-bg-dark',' #E4E4E4');
+    root.style.setProperty('--l-bg-transparent-dark','#1d21253a');
+    root.style.setProperty('--l-fg-dark',' #F5F5F5');
+    root.style.setProperty('--l-fg2-dark',' #E4E4E4');
+    root.style.setProperty('--l-text-dark',' #707070');
+    root.style.setProperty('--l-border-dark',' #E4E4E4');
+}
+
+function darkTheme() {
+    root.style.setProperty('--l-selection',' #5F40A6');
+    root.style.setProperty('--l-bg-transparent-light','#1d21253a');
+    root.style.setProperty('--l-bg-dark',' #090909');
+    root.style.setProperty('--l-bg-transparent-dark','#4e63792a');
+    root.style.setProperty('--l-fg-dark',' #1C1C1E');
+    root.style.setProperty('--l-fg2-dark',' #2F2E31');
+    root.style.setProperty('--l-text-dark',' #CFCFCF');
+    root.style.setProperty('--l-border-dark',' #2F2E31');
+}
+
+function RUN(){
+    var w = window.open("http://127.0.0.1:5500/index.html", "_blank");
+    w.document.body.innerHTML = $(".app").html();
+}
+
 defineFunctions([
+    {name:"RUN", func:RUN},
     {name:"selectMe", func:selectMe},
     {name:"higlight", func:higlight},
     {name:"layoutDirection", func:layoutDirection},
@@ -1047,5 +1086,7 @@ defineFunctions([
     {name:"removeTextColor", func:removeTextColor},
     {name:"showProperties", func:showProperties},
     {name:"applySize", func:applySize},
+    {name:"darkTheme", func:darkTheme},
+    {name:"lightTheme", func:lightTheme},
 ]);
 

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="185.5" height="184" viewBox="0 0 185.5 184">
+  <g id="spacer" transform="translate(880 -1032.5)">
+    <g id="Rectangle_10" data-name="Rectangle 10" transform="translate(-879.5 1032.5)" fill="none" stroke="#9aa7bc" stroke-width="3">
+      <rect width="185" height="184" rx="6" stroke="none"/>
+      <rect x="1.5" y="1.5" width="182" height="181" rx="4.5" fill="none"/>
+    </g>
+    <g id="Rectangle_11" data-name="Rectangle 11" transform="translate(-823.5 1088.5)" fill="rgba(255,255,255,0.19)" stroke="#9aa7bc" stroke-width="3">
+      <rect width="72" height="72" rx="6" stroke="none"/>
+      <rect x="1.5" y="1.5" width="69" height="69" rx="4.5" fill="none"/>
+    </g>
+    <line id="Line_6" data-name="Line 6" y2="182.898" transform="translate(-822.188 1033.051)" fill="none" stroke="#9aa7bc" stroke-width="3" stroke-dasharray="2"/>
+    <line id="Line_7" data-name="Line 7" y2="182.898" transform="translate(-752.813 1033.051)" fill="none" stroke="#9aa7bc" stroke-width="3" stroke-dasharray="2"/>
+    <line id="Line_8" data-name="Line 8" x1="185" transform="translate(-880 1089.813)" fill="none" stroke="#9aa7bc" stroke-width="3" stroke-dasharray="2"/>
+    <line id="Line_9" data-name="Line 9" x1="185" transform="translate(-880 1159.188)" fill="none" stroke="#9aa7bc" stroke-width="3" stroke-dasharray="2"/>
+    <g id="Group_1" data-name="Group 1" transform="translate(-793.721 1044.819)">
+      <line id="Line_10" data-name="Line 10" y2="31.534" transform="translate(7.272 0.846)" fill="none" stroke="#9aa7bc" stroke-width="3"/>
+      <path id="Path_3" data-name="Path 3" d="M-838.959,1045.323l7.225-7.225,7.225,7.225" transform="translate(838.959 -1038.098)" fill="none" stroke="#9aa7bc" stroke-linejoin="round" stroke-width="3"/>
+      <path id="Path_4" data-name="Path 4" d="M-838.959,1038.1l7.225,7.225,7.225-7.225" transform="translate(838.959 -1012.87)" fill="none" stroke="#9aa7bc" stroke-linejoin="round" stroke-width="3"/>
+    </g>
+    <g id="Group_4" data-name="Group 4" transform="translate(-793.721 1173.058)">
+      <line id="Line_10-2" data-name="Line 10" y2="31.534" transform="translate(7.272 0.846)" fill="none" stroke="#9aa7bc" stroke-width="3"/>
+      <path id="Path_3-2" data-name="Path 3" d="M-838.959,1045.323l7.225-7.225,7.225,7.225" transform="translate(838.959 -1038.098)" fill="none" stroke="#9aa7bc" stroke-linejoin="round" stroke-width="3"/>
+      <path id="Path_4-2" data-name="Path 4" d="M-838.959,1038.1l7.225,7.225,7.225-7.225" transform="translate(838.959 -1012.87)" fill="none" stroke="#9aa7bc" stroke-linejoin="round" stroke-width="3"/>
+    </g>
+    <g id="Group_2" data-name="Group 2" transform="translate(-839.646 1117.275) rotate(90)">
+      <line id="Line_10-3" data-name="Line 10" y2="31.534" transform="translate(7.272 0.846)" fill="none" stroke="#9aa7bc" stroke-width="3"/>
+      <path id="Path_3-3" data-name="Path 3" d="M0,7.225,7.225,0,14.45,7.225" fill="none" stroke="#9aa7bc" stroke-linejoin="round" stroke-width="3"/>
+      <path id="Path_4-3" data-name="Path 4" d="M0,0,7.225,7.225,14.45,0" transform="translate(0 25.227)" fill="none" stroke="#9aa7bc" stroke-linejoin="round" stroke-width="3"/>
+    </g>
+    <g id="Group_3" data-name="Group 3" transform="translate(-707.203 1117.275) rotate(90)">
+      <line id="Line_10-4" data-name="Line 10" y2="31.534" transform="translate(7.272 0.846)" fill="none" stroke="#9aa7bc" stroke-width="3"/>
+      <path id="Path_3-4" data-name="Path 3" d="M0,7.225,7.225,0,14.45,7.225" fill="none" stroke="#9aa7bc" stroke-linejoin="round" stroke-width="3"/>
+      <path id="Path_4-4" data-name="Path 4" d="M0,0,7.225,7.225,14.45,0" transform="translate(0 25.227)" fill="none" stroke="#9aa7bc" stroke-linejoin="round" stroke-width="3"/>
+    </g>
+  </g>
+</svg>

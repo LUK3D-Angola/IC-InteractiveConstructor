@@ -14,11 +14,10 @@ var components = {
     "card":{
         description:'Um container é utilizado na organização de layout e agrupamento de elementos.',
         code:`
-        <div l-layered="testeBasico1" class="card select border-0" style="width: 100%;" onmouseover="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();">
+        <div class="card select border-0" style="width: 100%;" onmouseover="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();">
           <div l-layer="testeBasico12" class="card-body select" onmouseover="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();">
             <h5  l-layer="testeBasico2" ondblclick="startTextEditing(this);event.stopPropagation();" class="card-title select" onmouseover="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();">Card title</h5>
             </div>
-            <h5  l-layer="testeBasico2" ondblclick="startTextEditing(this);event.stopPropagation();" class="card-title select" onmouseover="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();">Card title</h5>
         </div>
         `
     },

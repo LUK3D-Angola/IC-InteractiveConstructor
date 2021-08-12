@@ -158,8 +158,32 @@
         <button onclick="applyCss('justify-content','flex-end')" class="cl-btn l-fg lic-pa-0 " lic-tip="Align Right"><div class="cli-icon" style="--icon: url(./assets/icons/alignRight.png)"></div>   </button>
         <button onclick="applyCss('align-items','space-between')" class="cl-btn l-fg lic-pa-0 " lic-tip="Distribute Vertically"><div class="cli-icon" style="--icon: url(./assets/icons/distributeVerticaly.png)"></div>   </button>
     </div>
-    <div class="component">
-        <Button class="lic-btn lic-btn-block cl-bg-white ">Add Attribute</Button>
+    
+    <div l-props="any" l-class="d-flex pa-1 justify-content-center align-center" style="height: 200px;">
+        <div>
+            <div l-class="d-flex  input-container align-center  mx-1">
+                <input onchange="applyCss('margin-left',$(this).val())"  type="text" value="12"  l-class=" text-center cursor-h px-1 input-number ">  
+            </div>
+        </div>
+        <div>
+            <div>
+                <div l-class="d-flex  input-container align-center   px-1  my-1">
+                    <input onchange="applyCss('margin-top',$(this).val())"  type="text" value="12"  l-class=" text-center cursor-h px-1 input-number ">  
+                </div>
+            </div>
+            <div style="height: 100px;">
+                <div l-class="w-100 h-100" class="bg-img" style="--icon: url(./assets/icons/spacer.svg)"></div></div>
+            <div>
+                <div l-class="d-flex  input-container align-center   px-1 my-1 ">
+                    <input onchange="applyCss('margin-bottom',$(this).val())"  type="text" value="12"  l-class=" text-center cursor-h px-1 input-number ">  
+                </div>
+            </div>
+        </div>
+        <div>
+            <div l-class="d-flex  input-container align-center  mx-1">
+                <input onchange="applyCss('margin-right',$(this).val())"  type="text" value="12"  l-class=" text-center cursor-h px-1 input-number ">  
+            </div>
+        </div>
     </div>
     
 
@@ -262,7 +286,7 @@
     <button class="cl-btn p-2 l-fg "><div class="cli-icon" style="--icon: url(./assets/icons/landscape.svg)"></div>   </button>
     <button class="cl-btn p-2 l-fg "><div class="cli-icon" style="--icon: url(./assets/icons/portrait.svg)"></div>   </button>
     <div class="cl-vl"></div>
-    <button class="cl-btn p-2 l-fg "><div class="cli-icon" style="--icon: url(./assets/icons/start.svg)"></div>    </button>
+    <button class="cl-btn p-2 l-fg " onclick="RUN()"><div class="cli-icon" style="--icon: url(./assets/icons/start.svg)"></div>    </button>
     <button class="cl-btn p-2 l-fg " id="ic-toolBoxheader"> <i class="fas fa-arrows-alt"></i>   </button>
 </div>
 

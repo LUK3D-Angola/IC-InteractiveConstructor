@@ -2,7 +2,7 @@
 @import url(./utils/css/luk.css);
 
 :root {
-    /* --l-selection: #5F40A6;
+/* --l-selection: #5F40A6;
     --l-bg-light: #eeeeee;
     --l-bg-transparent-light:#1d21253a;
     --l-bg-dark: #1D2125;
@@ -23,9 +23,9 @@
     --l-border-dark: #2F2E31;
 
     --vc-off-color: var(--l-bg-dark);
-      --vc-on-color: var(--l-fg2-dark);
-      --vc-on-font-color: var(--l-text-dark);
-      --vc-off-font-color: var(--l-text-dark);
+    --vc-on-color: var(--l-fg2-dark);
+    --vc-on-font-color: var(--l-text-dark);
+    --vc-off-font-color: var(--l-text-dark);
 
 
   }
@@ -304,6 +304,15 @@ html{
     mask-type: alpha;
 }
 
+.bg-img{
+  
+    background-color: var(--l-text-dark);
+    mask: var(--icon) 100 no-repeat ;
+    -webkit-mask: var(--icon) no-repeat  ;
+    -webkit-mask-size: 100% 100%;
+    mask-type: alpha;
+}
+
 
 #lic-canvas{
     position: absolute;
@@ -319,7 +328,7 @@ html{
 }
 
 .lic-page{
-    background: var(--l-fg-dark);
+   
     
     box-shadow: 0px 0px 20px rgba(34, 34, 34, 0.164);
     margin:100px;
@@ -329,6 +338,7 @@ html{
 .lic-page .app{
     width: 1280px;
     height: 100vh;
+    background: #fff;
 }
 
 
@@ -504,4 +514,14 @@ input::selection{
 
 [l-class*="input-container"] [l-class*="input-number"]{
   width: 80px;
+}
+[l-class]{
+    font-size: 9pt !important;
+}
+
+[l-class*="icon-small"]{
+    max-width: 5px !important;
+    max-height: 5px !important;
+    font-size: 9pt;
+    padding: 4px 5px;
 }

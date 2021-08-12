@@ -704,6 +704,13 @@
 [l-class*="align-center"]{
     align-items: center;
 }
+[l-class*="justify-content-center"]{
+    justify-content: center;
+}
+
+[l-class*="text-center"]{
+    text-align: center;
+}
 
 [l-class*="cursor-h"]{
     cursor: s-resize;
