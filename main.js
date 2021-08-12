@@ -463,7 +463,8 @@ function selectMe(el){
     selected = el;
     $(el).addClass("selected");
     $(`[l-layered="${$(el).attr("l-layer")}"]`).addClass("l-outline-selection");
-    
+
+    setDefautWidthHeight($(el).css("width"),$(el).css("height"))
     showProperties(elementType($(el).attr("l-type")));
 
 }
@@ -534,28 +535,22 @@ function AddComponent(direction, type, elementObject){
        if(type){
             el.attr("l-type",type);
        }
-        addLayer({name:type,layer:layerName,parentLayer: $(selected).attr("l-layer")})
-       
-        $(`[l-id="${layerName}"]`).hide();
-        //$(`[l-layered="${layerName}"]`).append(layerName)
-
-        $(el).find("*[l-layer]").each(function(el){
-            var myLayer = "layer"+uuidv4();
-            $(this).attr("l-layer",myLayer); 
-            if(type){
-                $(this).attr("l-type",type);
-           }
-            addLayer({name:$(this)[0].nodeName,layer:myLayer, parentLayer: layerName})
-
-            $(`[l-id="${myLayer}"]`).hide();
         
-           
-        });
-
+        addLayer({name:type,layer:layerName,parentLayer: $(selected).attr("l-layer")})
+        selectMe(el);
+        $(el).find("*[l-layer]").each(function() {
+            console.log( (this),  this.nodeName)
+            AddComponent(null,this.nodeName, $(this));
+            selectMe(this);
+        })
+       
+        
 
         layer_counter+=1;
 
     }
+
+    return null;
         
 }
 
@@ -800,6 +795,17 @@ function applySize(x,y, mesurement1, mesurement2) {
  }
 
 
+ function setDefautWidthHeight(x,y) { 
+     var extentionX = x.match(/[px$vhw]/gm).join('');
+     var extentionY = y.match(/[px$vhw]/gm).join('');
+     console.log(extentionX,extentionY, x,y)
+    $(`[l-id="l-width-mesure"]`).val(extentionX).niceSelect('update');
+    $(`[l-id="l-width"]`).val(x.replace(/\D/g, ''));
+    $(`[l-id="l-height-mesure"]`).val(extentionY).niceSelect('update');
+    $(`[l-id="l-height"]`).val(y.replace(/\D/g, ''));
+
+    
+}
 
 function layoutDirection(direction){
     if (validateSelection()) {
