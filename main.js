@@ -11,6 +11,8 @@ var mouseX;
 var mouseY;
 var command;
 var layers = {};
+
+var ObjectInfo = [];
 var layer_counter = 0;
 
 var InterComponents = {
@@ -91,6 +93,7 @@ const bgPickr = Pickr.create({
         }
     }
     
+   
 });
 
 bgPickr.on('change', (color, source, instance) => {
@@ -442,6 +445,15 @@ $(document).mousemove(function(my) {
     i++;
   } 
 });
+
+
+
+
+// setInterval(() => {
+//             if(selected){
+//                 showSelection(selected);
+//             }
+// }, 1);
   
 
 
@@ -454,6 +466,7 @@ $(document).mousemove(function(my) {
 
 function selectMe(el){
 
+    
     console.log()
     if (validateSelection()) {
         $(selected).removeClass("selected");
@@ -461,12 +474,14 @@ function selectMe(el){
     }
     
     selected = el;
+    
     $(el).addClass("selected");
     $(`[l-layered="${$(el).attr("l-layer")}"]`).addClass("l-outline-selection");
 
     setDefautWidthHeight($(el).css("width"),$(el).css("height"))
     showProperties(elementType($(el).attr("l-type")));
-
+    showSelection(selected);
+  
 }
 
 function unSelect(){
@@ -655,6 +670,16 @@ function HideComponent (selector) {
 
 }
 
+
+function SwitchClasses(el,d,o) { 
+    $(el).attr('l-class',$(el).attr('l-class').split(o).join(" ").trim().split(d).join("").trim()) ;
+    if(o)
+    $(el).attr('l-class',$(el).attr('l-class')+" "+o);
+ }
+
+
+
+
 function Hide(el) { 
     
     $(el).hide();
@@ -798,8 +823,8 @@ function applySize(x,y, mesurement1, mesurement2) {
 
     if(validateSelection() ){
         console.log(x,y)
-        $(selected).css("width",$(x).val().toString()+mesurement1);
-        $(selected).css("height",$(y).val().toString()+mesurement2);
+        $(selected).css("width",$(x).val().toString());
+        $(selected).css("height",$(y).val().toString());
     }
  }
 
@@ -1055,6 +1080,22 @@ function RUN(){
     w.document.body.innerHTML = $(".app").html();
 }
 
+
+function showSelection(el){
+    var sizes = {};
+    try {
+         sizes =  el.getBoundingClientRect();
+    } catch (error) {
+        sizes = $(el)[0].getBoundingClientRect();
+    }
+  
+   
+    $('[l-id~="selection-light"]').css("left", sizes.left-2 + 'px');
+    $('[l-id~="selection-light"]').css("top", sizes.top-2 + 'px');
+    $('[l-id~="selection-light"]').css("width", sizes.width+4 + 'px');
+    $('[l-id~="selection-light"]').css("height", sizes.height+4 + 'px');
+}
+
 defineFunctions([
     {name:"RUN", func:RUN},
     {name:"selectMe", func:selectMe},
@@ -1078,6 +1119,7 @@ defineFunctions([
     {name:"unSelect", func:unSelect},
     {name:"Colapse", func:Colapse},
     {name:"SwitchIcons", func:SwitchIcons},
+    {name:"SwitchClasses", func:SwitchClasses},
     {name:"HideComponent", func:HideComponent},
     {name:"Hide", func:Hide},
     {name:"Show", func:Show},
@@ -1089,4 +1131,6 @@ defineFunctions([
     {name:"darkTheme", func:darkTheme},
     {name:"lightTheme", func:lightTheme},
 ]);
+
+
 

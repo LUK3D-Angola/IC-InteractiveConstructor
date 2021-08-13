@@ -1,6 +1,6 @@
 var textTypes = [
     "LABEL",
-    "P",
+    "PARAGRAPH",
     "BUTTON",
     "A",
     "H1",

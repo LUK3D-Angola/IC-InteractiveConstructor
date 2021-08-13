@@ -683,9 +683,111 @@
 
 
 
+[l-class*="radius-0"]{
+    border-radius: 0% !important;
+}
 
 
 
+[l-class*="radius-1"]{
+    border-radius: 1% !important;
+}
+
+
+[l-class*="radius-2"]{
+    border-radius: 2% !important;
+}
+
+
+[l-class*="radius-3"]{
+    border-radius: 3% !important;
+}
+
+[l-class*="radius-4"]{
+    border-radius: 4% !important;
+}
+
+[l-class*="radius-5"]{
+    border-radius: 5% !important;
+}
+
+
+[l-class*="radius-5"]{
+    border-radius: 5% !important;
+}
+
+[l-class*="radius-6"]{
+    border-radius: 6% !important;
+}
+
+
+[l-class*="radius-7"]{
+    border-radius: 7% !important;
+}
+
+
+[l-class*="radius-8"]{
+    border-radius: 8% !important;
+}
+
+
+[l-class*="radius-9"]{
+    border-radius: 9% !important;
+}
+
+[l-class*="radius-10"]{
+    border-radius: 10% !important;
+}
+[l-class*="radius-20"]{
+    border-radius: 20% !important;
+}
+
+[l-class*="radius-30"]{
+    border-radius: 30% !important;
+}
+
+[l-class*="radius-40"]{
+    border-radius: 40% !important;
+}
+
+[l-class*="radius-50"]{
+    border-radius: 50% !important;
+}
+
+[l-class*="radius-60"]{
+    border-radius: 60% !important;
+}
+
+[l-class*="radius-70"]{
+    border-radius: 70% !important;
+}
+
+[l-class*="radius-80"]{
+    border-radius: 80% !important;
+}
+
+[l-class*="radius-90"]{
+    border-radius: 90% !important;
+}
+
+[l-class*="radius-100"]{
+    border-radius: 100% !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+[l-class*="d-none"]{
+    display: none;
+}
 [l-class*="d-flex"]{
     display: flex;
 }
@@ -721,3 +823,32 @@
 [l-class*="b-none"]{
     border: none !important;
 }
+
+[l-class*="b-b"]{
+   border-bottom: 1px solid;
+}
+[l-class*="b-a"]{
+    border: 1px solid;
+ }
+
+ [l-class*="hover-b-a"]:hover{
+    border: 1px solid;
+ }
+
+
+[l-class*="btn"]{
+    padding: 5px 10px !important;
+    background: var(--l-fg-dark);
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    margin-top: 3px;
+    color: var(--l-text-dark);
+    margin: 2px;
+    position: relative;
+ }
+
+ [l-class*="active"]{
+    background: var(--l-primary-dark);
+    color: var(--l-white-dark);
+ }

@@ -21,6 +21,9 @@
     --l-fg2-dark: #2F2E31;
     --l-text-dark: #CFCFCF;
     --l-border-dark: #2F2E31;
+    --l-primary-dark:rgb(252, 145, 44);
+
+    --l-white-dark: #f1f1f1;
 
     --vc-off-color: var(--l-bg-dark);
     --vc-on-color: var(--l-fg2-dark);
@@ -525,3 +528,41 @@ input::selection{
     font-size: 9pt;
     padding: 4px 5px;
 }
+
+[l-id~="selection-light"]{
+    background: transparent;
+    pointer-events: none;
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    border: 2px solid #0278c780 !important;
+}
+
+[l-class*="circle"]{
+    width: 10px;
+    height: 10px;
+   
+    position: absolute;
+    border: 2px solid #0278c780 !important;
+    background: #fff;
+}
+[l-class*="top-l-0"]{
+    top: -5px;
+    left: -5px;
+}
+
+[l-class*="bottom-l-0"]{
+    bottom: -5px;
+    left: -5px;
+}
+
+[l-class*="top-r-0"]{
+    top: -5px;
+    right: -5px;
+}
+
+[l-class*="bottom-r-0"]{
+    bottom: -5px;
+    right: -5px;
+}
+

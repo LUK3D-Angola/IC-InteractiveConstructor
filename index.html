@@ -159,35 +159,41 @@
         <button onclick="applyCss('align-items','space-between')" class="cl-btn l-fg lic-pa-0 " lic-tip="Distribute Vertically"><div class="cli-icon" style="--icon: url(./assets/icons/distributeVerticaly.png)"></div>   </button>
     </div>
     
-    <div l-props="any" l-class="d-flex pa-1 justify-content-center align-center" style="height: 200px;">
-        <div>
-            <div l-class="d-flex  input-container align-center  mx-1">
-                <input onchange="applyCss('margin-left',$(this).val())"  type="text" value="12"  l-class=" text-center cursor-h px-1 input-number ">  
-            </div>
+    <div l-props="any" l-class="d-flex flex-col b-b mb-1" >
+        <div l-class="b-b">
+            <button l-id="btn-active-margin" onclick="SwitchClasses(this,'active','deactive'); SwitchClasses($('[l-id~=\'btn-active-padding\']'),'active'); " l-class="btn radius-2 active">Margin</button>
+            <button l-id="btn-active-padding" l-class="btn radius-2 " onclick="SwitchClasses(this,'active','deactive'); SwitchClasses($('[l-id~=\'btn-active-margin\']'),'active'); ">Padding</button>
         </div>
-        <div>
+        <div l-class="d-flex  pa-1 justify-content-center align-center" style="height: 200px;">
             <div>
-                <div l-class="d-flex  input-container align-center   px-1  my-1">
-                    <input onchange="applyCss('margin-top',$(this).val())"  type="text" value="12"  l-class=" text-center cursor-h px-1 input-number ">  
+                <div l-class="d-flex  input-container align-center  mx-1">
+                    <input onchange="applyCss('margin-left',$(this).val())"  type="text" value="12"  l-class=" text-center cursor-h px-1 input-number ">  
                 </div>
             </div>
-            <div style="height: 100px;">
-                <div l-class="w-100 h-100" class="bg-img" style="--icon: url(./assets/icons/spacer.svg)"></div></div>
             <div>
-                <div l-class="d-flex  input-container align-center   px-1 my-1 ">
-                    <input onchange="applyCss('margin-bottom',$(this).val())"  type="text" value="12"  l-class=" text-center cursor-h px-1 input-number ">  
+                <div>
+                    <div l-class="d-flex  input-container align-center   px-1  my-1">
+                        <input onchange="applyCss('margin-top',$(this).val())"  type="text" value="12"  l-class=" text-center cursor-h px-1 input-number ">  
+                    </div>
+                </div>
+                <div style="height: 100px;">
+                    <div l-class="w-100 h-100" class="bg-img" style="--icon: url(./assets/icons/spacer.svg)"></div></div>
+                <div>
+                    <div l-class="d-flex  input-container align-center   px-1 my-1 ">
+                        <input onchange="applyCss('margin-bottom',$(this).val())"  type="text" value="12"  l-class=" text-center cursor-h px-1 input-number ">  
+                    </div>
                 </div>
             </div>
-        </div>
-        <div>
-            <div l-class="d-flex  input-container align-center  mx-1">
-                <input onchange="applyCss('margin-right',$(this).val())"  type="text" value="12"  l-class=" text-center cursor-h px-1 input-number ">  
+            <div>
+                <div l-class="d-flex  input-container align-center  mx-1">
+                    <input onchange="applyCss('margin-right',$(this).val())"  type="text" value="12"  l-class=" text-center cursor-h px-1 input-number ">  
+                </div>
             </div>
         </div>
     </div>
     
 
-    <div l-props="any" l-class="d-flex pa-1">
+    <div l-props="any" l-class="d-flex pa-1 pl-1">
         <div class="vc-toggle-container">
             <label class="vc-switch">
               <input onchange="removeBackground()" type="checkbox" class="vc-switch-input" />
@@ -321,6 +327,14 @@
 
 </div>
 
+
+<div l-id="selection-light" l-class=" d-none">
+    <div l-class="circle top-l-0 "></div>
+    <div l-class="circle bottom-l-0"></div>
+    <div l-class="circle top-r-0 "></div>
+    <div l-class="circle bottom-r-0 "></div>
+
+</div>
 
 
 </body>
