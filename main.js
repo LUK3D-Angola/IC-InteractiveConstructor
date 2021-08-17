@@ -12,6 +12,8 @@ var mouseY;
 var command;
 var layers = {};
 
+document.spacingType = "margin"; // Define se devemos definir margens ou espaçamentos no elemento.
+
 var ObjectInfo = [];
 var layer_counter = 0;
 
@@ -33,11 +35,20 @@ var InterComponents = {
 
 $(document).ready(function () {
     $("select").niceSelect();
-    // $(document.body).click(function(event) {
-    //     if (!$(event.target) != selected) {
-    //         unSelect();
-    //     }
-    // });
+    
+    const
+  range = document.getElementById('range'),
+  rangeV = document.getElementById('rangeV'),
+  setValue = ()=>{
+    const
+      newValue = Number( (range.value - range.min) * 100 / (range.max - range.min) ),
+      newPosition = 10 - (newValue * 0.2);
+    rangeV.innerHTML = `<span>${range.value}</span>`;
+    rangeV.style.left = `calc(${newValue}% + (${newPosition}px))`;
+  };
+document.addEventListener("DOMContentLoaded", setValue);
+range.addEventListener('input', setValue)
+
 
    
     
@@ -478,7 +489,15 @@ function selectMe(el){
     $(el).addClass("selected");
     $(`[l-layered="${$(el).attr("l-layer")}"]`).addClass("l-outline-selection");
 
-    setDefautWidthHeight($(el).css("width"),$(el).css("height"))
+    if($(`[l-layer="${$(el).attr("l-layer")}"]`).attr("l-width")){
+        setDefautWidthHeight($(`[l-layer="${$(el).attr("l-layer")}"]`).attr("l-width"),$(`[l-layer="${$(el).attr("l-layer")}"]`).attr("l-height"))
+
+    }else{
+        setDefautWidthHeight($(el).css("width"),$(el).css("width"))
+
+    }
+
+    console.log(el)
     showProperties(elementType($(el).attr("l-type")));
     showSelection(selected);
   
@@ -730,6 +749,7 @@ function applyMargin(side, value) {
 function applyCss(prop, value){
     if(validateSelection()){
             $(selected).css(prop,value); 
+            console.log(prop,value);
     } 
 }
 
@@ -807,36 +827,28 @@ function ApplyFg(color, isGradient){
     
 }
 
-var currrentMesurementWidth = "px";
-var currrentMesurementHeight = "px";
-function applySize(x,y, mesurement1, mesurement2) { 
-        console.log(mesurement1, mesurement2)
-    if(mesurement1 == null)
-        mesurement1 = currrentMesurementWidth 
-        else 
-        currrentMesurementWidth = mesurement1;
 
-    if(mesurement2== null)
-        mesurement2 = currrentMesurementHeight 
-        else 
-        currrentMesurementHeight = mesurement2;
+function applySize(x,y, mesurement1, mesurement2) { 
+      
 
     if(validateSelection() ){
-        console.log(x,y)
+      
         $(selected).css("width",$(x).val().toString());
         $(selected).css("height",$(y).val().toString());
+        $(selected).attr("l-width",$(x).val().toString());
+        $(selected).attr("l-height",$(y).val().toString());
     }
  }
 
 
  function setDefautWidthHeight(x,y) { 
-     var extentionX = x.match(/[px$vhw]/gm).join('');
-     var extentionY = y.match(/[px$vhw]/gm).join('');
+     var extentionX = x.match(/[px$vhw%]/gm).join('');
+     var extentionY = y.match(/[px$vhw%]/gm).join('');
      console.log(extentionX,extentionY, x,y)
-    $(`[l-id="l-width-mesure"]`).val(extentionX).niceSelect('update');
-    $(`[l-id="l-width"]`).val(x.replace(/\D/g, ''));
-    $(`[l-id="l-height-mesure"]`).val(extentionY).niceSelect('update');
-    $(`[l-id="l-height"]`).val(y.replace(/\D/g, ''));
+   // $(`[l-id="l-width-mesure"]`).val(extentionX).niceSelect('update');
+    $(`[l-id="l-width"]`).val(x);
+    //$(`[l-id="l-height-mesure"]`).val(extentionY).niceSelect('update');
+    $(`[l-id="l-height"]`).val(y);
 
     
 }
