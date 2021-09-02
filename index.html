@@ -231,7 +231,7 @@
             <div l-class="d-flex w-80 pl-3">
                 <div class="range-wrap">
                     <div class="range-value" id="rangeV"></div>
-                    <input onchange="applyCss('border-radius',$(this).val()+'%')" id="range" type="range" min="0" max="100" value="0" step="1">
+                    <input onchange="applyCss('border-radius',($(this).val()*10)+'px')" id="range" type="range" min="0" max="100" value="0" step="1">
                   </div>
             </div>
                 
@@ -294,6 +294,8 @@
     <button class="cl-btn p-2 l-fg "><div class="cli-icon" style="--icon: url(./assets/icons/landscape.svg)"></div>   </button>
     <button class="cl-btn p-2 l-fg "><div class="cli-icon" style="--icon: url(./assets/icons/portrait.svg)"></div>   </button>
     <div class="cl-vl"></div>
+    <button class="cl-btn p-2 l-fg " onclick="Save('recent_project')"><div class="cli-icon" style="--icon: url(./assets/icons/save.svg)"></div>   </button>
+    <div class="cl-vl"></div>
     <button class="cl-btn p-2 l-fg " onclick="RUN()"><div class="cli-icon" style="--icon: url(./assets/icons/start.svg)"></div>    </button>
     <button class="cl-btn p-2 l-fg " id="ic-toolBoxheader"> <i class="fas fa-arrows-alt"></i>   </button>
 </div>
@@ -316,7 +318,7 @@
 
 
 
-<div class="outliner l-fg l-text">
+<div  class="outliner l-fg l-text">
 
 <ul id="l-layers" class="">
     <li l-id="document01" class="layer-outline">

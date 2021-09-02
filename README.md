@@ -9,6 +9,13 @@ O seu objectivo é muito simples: Criar o front-end do teu website de forma ráp
 
 #UPDATES
 
+
+<img src="./Screenshot7.png" >
+
+> Este é um exemplo de UI criado com o LIC.
+
+
+
 #UPDATES
 <img src="./Screenshot6.png" >
 

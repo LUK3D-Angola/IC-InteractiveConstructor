@@ -34,6 +34,9 @@ var InterComponents = {
 
 
 $(document).ready(function () {
+
+    LoadLast(); //Carregar o projecto salvo.
+
     $("select").niceSelect();
     
     const
@@ -478,7 +481,7 @@ $(document).mousemove(function(my) {
 function selectMe(el){
 
     
-    console.log()
+    
     if (validateSelection()) {
         $(selected).removeClass("selected");
         $(".l-outline-selection").removeClass("l-outline-selection");
@@ -1087,6 +1090,43 @@ function darkTheme() {
     root.style.setProperty('--l-border-dark',' #2F2E31');
 }
 
+function Save(name) {
+    localStorage.setItem('last-doc',name);
+    localStorage.setItem(name,$("#lic-canvas").html());
+    localStorage.setItem(name+"-layers",$("#l-layers").html());
+}
+
+function LastSaved (){
+    return [localStorage.getItem(localStorage.getItem('last-doc')),localStorage.getItem(localStorage.getItem('last-doc')+"-layers")];
+}
+
+function Project() { 
+    return $("#lic-canvas");
+ }
+
+ function Layers() { 
+    return $("#l-layers");
+ }
+
+ function LoadLast (){
+    Project().html(LastSaved()[0]|| `
+    
+    <div class="lic-line">
+        <div  class="lic-page" >
+            <div class="app select " onmouseenter="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();"></div>
+            <div  style="--icon: url(./assets/icons/add.svg)" class=" cli-cursor-pointer lic-icon page-option top"></div>
+            <div  style="--icon: url(./assets/icons/add.svg)" class=" cli-cursor-pointer lic-icon page-option left"></div>
+            <div  style="--icon: url(./assets/icons/add.svg)" class=" cli-cursor-pointer lic-icon page-option bottom"></div>
+            <div  style="--icon: url(./assets/icons/add.svg)" class=" cli-cursor-pointer lic-icon page-option right"></div>
+        </div>
+    </div>
+    `);
+
+    Layers().html(LastSaved()[1]||"");
+
+
+}
+
 function RUN(){
     var w = window.open("http://127.0.0.1:5500/index.html", "_blank");
     w.document.body.innerHTML = $(".app").html();
@@ -1142,6 +1182,9 @@ defineFunctions([
     {name:"applySize", func:applySize},
     {name:"darkTheme", func:darkTheme},
     {name:"lightTheme", func:lightTheme},
+    {name:"Save", func:Save},
+    {name:"LastSaved", func:LastSaved},
+    {name:"Project", func:Project},
 ]);
 
 
