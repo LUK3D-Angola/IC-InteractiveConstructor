@@ -430,6 +430,141 @@ tippy('[l-id*="l-bgColor"]', {
 
 
 
+
+  tippy('[l-id*="l-borderColor"]', {
+    content: `
+    <div l-class="d-flex flex-col">
+        <div l-class="d-flex">
+            <button onclick="Hide('#l-border-gradient');Show('#l-border-solid')" class="lic-btn l-text">Solid</button>
+            <button onclick="Show('#l-border-gradient');Hide('#l-border-solid')" class="lic-btn l-text">gradient</button> 
+        </div>
+        <div style="width:250px;"  id="l-border-solid">
+            <div id="pickerBc">Bolded content</div>
+        </div>
+        <div style="width:250px;"  id="l-border-gradient" class="d-none">
+            <div id="pickerborder">Bolded content</div>
+        </div>
+    </div>
+    
+    
+    `,
+    offset: [0, 60],
+      
+    allowHTML: true,
+   
+    interactive: true,
+    trigger: 'click',
+    placement: 'left-start',
+    background:"#000",
+    theme: 'light',
+    onShow(instance) {
+        console.log(instance)
+      setTimeout(() => {
+
+        try {
+            const bgPickr = Pickr.create({
+                el: '#pickerBc',
+                theme: 'monolith', // or 'monolith', or 'nano'
+                inline: true,
+                showAlways: true,
+                container: '#pickerBc',
+                default: '#FD413C',
+                swatches: [
+                    'rgba(244, 67, 54, 1)',
+                    'rgba(233, 30, 99, 0.95)',
+                    'rgba(156, 39, 176, 0.9)',
+                    'rgba(103, 58, 183, 0.85)',
+                    'rgba(63, 81, 181, 0.8)',
+                    'rgba(33, 150, 243, 0.75)',
+                    'rgba(3, 169, 244, 0.7)',
+                    'rgba(0, 188, 212, 0.7)',
+                    'rgba(0, 150, 136, 0.75)',
+                    'rgba(76, 175, 80, 0.8)',
+                    'rgba(139, 195, 74, 0.85)',
+                    'rgba(205, 220, 57, 0.9)',
+                    'rgba(255, 235, 59, 0.95)',
+                    'rgba(255, 193, 7, 1)'
+                ],
+            
+                components: {
+            
+                    // Main components
+                    preview: true,
+                    opacity: true,
+                    hue: true,
+            
+                    // Input / output Options
+                    interaction: {
+                        hex: true,
+                        rgba: true,
+                        hsla: true,
+                        hsva: true,
+                        cmyk: true,
+                        input: true,
+                        clear: true,
+                        save: true
+                    }
+                }
+                
+            });
+            
+            bgPickr.on('change', (color, source, instance) => {
+                if(validateSelection()){
+                    applyCss('border-color',color.toHEXA().toString())
+                  }
+            })  
+        } catch (error) {
+            
+        }
+
+        
+
+
+        const bgGpickr = new GPickr({
+            el: '#pickerborder',
+
+            // Pre-defined stops. These are the default since at least two should be defined
+            stops: [
+                ['rgb(255,132,109)', 0],
+                ['rgb(255,136,230)', 1]
+            ]
+        })
+
+
+        bgGpickr.on('change', (color, source, instance) => {
+            if(validateSelection()){
+               // ApplyFg(color.getGradient(),true)
+                applyCss('border-color',color.getGradient())
+              }
+        
+              
+        
+        })  
+
+
+      }, 200);
+      },
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   var clicking = false;
   var interactingInput;
 $('[l-class*="input-number"]').mousedown(function() {
@@ -759,22 +894,23 @@ function applyCss(prop, value){
 
 function removeBackground(param) {  
     
-  
-        var selectedBg = $(selected).css("background");
-        var bgHolder = $(selected).attr("l-bg");
-        if(bgHolder == undefined)
-        bgHolder = "black";
+    $(selected).css("background","transparent");
 
-        if(selectedBg.split(" ").join("")!="rgba(0,0,0,0)nonerepeatscroll0%0%/autopadding-boxborder-box"){
-            console.log(selectedBg.split(" ").join("")+"=>","rgba(0,0,0,0)nonerepeatscroll0%0%/autopadding-boxborder-box")
-            $(selected).attr("l-bg",selectedBg);
+        // var selectedBg = $(selected).css("background");
+        // var bgHolder = $(selected).attr("l-bg");
+        // if(bgHolder == undefined)
+        // bgHolder = "black";
+
+        // if(selectedBg.split(" ").join("")!="rgba(0,0,0,0)nonerepeatscroll0%0%/autopadding-boxborder-box"){
+        //     console.log(selectedBg.split(" ").join("")+"=>","rgba(0,0,0,0)nonerepeatscroll0%0%/autopadding-boxborder-box")
+        //     $(selected).attr("l-bg",selectedBg);
            
-            $(selected).css("background","rgba(0,0,0,0) none repeat scroll 0% 0%");
+        //     $(selected).css("background","rgba(0,0,0,0) none repeat scroll 0% 0%");
          
-        }else{
-            $(selected).css("background", bgHolder);
+        // }else{
+        //     $(selected).css("background", bgHolder);
            
-        }
+        // }
 }
 
 function removeTextColor(param) {  

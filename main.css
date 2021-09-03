@@ -20,7 +20,7 @@
     --l-fg-dark: #1C1C1E;
     --l-fg2-dark: #2F2E31;
     --l-text-dark: #CFCFCF;
-    --l-border-dark: #2F2E31;
+    --l-border-dark: #2f2e31;
     --l-primary-dark:rgb(252, 145, 44);
 
     --l-white-dark: #f1f1f1;
@@ -37,7 +37,7 @@
   
 
   *{
-    border-color: var(--l-border-dark) !important;
+    border-color: var(--l-border-dark) ;
   }
 
 .l-bg{
