@@ -1,4 +1,6 @@
-<img src="./logo.png" width="200px">
+<img src="./banner.png" >
+
+
 # LUK3D INTERACTIVE CONSTRUCTOR (LIC)
 
 Construtor interativo de páginas web.
