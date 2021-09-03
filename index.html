@@ -240,7 +240,7 @@
                     <input onchange="applyCss('border-radius',($(this).val()*10)+'px')" id="range" type="range" min="0" max="100" value="0" step="1">
                   </div>
             </div>
-            <div  l-class="p-0 m-0 pl-3 d-flex">
+            <div  l-class="p-0 m-0 pl-2 d-flex">
                 <div l-class="d-flex  align-center  w-50 px-1">
                     <span class="l-text" l-class="pt-0 ">Color</span>
                     <div l-class="mx-1 bg-white " l-id="l-borderColor" style="width: 25px; height:25px;" class="btn"  ></div>
@@ -251,6 +251,8 @@
                 </div>
                 
             </div>
+
+            
         </div>
 
     <div l-props="text" l-class="d-flex flex-column pa-1">
@@ -266,6 +268,10 @@
             <div l-class="mx-1 bg-white " l-id="l-textColor" style="width: 25px; height:25px;" class="btn"  ></div>
             <p class="l-text">Text Color</p>
         </div>
+        <div l-class="d-flex  input-container align-center  px-1">
+                    <p class="l-text" l-class="pt-2 ">Font-size</p>
+                    <input onchange="applyCss('font-size', $(this).val())" l-id="l-border" type="text" value="0px"  l-class="cursor-h px-1 input-number ">  
+                </div>
     </div>
 
     
