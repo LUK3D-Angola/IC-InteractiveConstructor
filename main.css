@@ -340,7 +340,7 @@ html{
 
 .lic-page .app{
     width: 1280px;
-    height: 100vh;
+    min-height: 100vh;
     background: #fff;
 }
 
@@ -391,6 +391,9 @@ html{
     right: 0;
     background: var(--l-fg-dark);
     border-left: 2px solid rgba(179, 179, 179, 0.247);
+    overflow-y: auto;
+    overflow-x: hidden !important;
+    padding-bottom: 30px;
 }
 .lic-side-menu .component{
     display: flex;

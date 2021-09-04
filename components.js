@@ -4,10 +4,7 @@ var components = {
     "input":{
         description:'Elemento de formulario',
         code:`
-        <div class="mb-3" onmouseover="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();">
-          <label l-layer="testeBasico2" ondblclick="startTextEditing(this);event.stopPropagation();" class="form-label select" onmouseover="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();">Email address</label>
-          <input l-layer="testeBasico4" type="email" class="form-control"  placeholder="name@example.com">
-        </div>
+          <input onchange="applyAttr('placeholder',$(this).val())" onfocusout="$(this).val('')"  onmouseover="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();" l-layer="testeBasico4" type="email" class="form-control"  placeholder="Placeholder">
         `,
     
     },

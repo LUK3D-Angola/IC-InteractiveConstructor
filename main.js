@@ -1,7 +1,7 @@
 import { components } from "./components.js";
 import { textTypes, elementType } from "./elements.types.js";
 import { defineFunctions } from "./utils/difinitions.js";
-
+import './fileManager.js';
 /**Variavle para armazenar o elemento selecionado */
 var selected;
 var highliting;
@@ -511,6 +511,7 @@ tippy('[l-id*="l-bgColor"]', {
             bgPickr.on('change', (color, source, instance) => {
                 if(validateSelection()){
                     applyCss('border-color',color.toHEXA().toString())
+                    $('[l-id*="l-borderColor"]').css("background", color);
                   }
             })  
         } catch (error) {
@@ -668,7 +669,7 @@ function startTextEditing(el) {
     if(textTypes.includes($(el).prop("tagName"))){
         var currentText = $(el).text();
         tmpText = currentText;
-        console.log("selecionado")
+       
         $(el).html(`<input class=" l-text-edition p-0 m-0 b-0 bg-transparent" onblur="endTextEditing(this)" onclick="event.stopPropagation();"  value="${currentText}">`);
         command == false
     }
@@ -680,7 +681,7 @@ function endTextEditing(Input) {
     if(text.trim() == ""){
         $(Input).parent().html(tmpText);
     }
-    $(Input).parent().html(text);
+    $(Input).parent().html(text.split("<").join("&lt;").split(">").join("&gt;"));
   }
 
 
@@ -770,7 +771,7 @@ function Past(){
     if(validateSelection()){
             //$(selected).append($(clipboard).clone()); 
             var el = $(clipboard).clone();
-            console.log($(clipboard))
+            //console.log($(clipboard))
             AddComponent(null, el[0].nodeName||el.nodeName, el)
     }
 }
@@ -886,10 +887,56 @@ function applyMargin(side, value) {
 
 function applyCss(prop, value){
     if(validateSelection()){
-            $(selected).css(prop,value); 
-            console.log(prop,value);
+            
+        try {
+            var el = $(selected);
+           // el[0].style.removeAttribute(prop);
+           el[0].style.setProperty(prop, value, 'important');
+            
+
+
+           // el.style(prop,value, 'important')
+           // el.style.setProperty( prop, value, 'important' ); 
+            // $(selected).css(prop,value);
+            // console.log(prop+":", value)
+        } catch (error) {
+            console.log("CSS ERRO: ", error)
+        }
+           
     } 
 }
+
+
+function applyAttr(attr, value){
+    if(validateSelection()){
+            
+        try {
+        $(selected).attr(attr, value);
+        console.log(attr, value)
+        } catch (error) {
+            console.log("CSS ERRO: ", error)
+        }
+           
+    } 
+}
+
+
+
+function removeAttr(attr){
+    if(validateSelection()){
+            
+        try {
+        $(selected).removeAttr(attr);
+        console.log(attr, value)
+        } catch (error) {
+            console.log("CSS ERRO: ", error)
+        }
+           
+    } 
+}
+
+
+
 
 
 function removeBackground(param) {  
@@ -1129,6 +1176,11 @@ var panzoomInstance = panzoom(element, {
     initialY: -50,
     zoomDoubleClickSpeed: 1, 
     zoomSpeed: 0.065, // 6.5% per mouse wheel event
+    filterKey: function(e/* e, dx, dy, dz */) {
+        //console.log(e.keyCode == 39 || e.keyCode == 37 || e.keyCode);
+
+        return true;
+      },
     beforeWheel: function(e) {
       // permite fazer o zoom apenas quando a tecla alt estiver pessionada. caso contrario, ignore
       var shouldIgnore = !e.altKey;
@@ -1226,10 +1278,8 @@ function darkTheme() {
     root.style.setProperty('--l-border-dark',' #2F2E31');
 }
 
-function Save(name) {
-    localStorage.setItem('last-doc',name);
-    localStorage.setItem(name,$("#lic-canvas").html());
-    localStorage.setItem(name+"-layers",$("#l-layers").html());
+function Save() {
+    window.LIC.fm.saveProject();
 }
 
 function LastSaved (){
@@ -1245,20 +1295,7 @@ function Project() {
  }
 
  function LoadLast (){
-    Project().html(LastSaved()[0]|| `
-    
-    <div class="lic-line">
-        <div  class="lic-page" >
-            <div class="app select " onmouseenter="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();"></div>
-            <div  style="--icon: url(./assets/icons/add.svg)" class=" cli-cursor-pointer lic-icon page-option top"></div>
-            <div  style="--icon: url(./assets/icons/add.svg)" class=" cli-cursor-pointer lic-icon page-option left"></div>
-            <div  style="--icon: url(./assets/icons/add.svg)" class=" cli-cursor-pointer lic-icon page-option bottom"></div>
-            <div  style="--icon: url(./assets/icons/add.svg)" class=" cli-cursor-pointer lic-icon page-option right"></div>
-        </div>
-    </div>
-    `);
-
-    Layers().html(LastSaved()[1]||"");
+    window.LIC.fm.openProject();
 
 
 }
@@ -1312,6 +1349,8 @@ defineFunctions([
     {name:"Hide", func:Hide},
     {name:"Show", func:Show},
     {name:"applyCss", func:applyCss},
+    {name:"applyAttr", func:applyAttr},
+    {name:"removeAttr", func:removeAttr},
     {name:"removeBackground", func:removeBackground},
     {name:"removeTextColor", func:removeTextColor},
     {name:"showProperties", func:showProperties},
