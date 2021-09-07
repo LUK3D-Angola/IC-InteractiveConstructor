@@ -1,7 +1,8 @@
 import { components } from "./components.js";
 import { textTypes, elementType } from "./elements.types.js";
-import { defineFunctions } from "./utils/difinitions.js";
+import { defineFunctions } from "../utils/difinitions.js";
 import './fileManager.js';
+import './layouts.js';
 /**Variavle para armazenar o elemento selecionado */
 var selected;
 var highliting;
@@ -11,6 +12,8 @@ var mouseX;
 var mouseY;
 var command;
 var layers = {};
+
+
 
 document.spacingType = "margin"; // Define se devemos definir margens ou espaçamentos no elemento.
 
@@ -56,7 +59,7 @@ range.addEventListener('input', setValue)
    
     
     var cm = Object.keys(components);
-    console.log(cm)
+   
 
     cm.forEach(element => {
         var el = `<li onclick="AddComponent('right','${element}');event.stopPropagation();"> <span>${element}</span> </li>`;
@@ -636,7 +639,7 @@ function selectMe(el){
 
     }
 
-    console.log(el)
+    //console.log(el)
     showProperties(elementType($(el).attr("l-type")));
     showSelection(selected);
   
@@ -1360,6 +1363,7 @@ defineFunctions([
     {name:"Save", func:Save},
     {name:"LastSaved", func:LastSaved},
     {name:"Project", func:Project},
+    
 ]);
 
 

@@ -32,15 +32,15 @@
     
     
     <link href="./main.css" rel="stylesheet">
-    <script type="module" src="./main.js"></script>
-    <script type="module" src="./init.js"></script>
+    <script type="module" src="./js/main.js"></script>
+    <script type="module" src="./js/init.js"></script>
 </head>
 <body class="l-bg">
 
 <div id="lic-canvas">
     <div class="lic-line" id="lic-line">
         <div  class="lic-page" >
-            <div class="app select " onmouseenter="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();"></div>
+            <div l-layer="main" luk-id="app" class="app select " onmouseenter="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();"></div>
             <!-- <div  style="--icon: url(./assets/icons/add.svg)" class=" cli-cursor-pointer lic-icon page-option top"></div>
             <div  style="--icon: url(./assets/icons/add.svg)" class=" cli-cursor-pointer lic-icon page-option left"></div>
             <div  style="--icon: url(./assets/icons/add.svg)" class=" cli-cursor-pointer lic-icon page-option bottom"></div>
@@ -370,9 +370,9 @@
     <button class="cl-btn p-2 l-fg "><div class="cli-icon" style="--icon: url(./assets/icons/cut.svg)"></div>   </button>
     <button class="cl-btn p-2 l-fg "><div class="cli-icon" style="--icon: url(./assets/icons/delete.svg)"></div>   </button>
     <div class="cl-vl"></div>
-    <button class="cl-btn p-2 l-fg "><div class="cli-icon" style="--icon: url(./assets/icons/phone.svg)"></div>   </button>
-    <button class="cl-btn p-2 l-fg "><div class="cli-icon" style="--icon: url(./assets/icons/tablet.svg)"></div>   </button>
-    <button class="cl-btn p-2 l-fg "><div class="cli-icon" style="--icon: url(./assets/icons/pc.svg)"></div>   </button>
+    <button class="cl-btn p-2 l-fg " onclick="setLayouts('sm')"><div class="cli-icon" style="--icon: url(./assets/icons/phone.svg)"></div>   </button>
+    <button class="cl-btn p-2 l-fg " onclick="setLayouts('md')"><div class="cli-icon" style="--icon: url(./assets/icons/tablet.svg)"></div>   </button>
+    <button class="cl-btn p-2 l-fg " onclick="setLayouts('lg')"><div class="cli-icon" style="--icon: url(./assets/icons/pc.svg)"></div>   </button>
     <div class="cl-vl"></div>
     <button class="cl-btn p-2 l-fg "><div class="cli-icon" style="--icon: url(./assets/icons/landscape.svg)"></div>   </button>
     <button class="cl-btn p-2 l-fg "><div class="cli-icon" style="--icon: url(./assets/icons/portrait.svg)"></div>   </button>
