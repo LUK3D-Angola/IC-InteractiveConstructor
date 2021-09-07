@@ -46,7 +46,7 @@ function saveLayouts(layout){
 
 
 function applyLayouts(layout){
-    $('[luk-id="app"]').find('[l-layer]').each(function() {
+    $('[l-id="lic-page"]').find('[l-layer]').each(function() {
         if(($(this).attr("l-layer") in styles)){
             $(this).attr('style', styles[$(this).attr("l-layer")][layout]) ;
         }

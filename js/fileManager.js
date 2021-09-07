@@ -32,6 +32,9 @@ window.LIC = {
                 if(_error)_error(error);
             }
         },
+        clearLast(){
+            localStorage.clear();
+        },
         
         /**
          *  Função para conversão de html para Lic

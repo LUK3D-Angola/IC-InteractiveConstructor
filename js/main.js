@@ -38,7 +38,7 @@ var InterComponents = {
 
 $(document).ready(function () {
 
-    LoadLast(); //Carregar o projecto salvo.
+   // LoadLast(); //Carregar o projecto salvo.
 
     $("select").niceSelect();
     
