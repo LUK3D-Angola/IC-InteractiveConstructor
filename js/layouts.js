@@ -72,4 +72,5 @@ defineFunctions([
     {name:"setLayouts", func:setLayouts},
     {name:"layoutsDebug", func:layoutsDebug},
     {name:"saveLayouts", func:saveLayouts},
+    {name:"styles", func:styles},
 ]);

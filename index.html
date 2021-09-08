@@ -30,6 +30,7 @@
     <script src="./libs/pickr/pickr.min.js"></script>
     <link href="./libs/vc-toggle-switch.css" rel="stylesheet">
     
+    <script src="./libs/FileSaver.min.js"></script>
     
     <link href="./main.css" rel="stylesheet">
     <script type="module" src="./js/main.js"></script>
@@ -163,7 +164,8 @@
         <button onclick="applyCss('justify-content','flex-end')" class="cl-btn l-fg lic-pa-0 " lic-tip="Align Right"><div class="cli-icon" style="--icon: url(./assets/icons/alignRight.png)"></div>   </button>
         <button onclick="applyCss('align-items','space-between')" class="cl-btn l-fg lic-pa-0 " lic-tip="Distribute Vertically"><div class="cli-icon" style="--icon: url(./assets/icons/distributeVerticaly.png)"></div>   </button>
     </div>
-    
+    <input type='file' accept='.lic' onchange='LIC.fm.openGeneratedProject(event)'><br>
+
     <div l-props="any" l-class="d-flex flex-col b-b mb-1" >
         <div l-class="b-b">
             <button l-id="btn-active-margin" onclick="SwitchClasses(this,'active','deactive'); SwitchClasses($('[l-id~=\'btn-active-padding\']'),'active'); spacingType='margin'" l-class="btn radius-2 active">Margin</button>
@@ -378,7 +380,8 @@
     <button class="cl-btn p-2 l-fg "><div class="cli-icon" style="--icon: url(./assets/icons/landscape.svg)"></div>   </button>
     <button class="cl-btn p-2 l-fg "><div class="cli-icon" style="--icon: url(./assets/icons/portrait.svg)"></div>   </button>
     <div class="cl-vl"></div>
-    <button class="cl-btn p-2 l-fg " onclick="Save('recent_project')"><div class="cli-icon" style="--icon: url(./assets/icons/save.svg)"></div>   </button>
+    <!-- <button class="cl-btn p-2 l-fg " onclick="Save('recent_project')"><div class="cli-icon" style="--icon: url(./assets/icons/save.svg)"></div>   </button> -->
+    <button class="cl-btn p-2 l-fg " onclick="LIC.fm.generateProject()"><div class="cli-icon" style="--icon: url(./assets/icons/save.svg)"></div>   </button>
     <div class="cl-vl"></div>
     <button class="cl-btn p-2 l-fg " onclick="RUN()"><div class="cli-icon" style="--icon: url(./assets/icons/start.svg)"></div>    </button>
     <button class="cl-btn p-2 l-fg " id="ic-toolBoxheader"> <i class="fas fa-arrows-alt"></i>   </button>
