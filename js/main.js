@@ -709,6 +709,7 @@ function AddComponent(direction, type, elementObject){
 
         el.attr("l-layer",layerName);
        if(type){
+           console.log(type)
             el.attr("l-type",type);
        }
         
@@ -1123,7 +1124,7 @@ function closeOnEsc(){
 function showProperties(params) {
     $("[l-props]").hide();
     if(params!=null){
-        $(`[l-props*="${params}"],[l-props*="any"]`).show();
+        $(`[l-props~="${params}"],[l-props~="any"]`).show();
         console.log(params);
 
     }

@@ -106,16 +106,16 @@ var components = {
         <span class="badge bg-secondary select" ondblclick="startTextEditing(this);event.stopPropagation();"  onmouseover="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();">New</span>
         `
     },
-    "button Primary":{
+    "button":{
         description:'badge.',
         code:`
         <button type="button" ondblclick="startTextEditing(this);event.stopPropagation();"  class="btn btn-primary select" onmouseover="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();">Primary</button>
         `
     },
-    "Link Primary":{
+    "A":{
         description:'badge.',
         code:`
-        <a href="#" class="btn btn-link select" onmouseover="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();">Placeholder</a>
+        <a href="#" ondblclick="startTextEditing(this);event.stopPropagation();"  onmouseover="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();">Placeholder</a>
         `
     },
     "checkbox":{

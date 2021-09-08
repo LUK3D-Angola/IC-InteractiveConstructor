@@ -172,26 +172,27 @@
         <div l-class="d-flex  pa-1 justify-content-center align-center" style="height: 200px;">
             <div>
                 <div l-class="d-flex  input-container align-center  mx-1">
-                    <input onchange="applyCss(spacingType+'-left',$(this).val())"  type="text" value="12"  l-class=" text-center cursor-h px-1 input-number ">  
+                    <input ondblclick="applyCss(spacingType+'-left',$(this).val()); applyCss(spacingType+'-right',$(this).val()); $('[l-id=\'p_m_right\']').val($(this).val())" onchange="applyCss(spacingType+'-left',$(this).val())" l-id="p_m_left"  type="text" value="12"  l-class=" text-center cursor-h px-1 input-number ">  
                 </div>
             </div>
             <div>
                 <div>
                     <div l-class="d-flex  input-container align-center   px-1  my-1">
-                        <input onchange="applyCss(spacingType+'-top',$(this).val())"  type="text" value="12"  l-class=" text-center cursor-h px-1 input-number ">  
+                        <input ondblclick="applyCss(spacingType+'-top',$(this).val()); applyCss(spacingType+'-bottom',$(this).val()); $('[l-id=\'p_m_bottom\']').val($(this).val())" onchange="applyCss(spacingType+'-top',$(this).val())" l-id="p_m_top"  type="text" value="12"  l-class=" text-center cursor-h px-1 input-number ">  
                     </div>
                 </div>
                 <div style="height: 100px;">
-                    <div l-class="w-100 h-100" class="bg-img" style="--icon: url(./assets/icons/spacer.svg)"></div></div>
+                    <div ondblclick="applyCss(spacingType+'-left',$('[l-id=\'p_m_left\']').val());applyCss(spacingType+'-top',$('[l-id=\'p_m_top\']').val()); applyCss(spacingType+'-bottom',$('[l-id=\'p_m_bottom\']').val());applyCss(spacingType+'-right',$('[l-id=\'p_m_right\']').val())"  l-class="w-100 h-100" class="bg-img" style="--icon: url(./assets/icons/spacer.svg)"></div>
+                </div>
                 <div>
                     <div l-class="d-flex  input-container align-center   px-1 my-1 ">
-                        <input onchange="applyCss(spacingType+'-bottom',$(this).val())"  type="text" value="12"  l-class=" text-center cursor-h px-1 input-number ">  
+                        <input ondblclick="applyCss(spacingType+'-bottom',$(this).val()); applyCss(spacingType+'-top',$(this).val()); $('[l-id=\'p_m_top\']').val($(this).val())" onchange="applyCss(spacingType+'-bottom',$(this).val())" l-id="p_m_bottom"  type="text" value="12"  l-class=" text-center cursor-h px-1 input-number ">  
                     </div>
                 </div>
             </div>
             <div>
                 <div l-class="d-flex  input-container align-center  mx-1">
-                    <input onchange="applyCss(spacingType+'-right',$(this).val())"  type="text" value="12"  l-class=" text-center cursor-h px-1 input-number ">  
+                    <input ondblclick="applyCss(spacingType+'-right',$(this).val()); applyCss(spacingType+'-left',$(this).val()); $('[l-id=\'p_m_left\']').val($(this).val())" onchange="applyCss(spacingType+'-right',$(this).val())" l-id="p_m_right"  type="text" value="12"  l-class=" text-center cursor-h px-1 input-number ">  
                 </div>
             </div>
         </div>
@@ -231,7 +232,7 @@
                 
         </div>
 
-        <div l-props="text" l-class="d-flex flex-column pa-1">
+        <div l-props="text button" l-class="d-flex flex-column pa-1">
             <hr>
             <p class="l-text" l-class="p-0 m-0 pl-1 "><h5 class="l-text pl-2" style="padding-left:10px;">Text</h5></p>
             <div l-class="d-flex">

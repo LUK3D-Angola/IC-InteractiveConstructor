@@ -11,6 +11,7 @@ var textTypes = [
     "H6",
     "H7",
     "SPAN",
+    "A",
 ];
 
 function type(param) { 
