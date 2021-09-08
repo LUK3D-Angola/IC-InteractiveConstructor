@@ -63,4 +63,24 @@ Caso tenha o php instalado em sua máquina, siga os seguintes passos:
 - Abra o navegador e navegue na url http://localhost:2121
 
 
+## COMANDOS - Atalhos:
+
+Click esquerdo do mouse => Selecionar
+
+Clicque direito do mouse => Menu de contexto
+
+Alt + Roda do mouse => Zoom In e Zoom Out
+
+Ctrl + C => Copiar
+
+Ctrl + V => Color
+
+Ctrl + X => Cortar
+
+Barra de espaço => Caixa de ferramentas
+
+
+
+
+
 Documentação brevemente....
