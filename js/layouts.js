@@ -26,7 +26,7 @@ function setLayouts(breackpoint){
 
 
 function saveLayouts(layout){
-    $('[luk-id="app"]').find('[style]').each(function() {
+    $('[l-id="lic-page"]').find('[style]').each(function() {
         if(!($(this).attr("l-layer") in styles)){
             styles[$(this).attr("l-layer")] = { "xs": {}, "sm": {}, "md": {}, "lg": {}, "xl": {} };
         }
