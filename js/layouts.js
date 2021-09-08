@@ -6,7 +6,7 @@ var breackpoints = {
     lg:"1024px",
     xl:"1280px",
 }
-var styles = {
+window.styles = {
   "asfasfsa": { xs: {}, sm: {}, md: {}, lg: {}, xl: {} },
 };
 
@@ -47,8 +47,8 @@ function saveLayouts(layout){
 
 function applyLayouts(layout){
     $('[l-id="lic-page"]').find('[l-layer]').each(function() {
-        if(($(this).attr("l-layer") in styles)){
-            $(this).attr('style', styles[$(this).attr("l-layer")][layout]) ;
+        if(($(this).attr("l-layer") in window.styles)){
+            $(this).attr('style', window.styles[$(this).attr("l-layer")][layout]) ;
         }
 
         // Object.keys(styles[$(this).attr("l-layer")]).forEach(key => {
@@ -72,5 +72,5 @@ defineFunctions([
     {name:"setLayouts", func:setLayouts},
     {name:"layoutsDebug", func:layoutsDebug},
     {name:"saveLayouts", func:saveLayouts},
-    {name:"styles", func:styles},
+   
 ]);
