@@ -11,7 +11,7 @@ O seu objectivo é muito simples: Criar o front-end do teu website de forma ráp
 #UPDATES
 
 
-<img src="./screenshot0.png" >
+<img src="./screenshot8.png" >
 
 > Este é um exemplo de UI criado com o LIC.
 
