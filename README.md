@@ -8,7 +8,20 @@ Construtor interativo de páginas web.
 O construtor interativo de páginas web, é um projeto desenvolvido pela LUK3D na pessoa de Filipe Lukebana.
 O seu objectivo é muito simples: Criar o front-end do teu website de forma rápida e simples. Posteriormente será integrado com o [Okyhub (Gerador de APIs)](http://okyhub.luk3d.com/#/)  para que se crie o front-end e back-end ao mesmo tempo e sem muita complexidade.
 
+#UPDATES
 
+
+<img src="./Screenshot08.png" >
+
+> Este é um exemplo de UI criado com o LIC.
+
+<img src="./Screenshot09.png" >
+
+> Este é um exemplo de UI criado com o LIC.
+
+<img src="./Screenshot10.png" >
+
+> Este é um exemplo de UI criado com o LIC.
 
 #UPDATES
 
