@@ -37,8 +37,75 @@
     <script type="module" src="./js/init.js"></script>
 </head>
 <body class="l-bg">
+    <div l-class="b-b" class="l-fg  px-4 py-1 d-flex align-items-center" style="  position: fixed; top:0;right: 0; width: 100%; height: 50px; z-index: 100; ">
+        <img style="height:100%;" src="./assets/icons/logo.png" alt="">
+
+            <div class="dialog">
+                <button lic-tip="Asset box" l-id="Assets"  class="cli-icon mx-2" style="--icon: url(./assets/icons/assets.svg); width:30px; height:30px;">
+                </button>  
+                <div class="block"></div>
+
+                <div class="body">
+
+                    <div class="content">
+                        <div class=" head d-flex pa-2" l-class="b-b w-100">
+                            <div  l-id="Assets"  class="cli-icon mx-2" style="--icon: url(./assets/icons/assets.svg); width:30px; height:30px;">
+                            </div>  
+                            
+                            <h4 class="l-text">Assets Box</h4>
+                        </div>
+                        
+                        <div class="list">
+                            
+                            <button  class="item l-fg2 border-bottom-0">
+                                    
+                                    <div lic-tip="Add Asset"  l-id="Assets"  class="cli-icon mx-2" style="--icon: url(./assets/icons/add_circle.svg); width:50px; height:50px;">
+                                    </div>
+                            </button>
+                            <div class="item l-fg"></div>
+                            <div class="item l-fg"></div>
+                            <div class="item l-fg"></div>
+                            <div class="item l-fg"></div>
+                            <div class="item l-fg"></div>
+                            <div class="item l-fg"></div>
+                            <div class="item l-fg"></div>
+                            <div class="item l-fg"></div>
+                            <div class="item l-fg"></div>
+                            <div class="item l-fg"></div>
+                            <div class="item l-fg"></div>
+                            <div class="item l-fg"></div>
+                            <div class="item l-fg"></div>
+                            <div class="item l-fg"></div>
+                            <div class="item l-fg"></div>
+                            <div class="item l-fg"></div>
+                            <div class="item l-fg"></div>
+                            <div class="item l-fg"></div>
+                            <div class="item l-fg"></div>
+                            <div class="item l-fg"></div>
+                            <div class="item l-fg"></div>
+                            <div class="item l-fg"></div>
+                            <div class="item l-fg"></div>
+                            <div class="item l-fg"></div>
+                            <div class="item l-fg"></div>
+                            <div class="item l-fg"></div>
+                            <div class="item l-fg"></div>
+                            <div class="item l-fg"></div>
+                            <div class="item l-fg"></div>
+
+                        </div>
+
+                    </div>
+                    
+                </div>
+            </div> 
+
+    </div>
+
+
+    <div style="  width: 100%; height: 50px; "></div>
 
 <div id="lic-canvas">
+  
     <div class="lic-line" id="lic-line">
         <div l-id="lic-page"  class="lic-page" >
             <div l-app="main" luk-id="app" class="app select " onmouseenter="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();"></div>
@@ -55,180 +122,142 @@
 
 
 
-    
-
-<div class="menu d-flex flex-column ">
-    <p>Add Components</p>
-    <div class="d-flex flex-row justify-content-between">
-        <p>Left / Top</p>
-        <p>Right / Bottom</p>
-    </div>
-    <div class="d-flex flex-row justify-content-between">
-        <button  onclick="AddComponent('left','card');event.stopPropagation();" class="btn btn-light ">Container</button>
-        <button onclick="AddComponent(null,'card');event.stopPropagation();" class="btn btn-light ">Container</button>
-    </div>
-    <div class="d-flex flex-row justify-content-between mt-1">
-        <button onclick="AddComponent('left','input');event.stopPropagation();" class="btn btn-light ">Input</button>
-        <button onclick="AddComponent(null,'input');event.stopPropagation();" class="btn btn-light ">Input</button>
-    </div>
-   
-
-    <hr>
-    <p class="">Component Options</p>
-    <div class="d-flex flex-row justify-content-between">
-        
-        <button onclick="Copy()" class="btn btn-warning mt-2">Copy</button>
-        <button onclick="Past()" class="btn btn-warning mt-2">Past</button>
-        <button onclick="Cut()" class="btn btn-warning mt-2">Cut</button>
-        <button onclick="Delete()" class="btn btn-danger  mt-2">Delete</button>
-       
-    </div>
-
-    <hr>
-    <p class="">Layout Direction</p>
-    <div class="d-flex flex-row justify-content-between">
-        <button onclick="layoutDirection('horizontal')" class="btn btn-light ">Horizontal</button>
-        <button onclick="layoutDirection('vertical')" class="btn btn-light ">Vertical</button>
-    </div>
-    <hr>
-    <div class="">
-        <label for="exampleFormControlInput1" class="form-label">Text</label>
-        <input type="email" onkeyup="ApplyText(this)" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-    </div>
-
-    <hr>
-    <p class="">Padding</p>
-    <div class="d-flex flex-row justify-content-between">
-        <select id="paddingSide" class="form-select" aria-label="Default select example">
-            <option value="">All</option>
-            <option value="x">Horizontal</option>
-            <option value="y">Vertical</option>
-            <option value="s">Left</option>
-            <option value="t">Top</option>
-            <option value="e">Right</option>
-            <option value="b">Bottom</option>
-        </select>
-        <select id="paddingValue" class="form-select" aria-label="Default select example">
-            <option value="0">00</option>
-            <option value="1">01</option>
-            <option value="2">02</option>
-            <option value="3">03</option>
-            <option value="4">04</option>
-            <option value="5">05</option>
-            <option value="auto">auto</option>
-        </select>
-    </div>
-    <button onclick="applyPadding('#paddingSide','#paddingValue')" class="btn btn-warning mt-2">Apply Padding</button>
-    <hr>
-    <p class="">Margin</p>
-    <div class="d-flex flex-row justify-content-between">
-        <select id="marginSide" class="form-select" aria-label="Default select example">
-            <option value="0">All</option>
-            <option value="x">Horizontal</option>
-            <option value="y">Vertical</option>
-            <option value="s">Left</option>
-            <option value="t">Top</option>
-            <option value="e">Right</option>
-            <option value="b">Bottom</option>
-        </select>
-        <select id="marginValue" class="form-select" aria-label="Default select example">
-            <option value="">00</option>
-            <option value="1">01</option>
-            <option value="2">02</option>
-            <option value="3">03</option>
-            <option value="4">04</option>
-            <option value="5">05</option>
-            <option value="auto">auto</option>
-        </select>
-    </div>
-    <button onclick="applyMargin('#marginSide','#marginValue')" class="btn btn-warning mt-2">Apply Margin</button>
-    
-    
-    <div class="d-flex flex-row justify-content-between">
-        <!-- <p class="">Background <div class="bg-picker"></div></p>   -->
-        <!-- <p class="">Color <div class="fg-picker"></div></p>   -->
-    </div>
-   
-    
-</div>
-
+ 
 
 <div id="lic-side-menu" class="lic-side-menu l-fg">
-    <div class="component">
-        <button onclick="applyCss('align-items','flex-start')" class="cl-btn l-fg lic-pa-0 " lic-tip="Align Top"><div class="cli-icon" style="--icon: url(./assets/icons/alignTop.png)"></div>   </button>
-        <button onclick="applyCss('align-items','center')" class="cl-btn l-fg lic-pa-0 " lic-tip="Align Midle (Horizontally)"><div class="cli-icon" style="--icon: url(./assets/icons/alignMidleHorizontal.png)"></div>   </button>
-        <button onclick="applyCss('align-items','flex-end')" class="cl-btn l-fg lic-pa-0 " lic-tip="Align Bottom"><div class="cli-icon" style="--icon: url(./assets/icons/alignBottom.png)"></div>   </button>
-        <button onclick="applyCss('justify-content','space-between')" class="cl-btn l-fg lic-pa-0 " lic-tip="Distribute Horizontally"><div class="cli-icon" style="--icon: url(./assets/icons/distributeHorizontally.png)"></div>   </button>
-        <button onclick="applyCss('justify-content','flex-start')" class="cl-btn l-fg lic-pa-0 " lic-tip="Align Left"><div class="cli-icon" style="--icon: url(./assets/icons/alignLeft.png)"></div>   </button>
-        <button onclick="applyCss('justify-content','center')" class="cl-btn l-fg lic-pa-0 " lic-tip="Align Midle (Vertically)"><div class="cli-icon" style="--icon: url(./assets/icons/alignMidleVertical.png)"></div>   </button>
-        <button onclick="applyCss('justify-content','flex-end')" class="cl-btn l-fg lic-pa-0 " lic-tip="Align Right"><div class="cli-icon" style="--icon: url(./assets/icons/alignRight.png)"></div>   </button>
-        <button onclick="applyCss('align-items','space-between')" class="cl-btn l-fg lic-pa-0 " lic-tip="Distribute Vertically"><div class="cli-icon" style="--icon: url(./assets/icons/distributeVerticaly.png)"></div>   </button>
-    </div>
-    <input type='file' accept='.lic' onchange='LIC.fm.openGeneratedProject(event)'><br>
+    <div style="height: 100%; overflow-x: hidden; overflow-y: auto;" >
 
-    <div l-props="any" l-class="d-flex flex-col b-b mb-1" >
-        <div l-class="b-b">
-            <button l-id="btn-active-margin" onclick="SwitchClasses(this,'active','deactive'); SwitchClasses($('[l-id~=\'btn-active-padding\']'),'active'); spacingType='margin'" l-class="btn radius-2 active">Margin</button>
-            <button l-id="btn-active-padding" l-class="btn radius-2 " onclick="SwitchClasses(this,'active','deactive'); SwitchClasses($('[l-id~=\'btn-active-margin\']'),'active'); spacingType='padding'">Padding</button>
+        <div l-props="any" l-class="d-flex flex-column ">
+            <p class="l-text" l-class="p-0 m-0 pl-1 mb-0 "></p><h5 class="l-text pl-2" style="padding-left:10px;">Display</h5></p>
+            <div l-class="d-flex pl-2">
+                <button  l-class="btn radius-2 border-1" class="" onclick="applyCss('display', 'flex'), applyCss('flex-direction', 'row')">Flex Line </button>
+                <button  l-class="btn radius-2 border-1" class="" onclick="applyCss('display', 'flex'), applyCss('flex-direction', 'column')">Flex Column </button>
+                <button  l-class="btn radius-2 border-1" class="" onclick="applyCss('display', 'none')">None </button>
+
+            </div>
+        <hr>
         </div>
-        <div l-class="d-flex  pa-1 justify-content-center align-center" style="height: 200px;">
-            <div>
-                <div l-class="d-flex  input-container align-center  mx-1">
-                    <input ondblclick="applyCss(spacingType+'-left',$(this).val()); applyCss(spacingType+'-right',$(this).val()); $('[l-id=\'p_m_right\']').val($(this).val())" onchange="applyCss(spacingType+'-left',$(this).val())" l-id="p_m_left"  type="text" value="12"  l-class=" text-center cursor-h px-1 input-number ">  
-                </div>
-            </div>
-            <div>
-                <div>
-                    <div l-class="d-flex  input-container align-center   px-1  my-1">
-                        <input ondblclick="applyCss(spacingType+'-top',$(this).val()); applyCss(spacingType+'-bottom',$(this).val()); $('[l-id=\'p_m_bottom\']').val($(this).val())" onchange="applyCss(spacingType+'-top',$(this).val())" l-id="p_m_top"  type="text" value="12"  l-class=" text-center cursor-h px-1 input-number ">  
-                    </div>
-                </div>
-                <div style="height: 100px;">
-                    <div ondblclick="applyCss(spacingType+'-left',$('[l-id=\'p_m_left\']').val());applyCss(spacingType+'-top',$('[l-id=\'p_m_top\']').val()); applyCss(spacingType+'-bottom',$('[l-id=\'p_m_bottom\']').val());applyCss(spacingType+'-right',$('[l-id=\'p_m_right\']').val())"  l-class="w-100 h-100" class="bg-img" style="--icon: url(./assets/icons/spacer.svg)"></div>
-                </div>
-                <div>
-                    <div l-class="d-flex  input-container align-center   px-1 my-1 ">
-                        <input ondblclick="applyCss(spacingType+'-bottom',$(this).val()); applyCss(spacingType+'-top',$(this).val()); $('[l-id=\'p_m_top\']').val($(this).val())" onchange="applyCss(spacingType+'-bottom',$(this).val())" l-id="p_m_bottom"  type="text" value="12"  l-class=" text-center cursor-h px-1 input-number ">  
-                    </div>
-                </div>
-            </div>
-            <div>
-                <div l-class="d-flex  input-container align-center  mx-1">
-                    <input ondblclick="applyCss(spacingType+'-right',$(this).val()); applyCss(spacingType+'-left',$(this).val()); $('[l-id=\'p_m_left\']').val($(this).val())" onchange="applyCss(spacingType+'-right',$(this).val())" l-id="p_m_right"  type="text" value="12"  l-class=" text-center cursor-h px-1 input-number ">  
-                </div>
-            </div>
+
+
+        <div class="component">
+            <button onclick="applyCss('align-items','flex-start')" class="cl-btn l-fg lic-pa-0 " lic-tip="Align Top"><div class="cli-icon" style="--icon: url(./assets/icons/alignTop.png)"></div>   </button>
+            <button onclick="applyCss('align-items','center')" class="cl-btn l-fg lic-pa-0 " lic-tip="Align Midle (Horizontally)"><div class="cli-icon" style="--icon: url(./assets/icons/alignMidleHorizontal.png)"></div>   </button>
+            <button onclick="applyCss('align-items','flex-end')" class="cl-btn l-fg lic-pa-0 " lic-tip="Align Bottom"><div class="cli-icon" style="--icon: url(./assets/icons/alignBottom.png)"></div>   </button>
+            <button onclick="applyCss('justify-content','space-between')" class="cl-btn l-fg lic-pa-0 " lic-tip="Distribute Horizontally"><div class="cli-icon" style="--icon: url(./assets/icons/distributeHorizontally.png)"></div>   </button>
+            <button onclick="applyCss('justify-content','flex-start')" class="cl-btn l-fg lic-pa-0 " lic-tip="Align Left"><div class="cli-icon" style="--icon: url(./assets/icons/alignLeft.png)"></div>   </button>
+            <button onclick="applyCss('justify-content','center')" class="cl-btn l-fg lic-pa-0 " lic-tip="Align Midle (Vertically)"><div class="cli-icon" style="--icon: url(./assets/icons/alignMidleVertical.png)"></div>   </button>
+            <button onclick="applyCss('justify-content','flex-end')" class="cl-btn l-fg lic-pa-0 " lic-tip="Align Right"><div class="cli-icon" style="--icon: url(./assets/icons/alignRight.png)"></div>   </button>
+            <button onclick="applyCss('align-items','space-between')" class="cl-btn l-fg lic-pa-0 " lic-tip="Distribute Vertically"><div class="cli-icon" style="--icon: url(./assets/icons/distributeVerticaly.png)"></div>   </button>
         </div>
-    </div>
     
 
-    <div l-props="any" l-class="d-flex pa-1 pl-1">
-        <!-- <div class="vc-toggle-container">
-            <label class="vc-switch">
-              <input onchange="removeBackground()" type="checkbox" class="vc-switch-input" />
-              <span class="vc-switch-label" data-on="On" data-off="Off"></span>
-              <span class="vc-handle"></span>
-            </label>
-          </div> -->
-          <div>
-          <button onclick="removeBackground(true)" lic-tip="Remove background" class="cl-btn p-2 l-fg "><div class="cli-icon" style="--icon: url(./assets/icons/no-color.svg)"></div>   </button>
-          </div>
-        <div l-class="mx-1 bg-white " l-id="l-bgColor" style="width: 25px; height:25px;" class="btn" ></div>
-        <p class="l-text">Fill</p>
-    </div>
+        <div l-props="any" l-class="d-flex flex-col b-b mb-1" >
+            <div l-class="b-b">
+                <button l-id="btn-active-margin" onclick="SwitchClasses(this,'active','deactive'); SwitchClasses($('[l-id~=\'btn-active-padding\']'),'active'); spacingType='margin'" l-class="btn radius-2 active">Margin</button>
+                <button l-id="btn-active-padding" l-class="btn radius-2 " onclick="SwitchClasses(this,'active','deactive'); SwitchClasses($('[l-id~=\'btn-active-margin\']'),'active'); spacingType='padding'">Padding</button>
+            </div>
+            <div l-class="d-flex  pa-1 justify-content-center align-center" style="height: 200px;">
+                <div>
+                    <div l-class="d-flex  input-container align-center  mx-1">
+                        <input ondblclick="applyCss(spacingType+'-left',$(this).val()); applyCss(spacingType+'-right',$(this).val()); $('[l-id=\'p_m_right\']').val($(this).val())" onchange="applyCss(spacingType+'-left',$(this).val())" l-id="p_m_left"  type="text" value="12"  l-class=" text-center cursor-h px-1 input-number ">  
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <div l-class="d-flex  input-container align-center   px-1  my-1">
+                            <input ondblclick="applyCss(spacingType+'-top',$(this).val()); applyCss(spacingType+'-bottom',$(this).val()); $('[l-id=\'p_m_bottom\']').val($(this).val())" onchange="applyCss(spacingType+'-top',$(this).val())" l-id="p_m_top"  type="text" value="12"  l-class=" text-center cursor-h px-1 input-number ">  
+                        </div>
+                    </div>
+                    <div style="height: 100px;">
+                        <div ondblclick="applyCss(spacingType+'-left',$('[l-id=\'p_m_left\']').val());applyCss(spacingType+'-top',$('[l-id=\'p_m_top\']').val()); applyCss(spacingType+'-bottom',$('[l-id=\'p_m_bottom\']').val());applyCss(spacingType+'-right',$('[l-id=\'p_m_right\']').val())"  l-class="w-100 h-100" class="bg-img" style="--icon: url(./assets/icons/spacer.svg)"></div>
+                    </div>
+                    <div>
+                        <div l-class="d-flex  input-container align-center   px-1 my-1 ">
+                            <input ondblclick="applyCss(spacingType+'-bottom',$(this).val()); applyCss(spacingType+'-top',$(this).val()); $('[l-id=\'p_m_top\']').val($(this).val())" onchange="applyCss(spacingType+'-bottom',$(this).val())" l-id="p_m_bottom"  type="text" value="12"  l-class=" text-center cursor-h px-1 input-number ">  
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div l-class="d-flex  input-container align-center  mx-1">
+                        <input ondblclick="applyCss(spacingType+'-right',$(this).val()); applyCss(spacingType+'-left',$(this).val()); $('[l-id=\'p_m_left\']').val($(this).val())" onchange="applyCss(spacingType+'-right',$(this).val())" l-id="p_m_right"  type="text" value="12"  l-class=" text-center cursor-h px-1 input-number ">  
+                    </div>
+                </div>
+            </div>
+        </div>
+        
 
-       
+        <div l-props="any" l-class="d-flex flex-column pa-1 ">
+            <hr>
+            <p class="l-text" l-class="p-0 m-0 pl-1 "><h5 class="l-text pl-2" style="padding-left:10px;">Background</h5></p>
+            
+            <p class="l-text" l-class="pl-1 ">Color</p>
+            <div>
+                <button onclick="removeBackground(true)" lic-tip="Remove background" class="cl-btn p-2 l-fg "><div class="cli-icon" style="--icon: url(./assets/icons/no-color.svg)"></div>   </button>
+                <div l-class="mx-1 bg-white " l-id="l-bgColor" id="l-bgColor" style="width: 25px; height:25px;" class="btn" ></div>
+            
+            </div>
+            <p class="l-text" l-class="pl-1 ">Image</p>
+            <div class="d-flex">
+                    <label  onclick="applyCss('align-items','flex-start')" class="cl-btn d-flex " lic-tip="Align Top">
+                        <div  class="cli-icon" style="--icon: url(./assets/icons/addImage.svg); width:40px; height:40px;"></div>   
+                        <input l-class="d-none" onchange="appklyBgImage(this)" type="file" name="" id="">
+                    </label>
+                    <div l-class="d-flex  input-container align-center  px-1">
+                        <select onchange="applyCss('background-position',$(this).val())">
+                            <option data-display="Position" value="initial">None</option>
+                            <option value="left top">left top</option>
+                            <option value="left center">left center</option>
+                            <option value="left bottom">left bottom</option>
+                            <option value="right top">right top</option>
+                            <option value="right center">right center</option>
+                            <option value="right bottom">right bottom</option>
+                            <option value="center top">center top</option>
+                            <option value="center center">center center</option>
+                            <option value="center bottom">center bottom</option>
+                        </select>
+                    </div>
+            </div>
+            <div class="d-flex">
+                <!-- <button  l-class="btn radius-2 border-1" class="" onclick="applyCss('display', 'flex'), applyCss('flex-direction', 'row')">Repeat</button>
+                <button  l-class="btn radius-2 border-1" class="" onclick="applyCss('display', 'flex'), applyCss('flex-direction', 'column')">No Repeat</button>
+                 -->
+
+                 <div l-class="d-flex  input-container align-center  w-50 px-1">
+                    <span class="l-text" l-class="pt-0 ">Size</span>
+                    <input onchange="applyCss('background-size',$(this).val())" l-id="l-width" type="text" value="cover"  l-class="cursor-h px-1 input-number ">  
+                </div>
+
+                    <div l-class="d-flex  input-container align-center  px-1">
+                        <select onchange="applyCss('background-repeat',$(this).val())">
+                            <option data-display="Repeat?" value="initial">None</option>
+                            <option value="repeat">repeat</option>
+                            <option value="repeat-x">repeat-x</option>
+                            <option value="repeat-y">repeat-y</option>
+                            <option value="no-repeat">no-repeat</option>
+                            <option value="space">space</option>
+                            <option value="round">round</option>
+                            <option value="initial">center top</option>
+                            
+                        </select>
+                    </div>
+            </div>
+           
+            <hr>
+        </div>
+
+    
         <div l-class="d-flex flex-col"  l-props="any">
             <p class="l-text" l-class="p-0 m-0 pl-1">Sizes</p>
             <div l-class="d-flex">
-           
+        
                 <div l-class="d-flex  input-container align-center  w-50 px-1">
                     <span class="l-text" l-class="pt-0 ">W</span>
-                    <input onchange="applySize(this,'[l-id=\'l-height\']')" l-id="l-width" type="text" value="12"  l-class="cursor-h px-1 input-number ">  
+                    <input onchange="applySize(this,null)" l-id="l-width" type="text" value="12"  l-class="cursor-h px-1 input-number ">  
                 </div>
-                   
+                
                 <div l-class="d-flex  input-container align-center  w-50 px-1">
                     <span class="l-text" l-class="pt-0 ">H</span>
-                    <input onchange="applySize('[l-id=\'l-width\']',this)" l-id="l-height" type="text" value="12"  l-class="cursor-h px-1 input-number ">  
+                    <input onchange="applySize(null,this)" l-id="l-height" type="text" value="12"  l-class="cursor-h px-1 input-number ">  
                 </div>
             </div>
                 
@@ -251,12 +280,34 @@
             <div l-class="d-flex  input-container align-center  px-1">
                         <p class="l-text" l-class="pt-2 ">Font-size</p>
                         <input onchange="applyCss('font-size', $(this).val())" l-id="l-border" type="text" value="0px"  l-class="cursor-h px-1 input-number ">  
+            </div>
+
+            <div class="d-flex">
+                <!-- <button  l-class="btn radius-2 border-1" class="" onclick="applyCss('display', 'flex'), applyCss('flex-direction', 'row')">Repeat</button>
+                <button  l-class="btn radius-2 border-1" class="" onclick="applyCss('display', 'flex'), applyCss('flex-direction', 'column')">No Repeat</button>
+                 -->
+
+                 <div l-class="d-flex  input-container align-center  w-50 px-1">
+                    <span class="l-text" l-class="pt-0 ">Size</span>
+                    <input onchange="applyCss('background-size',$(this).val())" l-id="l-width" type="text" value="cover"  l-class="cursor-h px-1 input-number ">  
+                </div>
+
+                    <div l-class="d-flex  input-container align-center  px-1">
+                        <select onchange="applyCss('text-decoration',$(this).val())">
+                            <option data-display="Text decoration" value="initial">None</option>
+                            <option value="underline">underline</option>
+                            
+                            
+                        </select>
                     </div>
+            </div>
+
+
         </div>
 
-       
+        
         <div l-class="d-flex flex-col"  l-props="any">
-             <hr>
+            <hr>
             <p class="l-text" l-class="p-0 m-0 pl-1 mb-1"><h5 class="l-text pl-2" style="padding-left:10px;">Border</h5></p>
 
             <div  l-class="p-0 m-0 pl-2 d-flex flex-column ">
@@ -265,8 +316,10 @@
                     <div l-class="mx-1 bg-white " l-id="l-borderColor" style="width: 25px; height:25px;" class="btn"  ></div>
                 </div>    
 
+                
+
                 <hr>
-               
+            
             </div> 
 
             <p class="l-text" l-class="p-0 m-0 pl-3">Radius</p>
@@ -274,7 +327,7 @@
                 <div class="range-wrap">
                     <div class="range-value" id="rangeV"></div>
                     <input onchange="applyCss('border-radius',($(this).val()*1.5)+'px')" id="range" type="range" min="0" max="100" value="0" step="1">
-                  </div>
+                </div>
             </div>
             <div l-class="d-flex flex-column pl-3">
                 <div  l-class="p-0 m-0 d-flex" >
@@ -286,13 +339,13 @@
                     </div>
                     <div style="max-width:25%;" l-class="d-flex  input-container align-center   ">
                         <input  onchange="
-                             applyCss('border-radius', ' '+$('[l-id=\'l-border-left\']').val()+' ' +$(this).val()+' '+$('[l-id=\'l-border-right\']').val()+' '+$('[l-id=\'l-border-bottom\']').val()+' ')" 
+                            applyCss('border-radius', ' '+$('[l-id=\'l-border-left\']').val()+' ' +$(this).val()+' '+$('[l-id=\'l-border-right\']').val()+' '+$('[l-id=\'l-border-bottom\']').val()+' ')" 
                             
                             l-id="l-border-top" type="text" value="0px"  l-class="cursor-h px-1 input-number ">  
                     </div>
                     <div style="max-width:25%;" l-class="d-flex  input-container align-center   ">
                         <input  onchange="
-                             applyCss('border-radius', ' '+$('[l-id=\'l-border-left\']').val()+' ' +$('[l-id=\'l-border-top\']').val()+' '+$(this).val()+' '+$('[l-id=\'l-border-bottom\']').val()+' ')" 
+                            applyCss('border-radius', ' '+$('[l-id=\'l-border-left\']').val()+' ' +$('[l-id=\'l-border-top\']').val()+' '+$(this).val()+' '+$('[l-id=\'l-border-bottom\']').val()+' ')" 
                             
                             l-id="l-border-right" type="text" value="0px"  l-class="cursor-h px-1 input-number ">  
                     </div>
@@ -306,7 +359,7 @@
                 </div> 
             </div>
 
-           
+        
             <div l-class="d-flex flex-column pl-2">
                 <hr>
                 <p class="l-text" l-class="pl-1 ">Size</p>
@@ -328,15 +381,69 @@
                 </div> 
             </div>
 
-
-<!-- ###################################################################### -->
-            
         </div>
 
-   
+
+
+
+
+
+
+        <div l-class="d-flex flex-col"  l-props="any">
+            <hr>
+            <p class="l-text" l-class="p-0 m-0 pl-1 mb-1"><h5 class="l-text pl-2" style="padding-left:10px;">Shadow</h5></p>
+
+            <div  l-class="p-0 m-0 pl-2 d-flex flex-column ">
+                <div l-class="d-flex  align-center  w-50 px-1">
+                    <span class="l-text" l-class="pt-0 ">Color</span>
+                    <div l-class="mx-1 bg-white " l-id="shadow-color" style="width: 25px; height:25px;" class="btn"  ></div>
+                </div>    
+
+                <hr>
+            
+            </div> 
+
+            <p class="l-text" l-class="p-0 m-0 pl-3">Blur</p>
+            <div l-class="d-flex w-80 pl-3">
+                <div class="range-wrap">
+                    <div class="range-value" id="rangeV"></div>
+                    <input onchange=" applyCss('box-shadow', $('[l-id=\'shadow-offset--x\']').val()+' '+ $('[l-id=\'shadow-offset--y\']').val()+' ' + $('[l-id=\'shadow-blur\']').val()+'px ' + $('[l-id=\'shadow-spread\']').val()+'px ' + $('[l-id=\'shadow-color\']').val() + ' ' + globalShadowColor)" l-id="shadow-blur" type="range" min="0" max="100" value="0" step="1">
+                </div>
+            </div>
+            <p class="l-text" l-class="p-0 m-0 pl-3">Spread</p>
+            <div l-class="d-flex w-80 pl-3">
+                <div class="range-wrap">
+                    <div class="range-value" id="rangeV"></div>
+                    <input onchange=" applyCss('box-shadow', $('[l-id=\'shadow-offset--x\']').val()+' '+ $('[l-id=\'shadow-offset--y\']').val()+' ' + $('[l-id=\'shadow-blur\']').val()+'px ' + $('[l-id=\'shadow-spread\']').val()+'px ' + $('[l-id=\'shadow-color\']').val() + ' ' + globalShadowColor)" l-id="shadow-spread" type="range" min="0" max="100" value="0" step="1">
+                </div>
+            </div>
+            
+
+        
+            <div l-class="d-flex flex-column pl-2">
+                <hr>
+                <p class="l-text" l-class="pl-1 ">Offset</p>
+                <div  l-class="p-0 m-0 d-flex pl-1" >
+                    <div style="max-width:50%;" l-class="d-flex  input-container align-center   ">
+                       <p l-class="mx-1 mt-1" >X</p> <input l-id="shadow-offset--x" onchange=" applyCss('box-shadow', $('[l-id=\'shadow-offset--x\']').val()+' '+ $('[l-id=\'shadow-offset--y\']').val()+' ' + $('[l-id=\'shadow-blur\']').val()+'px ' + $('[l-id=\'shadow-spread\']').val()+'px ' + $('[l-id=\'shadow-color\']').val() + ' ' + globalShadowColor)" type="text" value="0px"  l-class="cursor-h px-1 input-number ">  
+                    </div>
+                    <div style="max-width:50%;" l-class="d-flex  input-container align-center   ">
+                        <p l-class="mx-1 mt-1" >Y</p> <input l-id="shadow-offset--y" 
+                        onchange=" applyCss('box-shadow', $('[l-id=\'shadow-offset--x\']').val()+' '+ $('[l-id=\'shadow-offset--y\']').val()+' ' + $('[l-id=\'shadow-blur\']').val()+'px ' + $('[l-id=\'shadow-spread\']').val()+'px ' + $('[l-id=\'shadow-color\']').val() + ' ' + globalShadowColor)" 
+                        type="text" value="0px"  l-class="cursor-h px-1 input-number ">  
+                    </div>
+                   
+                    
+                </div> 
+            </div>
+
+        </div>
+
+    
 
     
     
+    </div>
 </div>
 
 
@@ -357,33 +464,31 @@
     <div class="cl-vl"></div>
     <button class="cl-btn p-2 l-fg " onclick="applyCss('display', 'flex'), applyCss('flex-direction', 'row')"><div class="cli-icon" style="--icon: url(./assets/icons/horizontal.svg)"></div>   </button>
     <button class="cl-btn p-2 l-fg " onclick="applyCss('display', 'flex'), applyCss('flex-direction', 'column')"><div class="cli-icon" style="--icon: url(./assets/icons/vertical.svg)"></div>   </button>
-    <div class="cl-vl"></div>
-    <div class="cl-btn p-2 l-fg  rounded-circle">
-        <div class="cli-icon cl-bg-danger" style="--icon: url(./assets/icons/filledCircle.svg)"></div> 
-        
-        <div class="lic-btn-downpdown ">
-            <button lic-tip="Color " class="cl-btn p-2 l-fg bg-picker cl-tc-danger"><i class="fas fa-circle"></i></button>
-            <!-- <button lic-tip="Gradient" class="cl-btn p-2 l-fg bg-picker-gr cl-tc-primary"><i class="fas fa-circle"></i></button> -->
-        </div>
-    </div>
-    <button class="cl-btn p-2 l-fg fg-picker"><div class="cli-icon cl-bg-primary" style="--icon: url(./assets/icons/filledCircle.svg)"></div>   </button>
+  
     <div class="cl-vl"></div>
     <button class="cl-btn p-2 l-fg "><div class="cli-icon" style="--icon: url(./assets/icons/copy.svg)"></div>   </button>
     <button class="cl-btn p-2 l-fg "><div class="cli-icon" style="--icon: url(./assets/icons/paste.svg)"></div>   </button>
     <button class="cl-btn p-2 l-fg "><div class="cli-icon" style="--icon: url(./assets/icons/cut.svg)"></div>   </button>
     <button class="cl-btn p-2 l-fg "><div class="cli-icon" style="--icon: url(./assets/icons/delete.svg)"></div>   </button>
     <div class="cl-vl"></div>
-    <button class="cl-btn p-2 l-fg " onclick="setLayouts('sm')"><div class="cli-icon" style="--icon: url(./assets/icons/phone.svg)"></div>   </button>
-    <button class="cl-btn p-2 l-fg " onclick="setLayouts('md')"><div class="cli-icon" style="--icon: url(./assets/icons/tablet.svg)"></div>   </button>
-    <button class="cl-btn p-2 l-fg " onclick="setLayouts('lg')"><div class="cli-icon" style="--icon: url(./assets/icons/pc.svg)"></div>   </button>
+    <button class="cl-btn p-2 l-fg " lic-tip="Extra Small" onclick="setLayouts('xs')"><div class="cli-icon" style="--icon: url(./assets/icons/phone.svg)"></div>   </button>
+    <button class="cl-btn p-2 l-fg " lic-tip="Small" onclick="setLayouts('sm')"><div class="cli-icon" style="--icon: url(./assets/icons/phone.svg)"></div>   </button>
+    <button class="cl-btn p-2 l-fg " lic-tip="Medium" onclick="setLayouts('md')"><div class="cli-icon" style="--icon: url(./assets/icons/tablet.svg)"></div>   </button>
+    <button class="cl-btn p-2 l-fg " lic-tip="Large" onclick="setLayouts('lg')"><div class="cli-icon" style="--icon: url(./assets/icons/pc.svg)"></div>   </button>
     <div class="cl-vl"></div>
     <button class="cl-btn p-2 l-fg "><div class="cli-icon" style="--icon: url(./assets/icons/landscape.svg)"></div>   </button>
     <button class="cl-btn p-2 l-fg "><div class="cli-icon" style="--icon: url(./assets/icons/portrait.svg)"></div>   </button>
     <div class="cl-vl"></div>
     <!-- <button class="cl-btn p-2 l-fg " onclick="Save('recent_project')"><div class="cli-icon" style="--icon: url(./assets/icons/save.svg)"></div>   </button> -->
-    <button class="cl-btn p-2 l-fg " onclick="LIC.fm.generateProject()"><div class="cli-icon" style="--icon: url(./assets/icons/save.svg)"></div>   </button>
+    <button lic-tip="Save Project" class="cl-btn p-2 l-fg " onclick="LIC.fm.generateProject()"><div class="cli-icon" style="--icon: url(./assets/icons/save.svg)"></div>   </button>
+    <label lic-tip="Open Project" class="cl-btn p-2 l-fg " o>
+        <div class="cli-icon  mt-1" style="--icon: url(./assets/icons/openFile.svg)"></div>   
+        <input style="width:0px;height:0px;" class="lic-d--none" type='file' accept='.lic' onchange='LIC.fm.openGeneratedProject(event)'><br>
+    </label>
+
     <div class="cl-vl"></div>
-    <button class="cl-btn p-2 l-fg " onclick="RUN()"><div class="cli-icon" style="--icon: url(./assets/icons/start.svg)"></div>    </button>
+    <button lic-tip="Run project" class="cl-btn p-2 l-fg " onclick="LIC.fm.RUN()"><div class="cli-icon" style="--icon: url(./assets/icons/lounch.svg)"></div>    </button>
+    <button lic-tip="Build Project" class="cl-btn p-2 l-fg " onclick="LIC.fm.BUILD()"><div class="cli-icon" style="--icon: url(./assets/icons/exportProject.svg)"></div>    </button>
     <button class="cl-btn p-2 l-fg " id="ic-toolBoxheader"> <i class="fas fa-arrows-alt"></i>   </button>
 </div>
 
@@ -408,6 +513,7 @@
 <div  class="outliner l-fg l-text">
 
 <ul id="l-layers" class="">
+ 
     <li l-id="document01" class="layer-outline">
         <ul class="l-ul-child">
             <li><span>Document</span></li>

@@ -16,6 +16,7 @@ var layers = {};
 
 
 document.spacingType = "margin"; // Define se devemos definir margens ou espaçamentos no elemento.
+document.globalShadowColor = "#000"
 
 var ObjectInfo = [];
 var layer_counter = 0;
@@ -62,117 +63,14 @@ range.addEventListener('input', setValue)
    
 
     cm.forEach(element => {
-        var el = `<li onclick="AddComponent('right','${element}');event.stopPropagation();"> <span>${element}</span> </li>`;
+        var el = `<li onclick="AddComponent('right','${element}');event.stopPropagation();"><span class="icon">${components[element].icon||""}</span>  <span>${element}</span> </li>`;
 
         $(".quickpanel>.body>ul").append(el);
     });
 
 
-const bgPickr = Pickr.create({
-    el: '.bg-picker',
-    theme: 'monolith', // or 'monolith', or 'nano'
-    useAsButton: true,
-    default: '#FD413C',
-    swatches: [
-        'rgba(244, 67, 54, 1)',
-        'rgba(233, 30, 99, 0.95)',
-        'rgba(156, 39, 176, 0.9)',
-        'rgba(103, 58, 183, 0.85)',
-        'rgba(63, 81, 181, 0.8)',
-        'rgba(33, 150, 243, 0.75)',
-        'rgba(3, 169, 244, 0.7)',
-        'rgba(0, 188, 212, 0.7)',
-        'rgba(0, 150, 136, 0.75)',
-        'rgba(76, 175, 80, 0.8)',
-        'rgba(139, 195, 74, 0.85)',
-        'rgba(205, 220, 57, 0.9)',
-        'rgba(255, 235, 59, 0.95)',
-        'rgba(255, 193, 7, 1)'
-    ],
-
-    components: {
-
-        // Main components
-        preview: true,
-        opacity: true,
-        hue: true,
-
-        // Input / output Options
-        interaction: {
-            hex: true,
-            rgba: true,
-            hsla: true,
-            hsva: true,
-            cmyk: true,
-            input: true,
-            clear: true,
-            save: true
-        }
-    }
-    
-   
-});
-
-bgPickr.on('change', (color, source, instance) => {
-    if(validateSelection()){
-        ApplyBg(color.toHEXA())
-      }
-})  
 
 
-
-
-const fgPickr = Pickr.create({
-    el: '.fg-picker',
-    theme: 'monolith', // or 'monolith', or 'nano'
-    useAsButton: true,
-    default: '#5F40A6',
-
-    swatches: [
-        'rgba(95, 64, 166, 1)',
-        'rgba(244, 67, 54, 1)',
-        'rgba(233, 30, 99, 0.95)',
-        'rgba(156, 39, 176, 0.9)',
-        'rgba(103, 58, 183, 0.85)',
-        'rgba(63, 81, 181, 0.8)',
-        'rgba(33, 150, 243, 0.75)',
-        'rgba(3, 169, 244, 0.7)',
-        'rgba(0, 188, 212, 0.7)',
-        'rgba(0, 150, 136, 0.75)',
-        'rgba(76, 175, 80, 0.8)',
-        'rgba(139, 195, 74, 0.85)',
-        'rgba(205, 220, 57, 0.9)',
-        'rgba(255, 235, 59, 0.95)',
-        'rgba(255, 193, 7, 1)'
-    ],
-
-    components: {
-
-        // Main components
-        preview: true,
-        opacity: true,
-        hue: true,
-
-        // Input / output Options
-        interaction: {
-            hex: true,
-            rgba: true,
-            hsla: true,
-            hsva: true,
-            cmyk: true,
-            input: true,
-            clear: true,
-            save: true
-        }
-    }
-
-});
-
-fgPickr.on('change', (color, source, instance) => {
-    if(validateSelection()){
-        ApplyFg(color.toHEXA())
-      }
-})  
 
 
 
@@ -198,361 +96,156 @@ $("*").on("contextmenu", function (e) {
 });
 
 
+var colorSlots = [
+    {container:'[l-id="l-bgColor"]', color_slot:"pickerBc", gradient_slot:"pickerBg",onColor:function(color){
+        if(validateSelection()){
+            ApplyBg(color)
+          }
+    }, onGradient:function(color){
+            ApplyBg(color)
+    }},
+    {container:'[l-id="l-textColor"]', color_slot:"pickerBc", gradient_slot:"pickerBg",onColor:function(color){
+        if(validateSelection()){
+            ApplyFg(color)
+          }
+    }, onGradient:function(color){
+        ApplyFg(color,true)
+    }},
+    {container:'[l-id="l-borderColor"]', color_slot:"pickerBc", gradient_slot:"pickerBg",onColor:function(color){
+        if(validateSelection()){
+            applyCss('border-color',color)
+          }
+    }, onGradient:function(color){
+        applyCss('border-color',color)
+    }},
+    {container:'[l-id="shadow-color"]', color_slot:"pickerBc", gradient_slot:"pickerBg",onColor:function(color){
+        if(validateSelection()){
+            applyCss('box-shadow', $('[l-id=\'shadow-offset--x\']').val()+' '+ $('[l-id=\'shadow-offset--y\']').val()+' ' + $('[l-id=\'shadow-blur\']').val()+'px ' + $('[l-id=\'shadow-spread\']').val()+'px ' + $('[l-id=\'shadow-color\']').val() + ' ' + color)
+            document.globalShadowColor = color;
+          }
+    }, onGradient:function(color){
+        applyCss('box-shadow', $('[l-id=\'shadow-offset--x\']').val()+' '+ $('[l-id=\'shadow-offset--y\']').val()+' ' + $('[l-id=\'shadow-blur\']').val()+'px ' + $('[l-id=\'shadow-spread\']').val()+'px ' + $('[l-id=\'shadow-color\']').val() + ' ' + color)
+        document.globalShadowColor = color;
+    }},
+]
 
-
-tippy('[l-id*="l-bgColor"]', {
-    content: `
-    <div l-class="d-flex flex-col">
-        <div l-class="d-flex">
-            <button onclick="Hide('#l-bg-gradient');Show('#l-bg-solid')" class="lic-btn l-text">Solid</button>
-            <button onclick="Show('#l-bg-gradient');Hide('#l-bg-solid')" class="lic-btn l-text">gradient</button> 
+colorSlots.forEach(el => {
+    tippy(el.container, {
+        content: `
+        <div l-class="d-flex flex-col">
+            <div l-class="d-flex">
+                <button onclick="Hide('#l-bg-gradient');Show('#l-bg-solid')" class="lic-btn l-text">Solid</button>
+                <button onclick="Show('#l-bg-gradient');Hide('#l-bg-solid')" class="lic-btn l-text">gradient</button> 
+            </div>
+            <div style="width:250px;"  id="l-bg-solid">
+                <div id="${el.color_slot}">Bolded content</div>
+            </div>
+            <div style="width:250px;"  id="l-bg-gradient" class="d-none">
+                <div id="${el.gradient_slot}">Bolded content</div>
+            </div>
         </div>
-        <div style="width:250px;"  id="l-bg-solid">
-            <div id="pickerBc">Bolded content</div>
-        </div>
-        <div style="width:250px;"  id="l-bg-gradient" class="d-none">
-            <div id="pickerBg">Bolded content</div>
-        </div>
-    </div>
+        
+        
+        `,
+        offset: [0, 60],
+          
+        allowHTML: true,
+        
+        interactive: true,
+        trigger: 'click',
+        placement: 'left-start',
+        background:"#000",
+        theme: 'light',
+        onShow(instance) {
+            console.log(instance)
+          setTimeout(() => {
     
-    
-    `,
-    offset: [0, 60],
-      
-    allowHTML: true,
-    
-    interactive: true,
-    trigger: 'click',
-    placement: 'left-start',
-    background:"#000",
-    theme: 'light',
-    onShow(instance) {
-        console.log(instance)
-      setTimeout(() => {
-
-        try {
-            const bgPickr = Pickr.create({
-                el: '#pickerBc',
-                theme: 'monolith', // or 'monolith', or 'nano'
-                inline: true,
-                showAlways: true,
-                container: '#pickerBc',
-                default: '#FD413C',
-                swatches: [
-                    'rgba(244, 67, 54, 1)',
-                    'rgba(233, 30, 99, 0.95)',
-                    'rgba(156, 39, 176, 0.9)',
-                    'rgba(103, 58, 183, 0.85)',
-                    'rgba(63, 81, 181, 0.8)',
-                    'rgba(33, 150, 243, 0.75)',
-                    'rgba(3, 169, 244, 0.7)',
-                    'rgba(0, 188, 212, 0.7)',
-                    'rgba(0, 150, 136, 0.75)',
-                    'rgba(76, 175, 80, 0.8)',
-                    'rgba(139, 195, 74, 0.85)',
-                    'rgba(205, 220, 57, 0.9)',
-                    'rgba(255, 235, 59, 0.95)',
-                    'rgba(255, 193, 7, 1)'
-                ],
-            
-                components: {
-            
-                    // Main components
-                    preview: true,
-                    opacity: true,
-                    hue: true,
-            
-                    // Input / output Options
-                    interaction: {
-                        hex: true,
-                        rgba: true,
-                        hsla: true,
-                        hsva: true,
-                        cmyk: true,
-                        input: true,
-                        clear: true,
-                        save: true
-                    }
-                }
+            try {
+                const bgPickr = Pickr.create({
+                    el: '#pickerBc',
+                    theme: 'monolith', // or 'monolith', or 'nano'
+                    inline: true,
+                    showAlways: true,
+                    container: '#pickerBc',
+                    default: '#FD413C',
+                    swatches: [
+                        'rgba(244, 67, 54, 1)',
+                        'rgba(233, 30, 99, 0.95)',
+                        'rgba(156, 39, 176, 0.9)',
+                        'rgba(103, 58, 183, 0.85)',
+                        'rgba(63, 81, 181, 0.8)',
+                        'rgba(33, 150, 243, 0.75)',
+                        'rgba(3, 169, 244, 0.7)',
+                        'rgba(0, 188, 212, 0.7)',
+                        'rgba(0, 150, 136, 0.75)',
+                        'rgba(76, 175, 80, 0.8)',
+                        'rgba(139, 195, 74, 0.85)',
+                        'rgba(205, 220, 57, 0.9)',
+                        'rgba(255, 235, 59, 0.95)',
+                        'rgba(255, 193, 7, 1)'
+                    ],
                 
-            });
-            
-            bgPickr.on('change', (color, source, instance) => {
-                if(validateSelection()){
-                    ApplyBg(color.toHEXA())
-                  }
-            })  
-        } catch (error) {
-            
-        }
-
-        
-
-
-        const bgGpickr = new GPickr({
-            el: '#pickerBg',
-
-            // Pre-defined stops. These are the default since at least two should be defined
-            stops: [
-                ['rgb(255,132,109)', 0],
-                ['rgb(255,136,230)', 1]
-            ]
-        })
-
-
-        bgGpickr.on('change', (color, source, instance) => {
-            if(validateSelection()){
-                ApplyBg(color.getGradient())
-              }
-        
-              
-        
-        })  
-
-
-      }, 200);
-      },
-  });
-
-
-
-  tippy('[l-id*="l-textColor"]', {
-    content: `
-    <div l-class="d-flex flex-col">
-        <div l-class="d-flex">
-            <button onclick="Hide('#l-bg-gradient');Show('#l-bg-solid')" class="lic-btn l-text">Solid</button>
-            <button onclick="Show('#l-bg-gradient');Hide('#l-bg-solid')" class="lic-btn l-text">gradient</button> 
-        </div>
-        <div style="width:250px;"  id="l-bg-solid">
-            <div id="pickerBc">Bolded content</div>
-        </div>
-        <div style="width:250px;"  id="l-bg-gradient" class="d-none">
-            <div id="pickerBg">Bolded content</div>
-        </div>
-    </div>
-    
-    
-    `,
-    offset: [0, 60],
-      
-    allowHTML: true,
-   
-    interactive: true,
-    trigger: 'click',
-    placement: 'left-start',
-    background:"#000",
-    theme: 'light',
-    onShow(instance) {
-        console.log(instance)
-      setTimeout(() => {
-
-        try {
-            const bgPickr = Pickr.create({
-                el: '#pickerBc',
-                theme: 'monolith', // or 'monolith', or 'nano'
-                inline: true,
-                showAlways: true,
-                container: '#pickerBc',
-                default: '#FD413C',
-                swatches: [
-                    'rgba(244, 67, 54, 1)',
-                    'rgba(233, 30, 99, 0.95)',
-                    'rgba(156, 39, 176, 0.9)',
-                    'rgba(103, 58, 183, 0.85)',
-                    'rgba(63, 81, 181, 0.8)',
-                    'rgba(33, 150, 243, 0.75)',
-                    'rgba(3, 169, 244, 0.7)',
-                    'rgba(0, 188, 212, 0.7)',
-                    'rgba(0, 150, 136, 0.75)',
-                    'rgba(76, 175, 80, 0.8)',
-                    'rgba(139, 195, 74, 0.85)',
-                    'rgba(205, 220, 57, 0.9)',
-                    'rgba(255, 235, 59, 0.95)',
-                    'rgba(255, 193, 7, 1)'
-                ],
-            
-                components: {
-            
-                    // Main components
-                    preview: true,
-                    opacity: true,
-                    hue: true,
-            
-                    // Input / output Options
-                    interaction: {
-                        hex: true,
-                        rgba: true,
-                        hsla: true,
-                        hsva: true,
-                        cmyk: true,
-                        input: true,
-                        clear: true,
-                        save: true
-                    }
-                }
+                    components: {
                 
-            });
-            
-            bgPickr.on('change', (color, source, instance) => {
-                if(validateSelection()){
-                    ApplyFg(color.toHEXA())
-                  }
-            })  
-        } catch (error) {
-            
-        }
-
-        
-
-
-        const bgGpickr = new GPickr({
-            el: '#pickerBg',
-
-            // Pre-defined stops. These are the default since at least two should be defined
-            stops: [
-                ['rgb(255,132,109)', 0],
-                ['rgb(255,136,230)', 1]
-            ]
-        })
-
-
-        bgGpickr.on('change', (color, source, instance) => {
-            if(validateSelection()){
-                ApplyFg(color.getGradient(),true)
-              }
-        
-              
-        
-        })  
-
-
-      }, 200);
-      },
-  });
-
-
-
-
-
-  tippy('[l-id*="l-borderColor"]', {
-    content: `
-    <div l-class="d-flex flex-col">
-        <div l-class="d-flex">
-            <button onclick="Hide('#l-border-gradient');Show('#l-border-solid')" class="lic-btn l-text">Solid</button>
-            <button onclick="Show('#l-border-gradient');Hide('#l-border-solid')" class="lic-btn l-text">gradient</button> 
-        </div>
-        <div style="width:250px;"  id="l-border-solid">
-            <div id="pickerBc">Bolded content</div>
-        </div>
-        <div style="width:250px;"  id="l-border-gradient" class="d-none">
-            <div id="pickerborder">Bolded content</div>
-        </div>
-    </div>
-    
-    
-    `,
-    offset: [0, 60],
-      
-    allowHTML: true,
-   
-    interactive: true,
-    trigger: 'click',
-    placement: 'left-start',
-    background:"#000",
-    theme: 'light',
-    onShow(instance) {
-        console.log(instance)
-      setTimeout(() => {
-
-        try {
-            const bgPickr = Pickr.create({
-                el: '#pickerBc',
-                theme: 'monolith', // or 'monolith', or 'nano'
-                inline: true,
-                showAlways: true,
-                container: '#pickerBc',
-                default: '#FD413C',
-                swatches: [
-                    'rgba(244, 67, 54, 1)',
-                    'rgba(233, 30, 99, 0.95)',
-                    'rgba(156, 39, 176, 0.9)',
-                    'rgba(103, 58, 183, 0.85)',
-                    'rgba(63, 81, 181, 0.8)',
-                    'rgba(33, 150, 243, 0.75)',
-                    'rgba(3, 169, 244, 0.7)',
-                    'rgba(0, 188, 212, 0.7)',
-                    'rgba(0, 150, 136, 0.75)',
-                    'rgba(76, 175, 80, 0.8)',
-                    'rgba(139, 195, 74, 0.85)',
-                    'rgba(205, 220, 57, 0.9)',
-                    'rgba(255, 235, 59, 0.95)',
-                    'rgba(255, 193, 7, 1)'
-                ],
-            
-                components: {
-            
-                    // Main components
-                    preview: true,
-                    opacity: true,
-                    hue: true,
-            
-                    // Input / output Options
-                    interaction: {
-                        hex: true,
-                        rgba: true,
-                        hsla: true,
-                        hsva: true,
-                        cmyk: true,
-                        input: true,
-                        clear: true,
-                        save: true
-                    }
-                }
+                        // Main components
+                        preview: true,
+                        opacity: true,
+                        hue: true,
                 
-            });
+                        // Input / output Options
+                        interaction: {
+                            hex: true,
+                            rgba: true,
+                            hsla: true,
+                            hsva: true,
+                            cmyk: true,
+                            input: true,
+                            clear: true,
+                            save: true
+                        }
+                    }
+                    
+                });
+                
+                bgPickr.on('change', (color, source, instance) => {
+                    if(validateSelection()){
+                        el.onColor(color.toHEXA())
+                       
+                        $(el.container).css("background", color);
+                      }
+                })  
+            } catch (error) {
+                
+            }
+    
             
-            bgPickr.on('change', (color, source, instance) => {
+            const bgGpickr = new GPickr({
+                el: '#pickerBg',
+    
+                // Pre-defined stops. These are the default since at least two should be defined
+                stops: [
+                    ['rgb(255,132,109)', 0],
+                    ['rgb(255,136,230)', 1]
+                ]
+            })
+    
+    
+            bgGpickr.on('change', (color, source, instance) => {
                 if(validateSelection()){
-                    applyCss('border-color',color.toHEXA().toString())
-                    $('[l-id*="l-borderColor"]').css("background", color);
+                    el.onGradient(color.getGradient())
+                    $(el.container).css("background", color);
                   }
-            })  
-        } catch (error) {
             
-        }
-
-        
-
-
-        const bgGpickr = new GPickr({
-            el: '#pickerborder',
-
-            // Pre-defined stops. These are the default since at least two should be defined
-            stops: [
-                ['rgb(255,132,109)', 0],
-                ['rgb(255,136,230)', 1]
-            ]
-        })
-
-
-        bgGpickr.on('change', (color, source, instance) => {
-            if(validateSelection()){
-               // ApplyFg(color.getGradient(),true)
-                applyCss('border-color',color.getGradient())
-              }
-        
-              
-        
-        })  
-
-
-      }, 200);
-      },
-  });
-
-
-
-
+                  
+            
+            })  
+    
+    
+          }, 200);
+          },
+      });
+    
+});
 
 
 
@@ -908,8 +601,39 @@ function applyCss(prop, value){
         }
            
     } 
+    
 }
 
+
+function appklyBgImage(context) {
+
+// var imagem =  URL.createObjectURL(context.files[0]);
+//   if(validateSelection()){
+//     $(selected).attr("src", imagem);
+//     console.log(imagem)
+    
+// } 
+
+// URL.revokeObjectURL(tmp_path);
+
+console.log()
+            var type = $(selected).prop("tagName");
+
+           
+            var file = context.files[0];    
+            var reader = new FileReader();
+            reader.onloadend = function () {
+                (type != "IMG")? 
+                $(selected).css('background-image', 'url("' + reader.result + '")') :
+                $(selected).attr("src", reader.result);
+            }
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+            }
+
+
+}
 
 function applyAttr(attr, value){
     if(validateSelection()){
@@ -1023,10 +747,16 @@ function applySize(x,y, mesurement1, mesurement2) {
 
     if(validateSelection() ){
       
-        $(selected).css("width",$(x).val().toString());
-        $(selected).css("height",$(y).val().toString());
-        $(selected).attr("l-width",$(x).val().toString());
-        $(selected).attr("l-height",$(y).val().toString());
+        if(x !=null){
+            $(selected).css("width",$(x).val().toString());
+            $(selected).attr("l-width",$(x).val().toString());
+        }
+       
+        if(y !=null){
+            $(selected).css("height",$(y).val().toString());
+            $(selected).attr("l-height",$(y).val().toString());
+        }
+       
     }
  }
 
@@ -1304,10 +1034,7 @@ function Project() {
 
 }
 
-function RUN(){
-    var w = window.open("http://127.0.0.1:5500/index.html", "_blank");
-    w.document.body.innerHTML = $(".app").html();
-}
+
 
 
 function showSelection(el){
@@ -1326,7 +1053,6 @@ function showSelection(el){
 }
 
 defineFunctions([
-    {name:"RUN", func:RUN},
     {name:"selectMe", func:selectMe},
     {name:"higlight", func:higlight},
     {name:"layoutDirection", func:layoutDirection},
@@ -1353,6 +1079,7 @@ defineFunctions([
     {name:"Hide", func:Hide},
     {name:"Show", func:Show},
     {name:"applyCss", func:applyCss},
+    {name:"appklyBgImage", func:appklyBgImage},
     {name:"applyAttr", func:applyAttr},
     {name:"removeAttr", func:removeAttr},
     {name:"removeBackground", func:removeBackground},

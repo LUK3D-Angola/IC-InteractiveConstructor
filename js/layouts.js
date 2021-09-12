@@ -1,16 +1,16 @@
 import { defineFunctions } from "../utils/difinitions.js";
-var breackpoints = {
-    xs:"0px",
+window.breackpoints = {
+    xs:"360px",
     sm:"640px",
     md:"768px",
     lg:"1024px",
     xl:"1280px",
 }
 window.styles = {
-  "asfasfsa": { xs: {}, sm: {}, md: {}, lg: {}, xl: {} },
+
 };
 
-var currentLayout = "sm";
+window.currentLayout = "lg";
 
 
 $(document).ready(function () {
@@ -18,10 +18,10 @@ $(document).ready(function () {
 });
 
 function setLayouts(breackpoint){
-    saveLayouts(currentLayout)
-    $('[luk-id="app"]').css('max-width', breackpoints[breackpoint]);
+    saveLayouts(window.currentLayout)
+    $('[luk-id="app"]').css('max-width', window.breackpoints[breackpoint]);
     applyLayouts(breackpoint);
-    currentLayout = breackpoint;
+    window.currentLayout = breackpoint;
 }
 
 
@@ -34,7 +34,6 @@ function saveLayouts(layout){
         Object.keys(styles[$(this).attr("l-layer")]).forEach(key => {
             if(Object.entries(styles[$(this).attr("l-layer")][key]).length == 0)
             styles[$(this).attr("l-layer")][key] = $(this).attr('style');
-            console.log(styles[$(this).attr("l-layer")][key])
         });
         styles[$(this).attr("l-layer")][layout] = $(this).attr('style');
         

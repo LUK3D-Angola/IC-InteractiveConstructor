@@ -15,13 +15,15 @@
      */
     --l-selection: #5F40A6;
     --l-bg-transparent-light:#1d21253a;
-    --l-bg-dark: #090909;
+    --l-bg-dark: #16161A;
     --l-bg-transparent-dark:#4e63792a;
-    --l-fg-dark: #1C1C1E;
-    --l-fg2-dark: #2F2E31;
+    --l-fg-dark: #1C1C21;
+    --l-fg2-dark: #32323B;
     --l-text-dark: #CFCFCF;
     --l-border-dark: #2f2e31;
     --l-primary-dark:rgb(252, 145, 44);
+
+    --l-scroll: #32323B;
 
     --l-white-dark: #f1f1f1;
 
@@ -40,12 +42,27 @@
     border-color: var(--l-border-dark) !important ;
   }
 
+
+  hr {
+    margin: 10px 0;
+    color: inherit;
+    background-color: var(--l-border-dark);
+    border: 0;
+     opacity: .5;
+}
+
+
 .l-bg{
-    
-    background: var(--l-bg-dark) !important;
+    background-image: url("./assets/icons/grid.svg");
+    background-color: var(--l-bg-dark) !important;
+    background-size: 200px;
+    background-blend-mode: difference;
 }
 .l-fg{
     background: var(--l-fg-dark) !important;
+}
+.l-fg2{
+    background: var(--l-fg2-dark) !important;
 }
 .l-text{
     color: var(--l-text-dark) !important;
@@ -155,7 +172,28 @@ html{
     color: var(--l-text-dark);
     display: flex;
     justify-content: space-between;
+    align-items: center;
     text-transform: capitalize;
+}
+
+
+.quickpanel .body ul li .icon{
+ width: 40px;
+ height: 40px;
+ background: var(--l-fg-dark);
+    padding: 2px;
+    border-radius: 5px;
+}
+
+.quickpanel .body ul li .icon svg{
+    width: 100%;
+    height: 100%;
+   
+    
+}
+
+.quickpanel .body ul li .icon svg path{
+    fill: var(--l-text-dark) !important;
 }
 
 .quickpanel .body ul li:hover{
@@ -164,7 +202,8 @@ html{
 
 
 *::-webkit-scrollbar {
-    width: 12px;
+    width: 9px;
+    height: 10px;
 }
  
 *::-webkit-scrollbar-track {
@@ -174,7 +213,7 @@ html{
  
 *::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background: var(--l-text-dark); 
+    background: var(--l-scroll); 
 }
 
 .l-text-edition{
@@ -189,14 +228,14 @@ html{
     padding-left: 5px;
     padding-right: 5px;
     position: fixed;
-    width: 60vw;
+    min-width: 60vw;
     height: 40px;
     background: var(--l-fg-dark);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.11);
     border-radius: 10px;
-    top:10px;
+    bottom:10px;
 
-    left: 30%;
+    left: 35%;
     transform: translateX(-30%);
 
     /*
@@ -377,12 +416,17 @@ html{
     font-size: 10pt;
 }
 
+.lic-d--none{
+    display:none;
+}
+
 .lic-contextMenu ul li:hover{
     background: var(--l-bg-dark);
 }
 
 .tip{
     opacity: 0.5;
+   
 }
 
 .lic-side-menu{
@@ -390,11 +434,9 @@ html{
     width: 300px;
     height: 100vh;
     right: 0;
-    
     background: var(--l-fg-dark);
     border-left: 2px solid rgba(179, 179, 179, 0.247);
-    overflow-x: none !important;
-    padding-bottom: 30px;
+    padding-bottom: 50px;
     z-index: 10 ;
 }
 .lic-side-menu .component{
@@ -500,7 +542,9 @@ input::selection{
     
    align-content: center;
 }
-
+[l-class*="border-1"]{
+    border: 1px solid var(--l-border-dark) !important;
+}
 
 
 [l-class*="input-container"]{
@@ -642,4 +686,68 @@ input[type=range] {
     left: 50%;
     margin-left: -5px;
     margin-top: -1px;
+  }
+
+  .dialog{
+      position: relative;
+      display: flex;
+      display: none;
+  }
+
+  .dialog .block{
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      background: #16161A;
+      top: 0;
+      right: 0;
+      opacity: 0.5;
+      top: 50px;
+      
+  }
+
+  .dialog .body{
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+  }
+
+  .dialog .body .content{
+        width: 700px;
+        height: 500px;
+        background: var(--l-fg2-dark);
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+  }
+
+  .dialog .body .content .head{
+    
+  }
+
+  .dialog .body .content  .list{
+      width: 100%;
+      height: 100%;
+      display: flex;
+      padding: 10px;
+      overflow: auto;
+      flex-wrap: wrap;
+      justify-content: space-between;
+  }
+
+  .dialog .body .content  .list .item{
+      margin: 10px;
+      width: 100px;
+      height: 100px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
   }
