@@ -15,11 +15,11 @@ O seu objectivo é muito simples: Criar o front-end do teu website de forma ráp
 
 > Este é um exemplo de UI criado com o LIC.
 
-<img src="./Screenshot9.png" >
+<img src="./screenshot9.png" >
 
 > Este é um exemplo de UI criado com o LIC.
 
-<img src="./Screenshot10.png" >
+<img src="./screenshot10.png" >
 
 > Este é um exemplo de UI criado com o LIC.
 
