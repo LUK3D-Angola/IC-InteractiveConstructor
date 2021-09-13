@@ -1,6 +1,6 @@
 $(document).ready(function() {
-    // lightTheme()
-    // darkTheme()
+    lightTheme()
+        // darkTheme()
     setLayouts('sm');
 
     $.each($(".tabs"), function(tabIndex, tab) {
