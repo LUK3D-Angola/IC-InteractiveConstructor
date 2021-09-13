@@ -3,6 +3,7 @@ import { textTypes, elementType } from "./elements.types.js";
 import { defineFunctions } from "../utils/difinitions.js";
 import './fileManager.js';
 import './layouts.js';
+
 /**Variavle para armazenar o elemento selecionado */
 var selected;
 var highliting;
@@ -582,14 +583,14 @@ function applyMargin(side, value) {
     }
   }
 
-function applyCss(prop, value){
+function applyCss(prop, value, isImportant = false){
     if(validateSelection()){
             
         try {
             var el = $(selected);
            // el[0].style.removeAttribute(prop);
-           el[0].style.setProperty(prop, value, 'important');
-            
+           el[0].style.setProperty(prop, value, (isImportant?'important':""));
+           window.LIC.class.addclass(prop,el.attr("l-layer"),value)
 
 
            // el.style(prop,value, 'important')

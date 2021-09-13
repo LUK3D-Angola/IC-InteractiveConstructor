@@ -244,11 +244,23 @@ window.LIC = {
         toHtml(licCode){
             return window.himalaya.stringify(licCode)
         }
+    },
+
+    class:{
+
+        classes:{},
+    
+        addclass(tipo,classe, valor){
+            if(this.classes[classe]==null)
+            this.classes[classe] = {};
+            this.classes[classe][tipo] = valor;
+            console.log("adicionado",this);
+        }
     }
+    
 
 
 };
-
 
 
 
