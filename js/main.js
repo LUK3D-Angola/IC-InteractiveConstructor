@@ -326,6 +326,58 @@ $(document).ready(function() {
 
 
 
+
+
+    $('[l-id="dragZone"]').off();
+    $('[l-id="dragZone"]').hide()
+
+    var counter = 0;
+
+    $('#lic-canvas, [l-id="dragZone"]').bind({
+        dragenter: function(ev) {
+            ev.preventDefault(); // needed for IE
+            counter++;
+            $('[l-id="dragZone"]').show()
+        },
+
+        dragleave: function() {
+            counter--;
+            if (counter === 0) {
+                $('[l-id="dragZone"]').hide()
+            }
+        },
+        drop: function(e) {
+            e.preventDefault();
+            console.log(e.originalEvent.dataTransfer.files)
+        }
+    });
+
+    $(window, document).on('drop', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    })
+
+    $('#lic-canvas, [l-id="dragZone"]').on(
+        'drop',
+        function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            alert("Deixaste")
+            if (e.originalEvent.dataTransfer && e.originalEvent.dataTransfer.files.length) {
+
+                /*UPLOAD FILES HERE*/
+                console.log(e.originalEvent.dataTransfer.files)
+            }
+        }
+    );
+
+
+
+
+
+
+
 });
 
 
