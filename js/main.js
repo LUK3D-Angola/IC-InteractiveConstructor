@@ -1021,8 +1021,10 @@ function dragElement(elmnt) {
 
 
 let root = document.documentElement;
+var temaAtual = "light";
 
 function lightTheme() {
+    temaAtual = "light";
     root.style.setProperty('--l-selection', ' #5F40A6');
     root.style.setProperty('--l-bg-dark', ' #E4E4E4');
     root.style.setProperty('--l-bg-transparent-dark', '#1d21253a');
@@ -1034,6 +1036,7 @@ function lightTheme() {
 }
 
 function darkTheme() {
+    temaAtual = "dark";
     root.style.setProperty('--l-selection', '#5F40A6');
     root.style.setProperty('--l-bg-transparent-light', '#1d21253a');
     root.style.setProperty('--l-bg-dark', 'rgb(24, 27, 32)');
@@ -1046,6 +1049,11 @@ function darkTheme() {
     root.style.setProperty('--l-scroll', '#32323B');
     root.style.setProperty('--l-white-dark', '#f1f1f1');
 
+}
+
+
+function changeTheme(val) {
+    (val == "dark") ? lightTheme(): darkTheme();
 }
 
 function Save() {
@@ -1124,6 +1132,7 @@ defineFunctions([
     { name: "applySize", func: applySize },
     { name: "darkTheme", func: darkTheme },
     { name: "lightTheme", func: lightTheme },
+    { name: "changeTheme", func: changeTheme },
     { name: "Save", func: Save },
     { name: "LastSaved", func: LastSaved },
     { name: "Project", func: Project },
