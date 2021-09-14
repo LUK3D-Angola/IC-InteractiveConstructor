@@ -1,31 +1,31 @@
-import'../libs/jszip.min.js'
+import '../libs/jszip.min.js'
 
- 
+
 
 window.LIC = {
 
 
-    fm:{
-        RUN(){
+    fm: {
+        RUN() {
             //Gerando o css
 
 
 
-            var w = window.open("","Lic-Preview", "width="+screen.width+" ,height="+screen.height);
-            
+            var w = window.open("", "Lic-Preview", "width=" + screen.width + " ,height=" + screen.height);
+
             var result = this.packProject();
-        
-            w.document.body.innerHTML =  result.html + "\n\n" + " <style>\n\n"+ result.css + "\n\n<style>";
-        
+
+            w.document.body.innerHTML = result.html + "\n\n" + " <style>\n\n" + result.css + "\n\n<style>";
+
             var css = "";
         },
-        BUILD(){
+        BUILD() {
             var code = this.packProject();
-            
+
             var mainFolder = new JSZip();
             mainFolder.file("README.md", "# LIC \nEste projecto foi gerado por LIC");
             var stylesFolder = mainFolder.folder("styles")
-            stylesFolder.file("main.css",code.css )
+            stylesFolder.file("main.css", code.css)
             mainFolder.file("index.html", `
             <!DOCTYPE html>
             <html lang="en">
@@ -45,40 +45,40 @@ window.LIC = {
             
             `);
 
-            mainFolder.generateAsync({type:"blob"}).then(function(content) {
-                  
-                  saveAs(content, `Lic-Project.lic`);
+            mainFolder.generateAsync({ type: "blob" }).then(function(content) {
+
+                saveAs(content, `Lic-Project.lic`);
             });
         },
 
-        packProject(){
+        packProject() {
 
-            
+
             var medias = { xs: [], sm: [], md: [], lg: [], xl: [] }
 
-           
+
 
             window.setLayouts(window.currentLayout);
 
-            Object.keys(window.styles).forEach(el=>{
+            Object.keys(window.styles).forEach(el => {
                 console.log(window.styles[el])
                 Object.keys(medias).forEach(m => {
                     console.log(m)
-                    
-                    if(window.styles[el][m])
-                    medias[m].push( `
+
+                    if (window.styles[el][m])
+                        medias[m].push(`
                     [l-layer="${el}"]{
                         ${
                             window.styles[el][m] 
                         }
                     }
 
-                    ` );
+                    `);
                 });
-                
+
             })
 
-            var finalCss =`
+            var finalCss = `
             
                
 
@@ -137,21 +137,21 @@ window.LIC = {
 
              
 
-            `.replace(/^(?=\n)$|^\s*|\s*$|\n\n+/gm,"");
+            `.replace(/^(?=\n)$|^\s*|\s*$|\n\n+/gm, "");
 
-            finalCss = finalCss.replace(/}\n,+/gm,"}\n").split("[object Object]").join("");
+            finalCss = finalCss.replace(/}\n,+/gm, "}\n").split("[object Object]").join("");
 
-            var finalHtml =  $(".app").html().toString().replace(/(style=")([a-zA-Z0-9:;\.\s\(\)\-\,]*)(")/gm);
+            var finalHtml = $(".app").html().toString().replace(/(style=")([a-zA-Z0-9:;\.\s\(\)\-\,]*)(")/gm);
             finalHtml = finalHtml.replace(/(onclick=")([a-zA-Z0-9:;\.\s\(\)\-\,]*)(")/gm);
             finalHtml = finalHtml.replace(/(onmouseover=")([a-zA-Z0-9:;\.\s\(\)\-\,]*)(")/gm);
             finalHtml = finalHtml.replace(/(ondblclick=")([a-zA-Z0-9:;\.\s\(\)\-\,]*)(")/gm);
-            finalHtml = finalHtml.replace(/style=".*?"/gm," ") 
+            finalHtml = finalHtml.replace(/style=".*?"/gm, " ")
 
-            return {html:finalHtml, css:finalCss}
+            return { html: finalHtml, css: finalCss }
 
         },
 
-        generateProject(){
+        generateProject() {
             // var mainFolder = new JSZip();
             // mainFolder.file("README.txt", "Este projecto foi gerado por LIC");
             // var zip = mainFolder.folder("app");
@@ -165,11 +165,11 @@ window.LIC = {
             // zip.file("styles.licss", JSON.stringify(styles))
 
             var projectFile = {
-                source:source,
-                layers:layers,
-                styles:styles,
+                source: source,
+                layers: layers,
+                styles: styles,
             }
-            var blob = new Blob([JSON.stringify(projectFile)], {type: "text/plain;charset=utf-8"});
+            var blob = new Blob([JSON.stringify(projectFile)], { type: "text/plain;charset=utf-8" });
             saveAs(blob, `Lic-Project.lic`);
 
             // mainFolder.generateAsync({type:"blob"}).then(function(content) {
@@ -177,90 +177,91 @@ window.LIC = {
             //       saveAs(content, `Lic-Project.lic`);
             // });
         },
-        openGeneratedProject (event) {
+        openGeneratedProject(event) {
             var input = event.target;
             var reader = new FileReader();
             var self = this;
-            reader.onload = function(){
-              var code =  JSON.parse(reader.result);
+            reader.onload = function() {
+                var code = JSON.parse(reader.result);
 
-            //   var source = this.toHtml(code["source"]);
-            //   var layers = this.toHtml(code["layers"]);
+                //   var source = this.toHtml(code["source"]);
+                //   var layers = this.toHtml(code["layers"]);
 
-              document.getElementById("lic-line").innerHTML = self.toHtml(code["source"]);
-              document.getElementById("l-layers").innerHTML = self.toHtml(code["layers"]);
+                document.getElementById("lic-line").innerHTML = self.toHtml(code["source"]);
+                document.getElementById("l-layers").innerHTML = self.toHtml(code["layers"]);
 
-              
-              window.styles = code["styles"];
-              
-             // console.log(code);
+
+                window.styles = code["styles"];
+
+                // console.log(code);
             };
             reader.readAsText(input.files[0]);
-          },
-        saveProject(){
-            this.saveFile("last.lic",document.getElementById("lic-line").innerHTML);
-            this.saveFile("last-hierarquia.lic",document.getElementById("l-layers").innerHTML);
         },
-        openProject(){
-            this.openFile("last.lic",(code)=>{
+        saveProject() {
+            this.saveFile("last.lic", document.getElementById("lic-line").innerHTML);
+            this.saveFile("last-hierarquia.lic", document.getElementById("l-layers").innerHTML);
+        },
+        openProject() {
+            this.openFile("last.lic", (code) => {
                 document.getElementById("lic-line").innerHTML = code;
             })
-            this.openFile("last-hierarquia.lic",(code)=>{
+            this.openFile("last-hierarquia.lic", (code) => {
                 document.getElementById("l-layers").innerHTML = code;
             })
         },
-        saveFile(name,code, _success,_error){
-           try {
+        saveFile(name, code, _success, _error) {
+            try {
                 var licCode = this.toLic(code)
-                localStorage.setItem(name||Date,JSON.stringify(licCode));
-                if(_success)_success();
-           } catch (error) {
-                if(_error)_error(error);
-           }
+                localStorage.setItem(name || Date, JSON.stringify(licCode));
+                if (_success) _success();
+            } catch (error) {
+                if (_error) _error(error);
+            }
         },
-        openFile(name, _success,_error){
+        openFile(name, _success, _error) {
             try {
                 var licCode = localStorage.getItem(name);
                 var html = this.toHtml(JSON.parse(licCode));
-                if(_success)_success(html);
+                if (_success) _success(html);
             } catch (error) {
-                if(_error)_error(error);
+                if (_error) _error(error);
             }
         },
-        clearLast(){
+        clearLast() {
             localStorage.clear();
         },
-        
+
         /**
          *  Função para conversão de html para Lic
          * @date 2021-09-04
          * @param {HTMLElement} htmlCode
          * @returns {object}
          */
-        toLic(htmlCode){
+        toLic(htmlCode) {
             var fcode = window.himalaya.parse(htmlCode);
-           return fcode;
+            return fcode;
         },
-        toHtml(licCode){
+        toHtml(licCode) {
             return window.himalaya.stringify(licCode)
         }
     },
 
-    class:{
+    class: {
 
-        classes:{},
-    
-        addclass(tipo,classe, valor){
-            if(this.classes[classe]==null)
-            this.classes[classe] = {};
-            this.classes[classe][tipo] = valor;
-            console.log("adicionado",this);
-        }
-    }
-    
+        classes: {},
+
+            addclass(tipo, classe, valor) {
+                if (this.classes[classe] == null)
+                    this.classes[classe] = {};
+                this.classes[classe][tipo] = valor;
+                console.log("adicionado", this);
+            }
+    },
+
+    elementClasses: [
+
+    ]
+
 
 
 };
-
-
-

@@ -14,10 +14,9 @@ var components = {
         `,
     },
     card: {
-        description:
-            "Um container é utilizado na organização de layout e agrupamento de elementos.",
+        description: "Um container é utilizado na organização de layout e agrupamento de elementos.",
         code: `
-        <div class="card select border-0" style="width: 100%;" onmouseover="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();">
+        <div class="card l-select border-0" style="width: 100%;" onmouseover="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();">
           <div l-layer="testeBasico12" class="card-body select" onmouseover="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();">
             <h5  l-layer="testeBasico2" ondblclick="startTextEditing(this);event.stopPropagation();" class="card-title select" onmouseover="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();">Card title</h5>
             </div>
@@ -33,8 +32,7 @@ var components = {
         `,
     },
     Image: {
-        description:
-            "Um container é utilizado na organização de layout e agrupamento de elementos.",
+        description: "Um container é utilizado na organização de layout e agrupamento de elementos.",
         code: `
         <img l-layer="testeBasico2" onmouseover="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();">
         `,
@@ -48,8 +46,7 @@ var components = {
         `,
     },
     div: {
-        description:
-            "Um container é utilizado na organização de layout e agrupamento de elementos.",
+        description: "Um container é utilizado na organização de layout e agrupamento de elementos.",
         code: `
         <div class="select" ondblclick="startTextEditing(this);event.stopPropagation();" onmouseover="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();">
         </div>
@@ -168,7 +165,7 @@ var components = {
     select: {
         description: "Select.",
         code: `
-        <select class="form-select select" onmouseover="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();" aria-label="Default select example">
+        <select class="form-select select" onmouseover="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();" aria-label="Default l-select example">
         </select>
         `,
         icon: `
@@ -218,7 +215,7 @@ var components = {
         <path style=" stroke:none;fill-rule:nonzero;fill:#989898;fill-opacity:1;" d="M 16 12 C 10.507813 12 6 16.507813 6 22 L 6 42 C 6 47.492188 10.507813 52 16 52 L 48 52 C 53.492188 52 58 47.492188 58 42 L 58 22 C 58 16.507813 53.492188 12 48 12 Z M 16 16 L 48 16 C 51.3125 16 54 18.6875 54 22 L 54 42 C 54 45.3125 51.3125 48 48 48 L 16 48 C 12.6875 48 10 45.3125 10 42 L 10 22 C 10 18.6875 12.6875 16 16 16 Z "/>
         </g>
         </svg>`,
-        },
+    },
     A: {
         description: "badge.",
         code: `
@@ -230,7 +227,7 @@ var components = {
         <path style=" stroke:none;fill-rule:nonzero;fill:#989898;fill-opacity:1;" d="M 73.414063 7.945313 C 68.839844 7.945313 64.265625 9.6875 60.789063 13.167969 L 50.867188 23.089844 C 45.921875 28.035156 44.503906 35.171875 46.589844 41.394531 L 53.710938 34.265625 C 54.003906 32.234375 54.914063 30.265625 56.476563 28.699219 L 66.398438 18.78125 C 68.328125 16.847656 70.871094 15.871094 73.414063 15.871094 C 75.953125 15.871094 78.496094 16.84375 80.425781 18.78125 C 84.292969 22.648438 84.292969 28.941406 80.425781 32.808594 L 70.507813 42.726563 C 68.941406 44.292969 66.980469 45.191406 64.941406 45.488281 L 57.8125 52.617188 C 59.648438 53.238281 61.5625 53.5625 63.492188 53.5625 C 68.066406 53.5625 72.636719 51.820313 76.117188 48.339844 L 86.039063 38.417969 C 93.007813 31.460938 93 20.128906 86.039063 13.167969 C 82.558594 9.6875 77.984375 7.945313 73.414063 7.945313 Z M 61.429688 33.691406 C 60.398438 33.722656 59.421875 34.15625 58.703125 34.894531 L 34.894531 58.703125 C 33.855469 59.695313 33.4375 61.175781 33.800781 62.570313 C 34.164063 63.957031 35.25 65.042969 36.636719 65.40625 C 38.03125 65.769531 39.511719 65.351563 40.503906 64.3125 L 64.3125 40.503906 C 65.484375 39.363281 65.839844 37.621094 65.203125 36.109375 C 64.5625 34.605469 63.066406 33.644531 61.429688 33.691406 Z M 36.605469 45.679688 C 31.738281 45.433594 26.800781 47.152344 23.089844 50.867188 L 13.167969 60.789063 C 6.207031 67.746094 6.207031 79.078125 13.167969 86.039063 C 16.648438 89.519531 21.222656 91.261719 25.792969 91.261719 C 30.367188 91.261719 34.9375 89.519531 38.417969 86.03125 L 48.339844 76.109375 C 53.285156 71.171875 54.703125 64.027344 52.617188 57.8125 L 45.488281 64.941406 C 45.191406 66.972656 44.292969 68.941406 42.726563 70.507813 L 32.808594 80.425781 C 28.941406 84.292969 22.648438 84.292969 18.78125 80.425781 C 14.910156 76.558594 14.910156 70.265625 18.78125 66.398438 L 28.699219 56.476563 C 30.265625 54.914063 32.234375 54.011719 34.265625 53.710938 L 41.394531 46.589844 C 39.835938 46.0625 38.226563 45.765625 36.605469 45.679688 Z "/>
         </g>
         </svg>`,
-        },
+    },
     checkbox: {
         description: "Select.",
         code: `

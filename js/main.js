@@ -18,7 +18,6 @@ var layers = {};
 
 document.spacingType = "margin"; // Define se devemos definir margens ou espaçamentos no elemento.
 document.globalShadowColor = "#000"
-
 var ObjectInfo = [];
 var layer_counter = 0;
 
@@ -26,13 +25,13 @@ var InterComponents = {
     "line": `
     
     <div class="lic-line">
-        <div  class="lic-page app select " onclick="selectMe(this);event.stopPropagation();">
+        <div  class="lic-page app l-select " onclick="selectMe(this);event.stopPropagation();">
         </div>
     </div>
     
     `,
     "page": `
-        <div  class="lic-page app select " onclick="selectMe(this);event.stopPropagation();">
+        <div  class="lic-page app l-select " onclick="selectMe(this);event.stopPropagation();">
         </div>
     `
 }
@@ -42,7 +41,7 @@ $(document).ready(function() {
 
     // LoadLast(); //Carregar o projecto salvo.
 
-    $("select").niceSelect();
+    // $("select").niceSelect();
 
     const
         range = document.getElementById('range'),
@@ -339,13 +338,13 @@ function selectMe(el) {
 
 
     if (validateSelection()) {
-        $(selected).removeClass("selected");
+        $(selected).removeClass("l-selected");
         $(".l-outline-selection").removeClass("l-outline-selection");
     }
 
     selected = el;
 
-    $(el).addClass("selected");
+    $(el).addClass("l-selected");
     $(`[l-layered="${$(el).attr("l-layer")}"]`).addClass("l-outline-selection");
 
     if ($(`[l-layer="${$(el).attr("l-layer")}"]`).attr("l-width")) {
@@ -360,10 +359,12 @@ function selectMe(el) {
     showProperties(elementType($(el).attr("l-type")));
     showSelection(selected);
 
+    updateClasses($(selected).attr("class"));
+
 }
 
 function unSelect() {
-    $(selected).removeClass("selected");
+    $(selected).removeClass("l-selected");
     selected = null;
     showProperties();
 }
@@ -480,6 +481,24 @@ function addLayer({ name, layer, parentLayer }) {
     `);
 }
 
+
+function updateClasses(items) {
+    if (!items)
+        return;
+    LIC.elementClasses = items.split(" ");
+
+    $('[l-id="selectedClasses"]').html("");
+    $('[l-id="selectedClasses"]').val(null).trigger('change');
+
+    LIC.elementClasses.forEach(element => {
+        console.log(element)
+        var newOption = new Option(element, element, false, false);
+        $('[l-id="selectedClasses"]').append(newOption);
+    });
+
+    $('[l-id="selectedClasses"]').val(LIC.elementClasses).trigger('change');
+
+}
 
 
 
@@ -1029,7 +1048,7 @@ function lightTheme() {
     root.style.setProperty('--l-bg-dark', ' #E4E4E4');
     root.style.setProperty('--l-bg-transparent-dark', '#1d21253a');
     root.style.setProperty('--l-fg-dark', ' #F5F5F5');
-    root.style.setProperty('--l-fg2-dark', ' #E4E4E4');
+    root.style.setProperty('--l-fg2-dark', ' #e6e6e6');
     root.style.setProperty('--l-text-dark', ' #707070');
     root.style.setProperty('--l-border-dark', ' #E4E4E4');
     root.style.setProperty('--l-scroll', ' #FFFFFF');
@@ -1136,5 +1155,6 @@ defineFunctions([
     { name: "Save", func: Save },
     { name: "LastSaved", func: LastSaved },
     { name: "Project", func: Project },
+    { name: "updateClasses", func: updateClasses },
 
 ]);

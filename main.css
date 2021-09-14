@@ -20,6 +20,7 @@
     --l-text-dark: #CFCFCF;
     --l-border-dark: rgb(24, 24, 26);
     --l-primary-dark: rgb(252, 145, 44);
+    --l-secondary-dark: #dc446e;
     --l-scroll: #32323B;
     --l-white-dark: #f1f1f1;
     --vc-off-color: var(--l-bg-dark);
@@ -97,7 +98,7 @@ html {
     padding: 10px;
 }
 
-.selected {
+.l-selected {
     outline: 2px solid rgba(65, 158, 245, 0.651);
 }
 
@@ -105,7 +106,7 @@ html {
     outline: 2px solid rgba(65, 128, 245, 0.781);
 }
 
-.select:not(.selected):hover {
+.l-select:not(.l-selected):hover {
     outline: 2px solid rgba(173, 81, 81, 0.171);
 }
 
@@ -420,7 +421,7 @@ html {
 .lic-side-menu .component {
     display: flex;
     justify-content: space-between;
-    padding: 10px 10px;
+    padding: 10px 5px;
     border-bottom: 1px solid;
 }
 
@@ -726,4 +727,112 @@ input[type=range]:focus::-webkit-slider-runnable-track {
     justify-content: center;
     align-items: center;
     border: none;
+}
+
+
+/* TABS */
+
+
+/**
+ * Tabs navigation
+ */
+
+.c-tabs-nav {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.c-tabs-nav__link {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    margin-right: 4px;
+    padding: 5px;
+    background-color: var(--l-fg2-dark);
+    text-align: center;
+    -webkit-transition: color 0.3s;
+    transition: color 0.3s;
+    text-decoration: none;
+    color: var(--l-text-dark);
+}
+
+.c-tabs-nav__link:last-child {
+    margin-right: 0;
+}
+
+.c-tabs-nav__link:hover {
+    color: #6d6d6d;
+}
+
+.c-tabs-nav__link.is-active {
+    color: var(--l-primary-dark);
+    background-color: var(--l-fg-dark);
+}
+
+.c-tabs-nav__link i,
+.c-tabs-nav__link span {
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+}
+
+.c-tabs-nav__link i {
+    font-size: 18px;
+}
+
+.c-tabs-nav__link span {
+    display: none;
+    font-size: 18px;
+}
+
+@media all and (min-width: 720px) {
+    .c-tabs-nav__link i {
+        margin-bottom: 12px;
+        font-size: 22px;
+    }
+    .c-tabs-nav__link span {
+        display: block;
+    }
+}
+
+
+/**
+   * Tab
+   */
+
+.c-tab {
+    display: none;
+    background-color: var(--l-fg-dark);
+}
+
+.c-tab.is-active {
+    display: block;
+}
+
+.c-tab__content {
+    padding: 1.5rem;
+}
+
+
+/**
+   * Tabs no-js fallback
+   */
+
+.c-tabs.no-js .c-tabs-nav {
+    display: none;
+}
+
+.c-tabs.no-js .c-tab {
+    display: block;
+    margin-bottom: 1.5rem;
+}
+
+.c-tabs.no-js .c-tab:last-child {
+    margin-bottom: 0;
 }
