@@ -327,6 +327,8 @@ $(document).ready(function() {
 
 
 
+    //DRAG AND DROP FUNCTIONS
+
 
     $('[l-id="dragZone"]').off();
     $('[l-id="dragZone"]').hide()
@@ -340,35 +342,57 @@ $(document).ready(function() {
             $('[l-id="dragZone"]').show()
         },
 
-        dragleave: function() {
+        dragleave: function(ev) {
+            ev.preventDefault(); // needed for IE
             counter--;
             if (counter === 0) {
                 $('[l-id="dragZone"]').hide()
             }
-        },
-        drop: function(e) {
-            e.preventDefault();
-            console.log(e.originalEvent.dataTransfer.files)
         }
     });
 
-    $(window, document).on('drop', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-    })
+
 
     $('#lic-canvas, [l-id="dragZone"]').on(
         'drop',
         function(e) {
             e.preventDefault();
             e.stopPropagation();
-
-            alert("Deixaste")
+            //Caso seja um arquivo
             if (e.originalEvent.dataTransfer && e.originalEvent.dataTransfer.files.length) {
 
                 /*UPLOAD FILES HERE*/
-                console.log(e.originalEvent.dataTransfer.files)
+                for (let i = 0; i < e.originalEvent.dataTransfer.files.length; i++) {
+                    var arquivo = e.originalEvent.dataTransfer.files[i];
+
+
+                    var reader = new FileReader();
+
+                    console.log(arquivo);
+
+                    if (checkExtention(arquivo.name).toString().toLowerCase() == "lic") {
+                        reader.onload = function() {
+                            LIC.fm.openGeneratedProject(reader.result)
+
+                        }
+                        reader.readAsText(arquivo);
+
+                    } else {
+                        reader.onload = function(e) {
+                            var el = AddComponent('right', 'Image');
+                            $(el).attr('src', e.target.result);
+                        }
+                        reader.readAsDataURL(arquivo);
+                    }
+
+
+
+
+
+                }
             }
+
+            $('[l-id="dragZone"]').hide();
         }
     );
 
@@ -382,6 +406,42 @@ $(document).ready(function() {
 
 
 
+//From https://developer.mozilla.org/pt-BR/docs/Web/API/HTML_Drag_and_Drop_API/File_drag_and_drop
+function dropHandler(ev) {
+
+    // Impedir o comportamento padrão (impedir que o arquivo seja aberto)
+    ev.preventDefault();
+
+    // if (ev.dataTransfer.items) {
+    //     // Use a interface DataTransferItemList para acessar o (s) arquivo (s)
+    //     for (var i = 0; i < ev.dataTransfer.items.length; i++) {
+    //         // Se os itens soltos não forem arquivos, rejeite-os
+    //         if (ev.dataTransfer.items[i].kind === 'file') {
+    //             var file = ev.dataTransfer.items[i].getAsFile();
+    //             console.log('... file[' + i + '].name = ' + file.name);
+    //         }
+    //     }
+    // } else {
+    //     // Use a interface DataTransfer para acessar o (s) arquivo (s)
+    //     for (var i = 0; i < ev.dataTransfer.files.length; i++) {
+    //         console.log('... file[' + i + '].name = ' + ev.dataTransfer.files[i].name);
+    //     }
+    // }
+}
+
+
+function dragOverHandler(ev) {
+
+    // Impedir o comportamento padrão (impedir que o arquivo seja aberto)
+    ev.preventDefault();
+}
+
+
+
+
+function checkExtention(path) {
+    return path.slice((Math.max(0, path.lastIndexOf(".")) || Infinity) + 1);
+}
 
 
 
@@ -502,7 +562,7 @@ function AddComponent(direction, type, elementObject) {
 
     }
 
-    return null;
+    return el;
 
 }
 
@@ -1208,5 +1268,8 @@ defineFunctions([
     { name: "LastSaved", func: LastSaved },
     { name: "Project", func: Project },
     { name: "updateClasses", func: updateClasses },
+    { name: "dropHandler", func: dropHandler },
+    { name: "dragOverHandler", func: dragOverHandler },
+    { name: "checkExtention", func: checkExtention },
 
 ]);

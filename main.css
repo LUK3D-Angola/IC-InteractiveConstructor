@@ -345,6 +345,11 @@ html {
     display: flex;
     flex-direction: column;
     top: 0px;
+    right: 0px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
 }
 
 #lic-canvas .lic-line {

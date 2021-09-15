@@ -21,6 +21,9 @@ window.LIC = {
         },
         BUILD() {
             var code = this.packProject();
+            //Convert blob to file and save on zip
+            // JSZip v3.0.0 now supports blob as file content. zip.file("image.png", blob); will work.
+            //Reference: https://github.com/Stuk/jszip/issues/246
 
             var mainFolder = new JSZip();
             mainFolder.file("README.md", "# LIC \nEste projecto foi gerado por LIC");
@@ -178,12 +181,29 @@ window.LIC = {
             // });
         },
         openGeneratedProject(event) {
-            var input = event.target;
-            var reader = new FileReader();
             var self = this;
-            reader.onload = function() {
-                var code = JSON.parse(reader.result);
+            if (event.target) {
+                var input = event.target;
+                var reader = new FileReader();
 
+                reader.onload = function() {
+                    var code = JSON.parse(reader.result);
+
+                    //   var source = this.toHtml(code["source"]);
+                    //   var layers = this.toHtml(code["layers"]);
+
+                    document.getElementById("lic-line").innerHTML = self.toHtml(code["source"]);
+                    document.getElementById("l-layers").innerHTML = self.toHtml(code["layers"]);
+
+
+                    window.styles = code["styles"];
+
+                    // console.log(code);
+                };
+                reader.readAsText(input.files[0]);
+            } else {
+
+                var code = JSON.parse(event);
                 //   var source = this.toHtml(code["source"]);
                 //   var layers = this.toHtml(code["layers"]);
 
@@ -193,9 +213,8 @@ window.LIC = {
 
                 window.styles = code["styles"];
 
-                // console.log(code);
-            };
-            reader.readAsText(input.files[0]);
+            }
+
         },
         saveProject() {
             this.saveFile("last.lic", document.getElementById("lic-line").innerHTML);
