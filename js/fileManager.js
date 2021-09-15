@@ -47,11 +47,34 @@ window.LIC = {
             </html>
             
             `);
+         
+
+            
+                var assetsFolder = mainFolder.folder("Assets");
+                var index = 0;
+                code.files.forEach(file => {
+                    console.log("Encontrado:",file)
+
+                    assetsFolder.file(file.fileName, file.base64, {base64: true});
+                    
+                   
+                    index+=1;
+                });
+           
+           
+           
 
             mainFolder.generateAsync({ type: "blob" }).then(function(content) {
 
                 saveAs(content, `Lic-Project.lic`);
             });
+        },
+
+       async blobFromText(text,_callback){
+           
+            fetch(text)
+            .then(res =>res.blob()).then(_callback);
+            
         },
 
         packProject() {
@@ -144,13 +167,43 @@ window.LIC = {
 
             finalCss = finalCss.replace(/}\n,+/gm, "}\n").split("[object Object]").join("");
 
-            var finalHtml = $(".app").html().toString().replace(/(style=")([a-zA-Z0-9:;\.\s\(\)\-\,]*)(")/gm);
-            finalHtml = finalHtml.replace(/(onclick=")([a-zA-Z0-9:;\.\s\(\)\-\,]*)(")/gm);
-            finalHtml = finalHtml.replace(/(onmouseover=")([a-zA-Z0-9:;\.\s\(\)\-\,]*)(")/gm);
-            finalHtml = finalHtml.replace(/(ondblclick=")([a-zA-Z0-9:;\.\s\(\)\-\,]*)(")/gm);
+            var finalHtml = $(".app").html().toString().replace(/(style=")([a-zA-Z0-9:;\.\s\(\)\-\,]*)(")/gm,"");
+            finalHtml = finalHtml.replace(/(onclick=")([a-zA-Z0-9:;\.\s\(\)\-\,]*)(")/gm,"");
+            finalHtml = finalHtml.replace(/(onmouseover=")([a-zA-Z0-9:;\.\s\(\)\-\,]*)(")/gm,"");
+            finalHtml = finalHtml.replace(/(ondblclick=")([a-zA-Z0-9:;\.\s\(\)\-\,]*)(")/gm,"");
+
+            var finalFiles = [];
+            var tmpFiles = finalHtml.match(/src\=[\"\']?([a-zA-Z0-9 \+\=\:\-\#\(\)\.\_\/\;\'\,]+)\;?[\"\']?/gim);
+
+            if (!tmpFiles) {
+                tmpFiles = finalHtml.match(/data:.*?([a-zA-Z0-9 \+\=\:\-\#\(\)\.\_\/\;\'\,]+)\;?[\"\']?/gim);
+            }
+
+            if(tmpFiles){
+                tmpFiles.forEach(file => {
+              
+                    var code = file.split('src="').join("");
+                    var fileCode = code.split('"').join("");
+                    console.log("Total:",tmpFiles.length)
+                    console.log("Arquivo:",code)
+                  
+                     if(fileCode){
+                         var fileName = (uuidv4()+ "." + fileCode.split(";")[0].split("/")[1]).split("+xml").join("");
+                         
+                         finalHtml = finalHtml.replace(fileCode,"./Assets/"+fileName);
+                         finalCss = finalCss.split(fileCode).join("../Assets/"+fileName);
+                         finalFiles.push({base64:fileCode.split(',')[1], fileName:fileName });
+                     }
+                     
+                 });
+            }else{
+                return; //Remover esta linha
+            }
+           
+
             finalHtml = finalHtml.replace(/style=".*?"/gm, " ")
 
-            return { html: finalHtml, css: finalCss }
+            return { html: finalHtml, css: finalCss, files:finalFiles }
 
         },
 
