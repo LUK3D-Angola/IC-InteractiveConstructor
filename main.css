@@ -364,7 +364,7 @@ html {
 }
 
 .lic-page .app {
-    width: 1280px;
+    width: 100vw;
     min-height: 100vh;
     background: #fff;
     overflow: auto;
