@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IC - Interactive Creator</title>
     <link href="./libs/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <link href="./libs/fontawesome/css/all.min.css" rel="stylesheet">
     <link href="./libs/nice-select.css" rel="stylesheet">
     <link href="./libs/gpickr/gpickr.min.css" rel="stylesheet">
@@ -147,7 +148,7 @@
     </div>
 
 
-    <div  ondrop="dropHandler(event);" ondragover="dragOverHandler(event);" l-id="dragZone" l-clas="">
+    <div ondrop="dropHandler(event);" ondragover="dragOverHandler(event);" l-id="dragZone" l-clas="">
         <h1 class="l-text">Solte aqui para adicionar</h1>
     </div>
 
@@ -166,7 +167,7 @@
                         <hr>
                         <h5 class="l-text pl-2" style="padding-left:10px;">Groups</h5>
                         <div l-class="d-flex px-2">
-                            <select l-id="selectedClasses" multiple name="" id="" style="width: 100%;">
+                            <select onchange="applyClasses($(this).val())" l-id="selectedClasses" multiple name="" id="" style="width: 100%;">
                                 <option value="primary">Primary</option>
                                 <option value="Secondary">Secondary</option>
                                 <option value="btn">Button</option>
@@ -277,7 +278,7 @@
                             <label onclick="applyCss('align-items','flex-start')" class="cl-btn d-flex " lic-tip="Align Top">
                                 <div class="cli-icon"
                                     style="--icon: url(./assets/icons/addImage.svg); width:40px; height:40px;"></div>
-                                <input l-class="d-none" onchange="appklyBgImage(this)" type="file" name="" id="">
+                                <input l-class="d-none" onchange="applyBgImage(this)" type="file" name="" id="">
                             </label>
                             <div l-class="pt-1" lic-tip="Background Position">
                                 <div l-class="d-flex  input-container align-center  px-1">

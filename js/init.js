@@ -1,27 +1,25 @@
 $(document).ready(function() {
 
-    //lightTheme()
+    lightTheme()
         // darkTheme()
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+    //Reference: https://jeesite.gitee.io/front/jquery-select2/4.0/index.htm
     $('select').select2({
         //width: '200px',
-        dropdownAutoWidth: true
+        dropdownAutoWidth: true,
+        placeholder: 'Selecione',
+        tags: true,
+        //allowClear: true,
+        tokenSeparators: [',', ' ']
 
     });
+
+
+
+
 
     setLayouts('sm');
 

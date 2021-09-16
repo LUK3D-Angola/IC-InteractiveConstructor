@@ -762,8 +762,18 @@ function applyCss(prop, value, isImportant = false) {
 
 }
 
+function applyClasses(val, el) {
 
-function appklyBgImage(context) {
+    if (el) {
+        $(el).attr("class", val.join(" "))
+    } else {
+        $(selected).attr("class", val.join(" "))
+    }
+    //console.log("CLASSES:", val);
+}
+
+
+function applyBgImage(context) {
 
     // var imagem =  URL.createObjectURL(context.files[0]);
     //   if(validateSelection()){
@@ -1254,7 +1264,8 @@ defineFunctions([
     { name: "Hide", func: Hide },
     { name: "Show", func: Show },
     { name: "applyCss", func: applyCss },
-    { name: "appklyBgImage", func: appklyBgImage },
+    { name: "applyClasses", func: applyClasses },
+    { name: "applyBgImage", func: applyBgImage },
     { name: "applyAttr", func: applyAttr },
     { name: "removeAttr", func: removeAttr },
     { name: "removeBackground", func: removeBackground },
