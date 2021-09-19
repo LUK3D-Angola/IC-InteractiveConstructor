@@ -6,18 +6,27 @@ window.LIC = {
 
 
     fm: {
+        virtual:{},
         RUN() {
             //Gerando o css
 
-
-
-            var w = window.open("", "Lic-Preview", "width=" + screen.width + " ,height=" + screen.height);
+            this.virtual= window.open("", "Lic-Preview", "width=" + screen.width + " ,height=" + screen.height);
 
             var result = this.packProject();
 
-            w.document.body.innerHTML = result.html + "\n\n" + " <style>\n\n" + result.css + "\n\n<style>";
+            this.virtual.document.body.innerHTML = result.html + "\n\n" + " <style>\n\n" + result.css + "\n\n<style>";
 
-            var css = "";
+            this.virtual.onclose = ()=>{
+                this.virtual = null;
+            }
+            //console.dir(window);
+        },
+        UPDATEPREVEIW(){
+            if(this.virtual !=null){
+                var result = this.packProject();
+                this.virtual.document.body.innerHTML = result.html + "\n\n" + " <style>\n\n" + result.css + "\n\n<style>";
+            }
+           
         },
         BUILD() {
             var code = this.packProject(true);

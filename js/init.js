@@ -29,6 +29,8 @@ $(document).ready(function() {
         tabContentContainers: '.c-tab'
     });
     myTabs.init();
+
+    $(AddComponent(null, "div")).width("100%").height("100vh");
 });
 
 

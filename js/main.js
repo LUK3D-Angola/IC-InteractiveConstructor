@@ -128,11 +128,11 @@ $(document).ready(function() {
             gradient_slot: "pickerBg",
             onColor: function(color) {
                 if (validateSelection()) {
-                    applyCss('border-color', color)
+                    applyCss('border-color', color, true)
                 }
             },
             onGradient: function(color) {
-                applyCss('border-color', color)
+                applyCss('border-color', color, true)
             }
         },
         {
@@ -568,6 +568,7 @@ function AddComponent(direction, type, elementObject) {
 
 function addLayer({ name, layer, parentLayer }) {
 
+    console.log(name,layer,parentLayer)
     var extraClasses = [];
 
     if (parentLayer != null && !(!parentLayer)) {
@@ -887,6 +888,8 @@ function ApplyBg(color) {
     if (validateSelection()) {
         $(selected).css("background", color);
         $("[l-id*='bgColor']").css("background", color);
+
+        LIC.fm.UPDATEPREVEIW();
     }
 }
 
