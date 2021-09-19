@@ -33,6 +33,10 @@
     border-color: var(--l-border-dark) !important;
 }
 
+body, html{
+    padding: 0px;
+    margin: 0px;
+}
 hr {
     margin: 10px 0;
     color: inherit;
@@ -62,6 +66,7 @@ hr {
 
 .l-text {
     color: var(--l-text-dark) !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
@@ -552,9 +557,9 @@ input::selection {
     width: 80px;
 }
 
-[l-class] {
-    font-size: 9pt !important;
-}
+/* [l-class] {
+    font-size: 9pt ;
+} */
 
 [l-class*="icon-small"] {
     max-width: 5px !important;

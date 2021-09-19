@@ -933,13 +933,17 @@ function applySize(x, y, mesurement1, mesurement2) {
 
 
 function setDefautWidthHeight(x, y) {
-    var extentionX = x.match(/[px$vhw%]/gm).join('');
-    var extentionY = y.match(/[px$vhw%]/gm).join('');
-    console.log(extentionX, extentionY, x, y)
-        // $(`[l-id="l-width-mesure"]`).val(extentionX).niceSelect('update');
-    $(`[l-id="l-width"]`).val(x);
-    //$(`[l-id="l-height-mesure"]`).val(extentionY).niceSelect('update');
-    $(`[l-id="l-height"]`).val(y);
+    if(x!=null){
+        //var match = x.match(/[px$vhw%]/gm);
+        //var extentionX = (match!=null)?match.join(''):x;
+        $(`[l-id="l-width"]`).val(x);
+    }
+    if(y!=null){
+        //var extentionY = y.match(/[px$vhw%]/gm).join('');
+        $(`[l-id="l-height"]`).val(y);
+    }
+
+    
 
 
 }

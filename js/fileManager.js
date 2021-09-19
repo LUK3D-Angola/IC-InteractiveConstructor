@@ -6,7 +6,7 @@ window.LIC = {
 
 
     fm: {
-        virtual:{},
+        virtual:null,
         RUN() {
             //Gerando o css
 
@@ -22,10 +22,16 @@ window.LIC = {
             //console.dir(window);
         },
         UPDATEPREVEIW(){
-            if(this.virtual !=null){
-                var result = this.packProject();
-                this.virtual.document.body.innerHTML = result.html + "\n\n" + " <style>\n\n" + result.css + "\n\n<style>";
-            }
+            try {
+                if(this.virtual !=null && this.virtual !={}){
+                    var result = this.packProject();
+                    this.virtual.document.body.innerHTML = result.html + "\n\n" + " <style>\n\n" + result.css + "\n\n<style>";
+                }
+            } catch (error) {
+                console.log(error);
+            } 
+
+           
            
         },
         BUILD() {
@@ -96,7 +102,7 @@ window.LIC = {
             window.setLayouts(window.currentLayout);
 
             Object.keys(window.styles).forEach(el => {
-                console.log(window.styles[el])
+               // console.log(window.styles[el])
                 Object.keys(medias).forEach(m => {
                     console.log(m)
 
@@ -339,7 +345,7 @@ window.LIC = {
                 if (this.classes[classe] == null)
                     this.classes[classe] = {};
                 this.classes[classe][tipo] = valor;
-                console.log("adicionado", this);
+               // console.log("adicionado", this);
             }
     },
 

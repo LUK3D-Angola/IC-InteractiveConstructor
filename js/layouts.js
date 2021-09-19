@@ -19,7 +19,7 @@ $(document).ready(function () {
 
 function setLayouts(breackpoint){
     saveLayouts(window.currentLayout)
-    $('[luk-id="app"]').css('max-width', window.breackpoints[breackpoint]);
+    $('[luk-id="app"]').css('width', window.breackpoints[breackpoint]);
     applyLayouts(breackpoint);
     window.currentLayout = breackpoint;
 }
