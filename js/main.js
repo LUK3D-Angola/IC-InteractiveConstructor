@@ -39,9 +39,7 @@ var InterComponents = {
 
 $(document).ready(function() {
 
-    // LoadLast(); //Carregar o projecto salvo.
 
-    // $("select").niceSelect();
 
     const
         range = document.getElementById('range'),
@@ -333,23 +331,25 @@ $(document).ready(function() {
     $('[l-id="dragZone"]').off();
     $('[l-id="dragZone"]').hide()
 
-    var counter = 0;
+    //Remover os comentarios para reativar a funcionalidade de abrir o projecto arrastando o Arquivo
 
-    $('#lic-canvas, [l-id="dragZone"]').bind({
-        dragenter: function(ev) {
-            ev.preventDefault(); // needed for IE
-            counter++;
-            $('[l-id="dragZone"]').show()
-        },
+    // var counter = 0;
 
-        dragleave: function(ev) {
-            ev.preventDefault(); // needed for IE
-            counter--;
-            if (counter === 0) {
-                $('[l-id="dragZone"]').hide()
-            }
-        }
-    });
+    // $('#lic-canvas, [l-id="dragZone"]').bind({
+    //     dragenter: function(ev) {
+    //         ev.preventDefault(); // needed for IE
+    //         counter++;
+    //         $('[l-id="dragZone"]').show()
+    //     },
+
+    //     dragleave: function(ev) {
+    //         ev.preventDefault(); // needed for IE
+    //         counter--;
+    //         if (counter === 0) {
+    //             $('[l-id="dragZone"]').hide()
+    //         }
+    //     }
+    // });
 
 
 
@@ -434,6 +434,11 @@ function dragOverHandler(ev) {
 
     // Impedir o comportamento padrão (impedir que o arquivo seja aberto)
     ev.preventDefault();
+}
+
+function componentdragOverHandler(ev) {
+    ev.preventDefault();
+    console.log(this);
 }
 
 
@@ -538,6 +543,8 @@ function AddComponent(direction, type, elementObject) {
 
 
         el.attr("l-layer", layerName);
+
+
         if (type) {
             console.log(type)
             el.attr("l-type", type);
@@ -560,6 +567,32 @@ function AddComponent(direction, type, elementObject) {
 
         layer_counter += 1;
 
+
+
+
+        var counter = 0;
+
+
+        el.attr("ondrop", "componentDrop(event);event.stopPropagation();");
+        el.attr("ondragover", "componentdragOverHandler(event);event.stopPropagation();");
+
+
+        $(el).bind({
+            dragenter: function(ev) {
+                ev.preventDefault(); // needed for IE
+                counter++;
+                $(el).css("background", "red")
+            },
+
+            dragleave: function(ev) {
+                ev.preventDefault(); // needed for IE
+                counter--;
+                if (counter === 0) {
+                    $(el).css("background", "blue")
+                }
+            }
+        });
+
     }
 
     return el;
@@ -568,7 +601,7 @@ function AddComponent(direction, type, elementObject) {
 
 function addLayer({ name, layer, parentLayer }) {
 
-    console.log(name,layer,parentLayer)
+    console.log(name, layer, parentLayer)
     var extraClasses = [];
 
     if (parentLayer != null && !(!parentLayer)) {
@@ -933,17 +966,17 @@ function applySize(x, y, mesurement1, mesurement2) {
 
 
 function setDefautWidthHeight(x, y) {
-    if(x!=null){
+    if (x != null) {
         //var match = x.match(/[px$vhw%]/gm);
         //var extentionX = (match!=null)?match.join(''):x;
         $(`[l-id="l-width"]`).val(x);
     }
-    if(y!=null){
+    if (y != null) {
         //var extentionY = y.match(/[px$vhw%]/gm).join('');
         $(`[l-id="l-height"]`).val(y);
     }
 
-    
+
 
 
 }
@@ -1168,45 +1201,8 @@ function dragElement(elmnt) {
 
 
 
-let root = document.documentElement;
-var temaAtual = "light";
-
-function lightTheme() {
-    temaAtual = "light";
-    root.style.setProperty('--l-selection', ' #5F40A6');
-    root.style.setProperty('--l-bg-dark', ' #E4E4E4');
-    root.style.setProperty('--l-bg-transparent-dark', '#1d21253a');
-    root.style.setProperty('--l-fg-dark', ' #F5F5F5');
-    root.style.setProperty('--l-fg2-dark', ' #e6e6e6');
-    root.style.setProperty('--l-text-dark', ' #707070');
-    root.style.setProperty('--l-border-dark', ' #E4E4E4');
-    root.style.setProperty('--l-scroll', ' #FFFFFF');
-}
-
-function darkTheme() {
-    temaAtual = "dark";
-    root.style.setProperty('--l-selection', '#5F40A6');
-    root.style.setProperty('--l-bg-transparent-light', '#1d21253a');
-    root.style.setProperty('--l-bg-dark', 'rgb(24, 27, 32)');
-    root.style.setProperty('--l-bg-transparent-dark', '#4e63792a');
-    root.style.setProperty('--l-fg-dark', '#282A30');
-    root.style.setProperty('--l-fg2-dark', '#34353E');
-    root.style.setProperty('--l-text-dark', '#CFCFCF');
-    root.style.setProperty('--l-border-dark', 'rgb(24, 24, 26)');
-    root.style.setProperty('--l-primary-dark', 'rgb(252, 145, 44)');
-    root.style.setProperty('--l-scroll', '#32323B');
-    root.style.setProperty('--l-white-dark', '#f1f1f1');
-
-}
 
 
-function changeTheme(val) {
-    (val == "dark") ? lightTheme(): darkTheme();
-}
-
-function Save() {
-    window.LIC.fm.saveProject();
-}
 
 function LastSaved() {
     return [localStorage.getItem(localStorage.getItem('last-doc')), localStorage.getItem(localStorage.getItem('last-doc') + "-layers")];
@@ -1226,6 +1222,9 @@ function LoadLast() {
 
 }
 
+function Save() {
+    window.LIC.fm.saveProject();
+}
 
 
 
@@ -1279,9 +1278,7 @@ defineFunctions([
     { name: "removeTextColor", func: removeTextColor },
     { name: "showProperties", func: showProperties },
     { name: "applySize", func: applySize },
-    { name: "darkTheme", func: darkTheme },
-    { name: "lightTheme", func: lightTheme },
-    { name: "changeTheme", func: changeTheme },
+
     { name: "Save", func: Save },
     { name: "LastSaved", func: LastSaved },
     { name: "Project", func: Project },

@@ -33,10 +33,12 @@
     border-color: var(--l-border-dark) !important;
 }
 
-body, html{
+body,
+html {
     padding: 0px;
     margin: 0px;
 }
+
 hr {
     margin: 10px 0;
     color: inherit;
@@ -251,7 +253,7 @@ html {
 }
 
 .cl-btn {
-    padding: 5px 10px !important;
+    padding: 5px 10px;
     background: var(--l-fg-dark);
     border: none;
     outline: none;
@@ -419,7 +421,7 @@ html {
 
 .lic-side-menu {
     position: fixed;
-    width: 300px;
+    width: 350px;
     height: 100vh;
     right: 0;
     background: var(--l-fg-dark);
@@ -547,7 +549,7 @@ input::selection {
 }
 
 [l-class*="input-container"] [l-class*="input-"] {
-    background: var(--l-fg-dark) !important;
+    background: var(--l-fg-dark);
     border: none;
     color: var(--l-text-dark);
     outline: none;
@@ -556,6 +558,7 @@ input::selection {
 [l-class*="input-container"] [l-class*="input-number"] {
     width: 80px;
 }
+
 
 /* [l-class] {
     font-size: 9pt ;

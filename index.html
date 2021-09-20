@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IC - Interactive Creator</title>
     <link href="./libs/bootstrap.min.css" rel="stylesheet">
-    
+
     <link href="./libs/fontawesome/css/all.min.css" rel="stylesheet">
     <link href="./libs/nice-select.css" rel="stylesheet">
     <link href="./libs/gpickr/gpickr.min.css" rel="stylesheet">
@@ -44,6 +44,7 @@
     <script src="./libs/FileSaver.min.js"></script>
 
 
+    <script type="module" src="./js/themes.js"></script>
     <script type="module" src="./js/main.js"></script>
     <script type="module" src="./js/init.js"></script>
 </head>
@@ -124,11 +125,21 @@
 
         <div class="vc-toggle-container">
             <label class="vc-switch">
-                <input type="checkbox" class="vc-switch-input" onchange="changeTheme($(this).val())" />
+                <input type="checkbox" class="vc-switch-input" onchange="changeTheme($(this).is(':checked'))" />
                 <span class="vc-switch-label" data-on="Yes" data-off="No"></span>
                 <span class="vc-handle"></span>
             </label>
         </div>
+        <div l-class="d-flex px-2 justify-content-center align-center">
+            <div class="cli-icon" style="--icon: url(./assets/icons/phone.svg)"></div>
+            <select onchange="setLayouts($(this).val())" style="width: 100%;">
+                <option value="any">Any Screen </option>
+                <option value="sm">Small Screen</option>
+                <option value="md">Medium Screen</option>
+                <option value="lg">Large Screen</option>
+            </select>
+        </div>
+
     </div>
 
 
@@ -138,8 +149,8 @@
 
         <div class="lic-line" id="lic-line">
             <div l-id="lic-page" class="lic-page" l-clas="d">
-                <div  l-app="main" luk-id="app" class="app l-select " onmouseenter="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();">
-                
+                <div l-app="main" luk-id="app" class="app l-select " onmouseenter="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();">
+
                 </div>
             </div>
             <!-- <div l-id="lic-page" class="lic-page" l-clas="d">

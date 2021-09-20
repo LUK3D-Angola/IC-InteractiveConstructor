@@ -3,7 +3,7 @@ var components = {
     input: {
         description: "Elemento de formulario",
         code: `
-          <input onchange="applyAttr('placeholder',$(this).val())" onfocusout="$(this).val('')"  onmouseover="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();" l-layer="testeBasico4" type="email" class="form-control"  placeholder="Placeholder">
+          <input  onchange="applyAttr('placeholder',$(this).val())" onfocusout="$(this).val('')"  onmouseover="higlight(this);event.stopPropagation();" onclick="selectMe(this);event.stopPropagation();" l-layer="testeBasico4" type="email" class="form-control"  placeholder="Placeholder">
         `,
         icon: `
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64pt" height="64pt" viewBox="0 0 64 64" version="1.1">
